@@ -10,4 +10,6 @@ public interface Document {
 	public String getManager();
 	
 	public String getName();
+	
+	public void write(String description);
 }

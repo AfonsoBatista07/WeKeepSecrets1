@@ -10,7 +10,6 @@ public class DocumentClass implements Document{
 		this.manager = manager;
 		this.name = name;
 		this.level = "official";
-		this.level = level;
 		this.description = description;
 		
 		current = 0;
@@ -23,6 +22,10 @@ public class DocumentClass implements Document{
 			current = 0;
 		}
 		lastRead[current++] = userId;
+	}
+	
+	public void write(String description) {
+		this.description = description;
 	}
 	
 	public String getLevel() {
