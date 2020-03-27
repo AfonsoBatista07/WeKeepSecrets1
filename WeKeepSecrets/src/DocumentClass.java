@@ -6,10 +6,10 @@ public class DocumentClass implements Document{
 	
 	private static final int MAX_NAMES = 10;
 	
-	public DocumentClass(String manager, String name, String level, String description) {
+	public DocumentClass(String manager, String name, String description) {
 		this.manager = manager;
 		this.name = name;
-		this.level = level;
+		this.level = "official";
 		this.description = description;
 		
 		current = 0;
@@ -22,6 +22,10 @@ public class DocumentClass implements Document{
 			current = 0;
 		}
 		lastRead[current++] = userId;
+	}
+	
+	public void write(String description) {
+		this.description = description;
 	}
 	
 	public String getLevel() {
