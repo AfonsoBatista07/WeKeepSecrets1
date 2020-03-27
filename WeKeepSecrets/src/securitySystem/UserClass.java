@@ -1,6 +1,6 @@
-package SecuritySystem;
+package securitySystem;
 public class UserClass implements User {
-	private String id, level;
+	private String id, level, kind;
 	
 	private String[] docsUploaded;
 	
@@ -30,6 +30,10 @@ public class UserClass implements User {
 	
 	public String getLevel() {
 		return level;
+	}
+	
+	public String getKind() {
+		return kind;
 	}
 	
 	private void resize() {

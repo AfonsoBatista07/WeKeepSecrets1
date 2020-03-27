@@ -1,5 +1,6 @@
 import java.util.Scanner;
-import SecuritySystem.*;
+
+import securitySystem.*;
 
 public class Main {
 
@@ -20,15 +21,15 @@ public class Main {
 	/* Error Constants */
 	private static final String ERROR_REGIST = "Identifier %s is already assigned to another user.\n";
 	private static final String ERROR_LIST_USERS = "There are no registered users.\n\n";
-	private static final String ERROR_NOT_REGISTERED_UPLOAD = "User author %s is not a registered user.\n\n";
-	private static final String ERROR_NOT_REGISTERED_WRITE = "Not a registered user.\n";
+	private static final String ERROR_USER_DONT_EXIST = "User %s is not a registered user.\n\n";
+	private static final String ERROR_USERS_NOT_REGISTERED = "Not a registered user.\n";
 	private static final String ERROR_ALREADY_EXIST_DOCUMENT = "Document %s already exists in the user account.\n\n";
 	private static final String ERROR_DOES_NOT_EXIST_DOCUMENT = "Document %s does not exist in the user acount.\n\n";
 	private static final String ERROR_LOWER_CLEARANCE = "Insuficient security clearance.\n";
 	private static final String ERROR_CAN_NOT_UPDATE = "Document %s cannot be updated.\n\n";
 	private static final String ERROR_IS_CLERK = "Access to document %s has been denied.\n\n";
 	private static final String ERROR_ALREADY_ACCESS = "Already has access to document %s.\n\n";
-	private static final String ERROR_GRANT_NOT_EXIST = "Grant for officer does not exist.\n";
+	private static final String ERROR_NO_ACCESS = "Grant for officer does not exist.\n";
 	private static final String ERROR_GRANT_ALREADY_REVOKED = "Grant for officer was already revoked.\n\n";
 	private static final String ERROR_NO_ACCESSES = "There are no accesses.\n";
 	private static final String ERROR_NO_GRANTS = "There are no grants.\n";
@@ -40,7 +41,7 @@ public class Main {
 	private static final String SUCCESS_REGIST = "User %s was registered.\n\n";
 	private static final String SUCCESS_UPLOAD = "Document %s was uploaded.\n\n";
 	private static final String SUCCESS_WRITE = "Document %s was updated.\n\n";
-	private static final String SUCCESS_READ = "Document:";
+	private static final String SUCCESS_READ = "Document: %s\n\n";
 	private static final String SUCCESS_GRANT = "Access to document %s has been granted.\n\n";
 	private static final String SUCCESS_REVOKE = "Access to document %s was been revoked.\n\n";
 	private static final String SUCCESS_USERDOCS = "%s: ";
@@ -57,22 +58,31 @@ public class Main {
 				regist(in,sec);
 				break;
 			case LISTUSERS:
+				listUsers(sec);
 				break;
 			case UPLOAD_DOCUMENT:
+				uploadDocoment(in,sec);
 				break;
 			case READ_DOCUMENT:
+				readDocument(in,sec);
 				break;
 			case WRITE_DOCUMENT:
+				writeDocoment(in,sec);
 				break;
 			case GRANT_ACCESS:
+				grantAccess(in,sec);
 				break;
 			case REVOKE_ACCESS:
+				revokeAccess(in,sec);
 				break;
 			case USERDOCS:
+				userDocs(in,sec);
 				break;
 			case TOPLEAKED:
+				topLeaked(in,sec);
 				break;
 			case TOPGRANTERS:
+				topGranters(in,sec);
 				break;
 			case HELP:
 				help();
@@ -86,39 +96,150 @@ public class Main {
 	}
 	
 	private static void regist( Scanner in, SecuritySystem sec) {
+		String kind = in.next();
+		String id = in.next();
+		String level = in.next();
+		in.nextLine();
 		
+		if(sec.idExist(id))
+			System.out.printf(ERROR_REGIST, id);
+		else {
+			sec.regist(kind, id, level);
+			System.out.printf(SUCCESS_REGIST, id);
+		}
 	}
 	
 	private static void listUsers( SecuritySystem sec ) {
-
+		Iterator userList = sec.createIterator();
+		if(!userList.hasNext())
+			System.out.println(ERROR_LIST_USERS);
+		else {
+			while(userList.hasNext()) {
+				UserClass user = userList.next();
+			
+				System.out.printf("%s %s %s\n", user.getKind(), user.getId(), user.getLevel());
+			}
+		}
+		System.out.println("");
 	}
 	
 	private static void uploadDocoment( Scanner in, SecuritySystem sec ) {
-
+		String docName = in.next();
+		String id = in.next();
+		String docLevel = in.next();
+		String description = in.nextLine();
+		
+		if(!sec.idExist(id))
+			System.out.printf(ERROR_USER_DONT_EXIST, id);
+		else if(sec.docExist(id, docName))
+			System.out.printf(ERROR_ALREADY_EXIST_DOCUMENT, docName);
+		else if(sec.canManage(id))
+			System.out.println(ERROR_LOWER_CLEARANCE);
+		else {
+			sec.newDocument(docName, id, docLevel, description);	
+			System.out.printf(SUCCESS_UPLOAD, docName);
+		}
+		
 	}
 	
 	private static void readDocument( Scanner in, SecuritySystem sec ) {
-
+		String docName = in.next();
+		String idManager = in.next();
+		String idAcces = in.next();
+		
+		if( !sec.idExist(idManager) && !sec.idExist(idAcces) )
+			System.out.println(ERROR_USERS_NOT_REGISTERED);
+		else if(!sec.docExist(idManager, docName))
+			System.out.printf(ERROR_DOES_NOT_EXIST_DOCUMENT, docName);
+		else if(sec.canManage(idAcces))
+			System.out.println(ERROR_LOWER_CLEARANCE);
+		else {
+			System.out.printf(SUCCESS_READ, sec.getDecription(docName));
+		}
+		
 	}
 	
 	private static void writeDocoment( Scanner in, SecuritySystem sec ) {
-
+		String docName = in.next();
+		String idManager = in.next();
+		String idAcces = in.next();
+		String description = in.nextLine();
+		
+		if( !sec.idExist(idManager) && !sec.idExist(idAcces) )
+			System.out.println(ERROR_USERS_NOT_REGISTERED);
+		else if(!sec.docExist(idManager, docName))
+			System.out.printf(ERROR_DOES_NOT_EXIST_DOCUMENT, docName);
+		else if(sec.officialDoc(docName))
+			System.out.printf(ERROR_CAN_NOT_UPDATE, docName);
+		else if(sec.canManage(idAcces))
+			System.out.println(ERROR_LOWER_CLEARANCE);
+		else {
+			sec.setDescription(description);
+			System.out.printf(SUCCESS_WRITE, docName);
+		}
 	}
 	
 	private static void grantAccess( Scanner in, SecuritySystem sec ) {
-
+		String docName = in.next();
+		String idManager = in.next();
+		String idGranted = in.next();
+		in.hasNextLine();
+		
+		if( !sec.idExist(idManager) && !sec.idExist(idGranted) )
+			System.out.println(ERROR_USERS_NOT_REGISTERED);
+		else if(!sec.docExist(idManager, docName))
+			System.out.printf(ERROR_DOES_NOT_EXIST_DOCUMENT, docName);
+		else if(sec.userClerk(idGranted))
+			System.out.printf(ERROR_IS_CLERK, docName);
+		else if(sec.granted(idGranted, docName))
+			System.out.printf(ERROR_ALREADY_ACCESS, docName);
+		else {
+			sec.accessToDocument(idGranted, docName);
+			System.out.printf(SUCCESS_GRANT, docName);
+		}
+		
+	}
+	
+	private static void revokeAccess( Scanner in, SecuritySystem sec ) {
+		String docName = in.next();
+		String idManager = in.next();
+		String idGranted = in.next();
+		in.hasNextLine();
+		
+		if( !sec.idExist(idManager) && !sec.idExist(idGranted) )
+			System.out.println(ERROR_USERS_NOT_REGISTERED);
+		else if(!sec.docExist(idManager, docName))
+			System.out.printf(ERROR_DOES_NOT_EXIST_DOCUMENT, docName);
+		else if(!sec.granted(idGranted, docName))
+			System.out.printf(ERROR_NO_ACCESS, idGranted);
+		else if(sec.revoked(idGranted, docName))
+			System.out.printf(ERROR_GRANT_ALREADY_REVOKED, idGranted);
+		
 	}
 	
 	private static void userDocs( Scanner in, SecuritySystem sec ) {
-
+		String id = in.next();
+		String type = in.next();
+		
+		if(!sec.idExist(id))
+			System.out.printf(ERROR_USER_DONT_EXIST, id);
+		else if(sec.canManage(id))                                      // Completar !!!
+			System.out.println(ERROR_LOWER_CLEARANCE);
+		else
+			System.out.println();
+		
 	}
 	
 	private static void topLeaked( Scanner in, SecuritySystem sec ) {
 
+																	    // Completar !!!
+		
 	}
 	
 	private static void topGranters( Scanner in, SecuritySystem sec ) {
 
+																		// Completar !!!
+		
 	}
 	
 	private static void help() {
@@ -145,6 +266,7 @@ public class Main {
 		SecuritySystem sec = new SecuritySystemClass();
 		String cm;
 		do{
+			System.out.print("> ");
 			cm = readOption(in);
 			exeOption(in, sec, cm);
 		}while(!cm.equals(EXIT));

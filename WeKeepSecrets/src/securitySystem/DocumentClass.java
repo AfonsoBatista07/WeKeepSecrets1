@@ -1,4 +1,4 @@
-package SecuritySystem;
+package securitySystem;
 public class DocumentClass implements Document{
 	private String manager, name, level, description;
 	private int current;
