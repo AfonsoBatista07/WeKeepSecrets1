@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Main {
 
-<<<<<<< HEAD
 	/* Commands Constants */
 	private static final String REGISTER = "REGISTER" ;
 	private static final String LISTUSERS = "LISTUSERS";
@@ -59,11 +58,7 @@ public class Main {
 	}
 	
 	private static void regist( Scanner in, SecuritySystem sec) {
-=======
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
->>>>>>> master
-		
+
 	}
 	
 	private static void help() {
@@ -85,7 +80,7 @@ public class Main {
 		Scanner in = new Scanner(System.in);
 		SecuritySystem sec = new SecuritySystemClass();
 		do {
-			
+			exeOption(in, sec, readOption(in));
 		}while(readOption(in).equals(EXIT));
 		System.out.println(SUCCESS_EXIT);
 		in.close();
