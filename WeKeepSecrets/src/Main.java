@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Main {
 
+<<<<<<< HEAD
 	/* Commands Constants */
 	private static final String REGISTER = "REGISTER" ;
 	private static final String LISTUSERS = "LISTUSERS";
@@ -58,6 +59,10 @@ public class Main {
 	}
 	
 	private static void regist( Scanner in, SecuritySystem sec) {
+=======
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+>>>>>>> master
 		
 	}
 	
