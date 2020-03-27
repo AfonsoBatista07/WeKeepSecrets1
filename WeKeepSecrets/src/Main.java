@@ -84,11 +84,7 @@ public class Main {
 		}
 	}
 	
-<<<<<<< Updated upstream
-	private static void regist( Scanner in, SecuritySystem sec ) {
-=======
 	private static void regist( Scanner in, SecuritySystem sec) {
->>>>>>> Stashed changes
 		
 	}
 	
@@ -146,18 +142,12 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		SecuritySystem sec = new SecuritySystemClass();
-<<<<<<< Updated upstream
 		String cm;
 		do{
 			cm = readOption(in);
 			exeOption(in, sec, cm);
 		}while(!cm.equals(EXIT));
-=======
-		do {
-			exeOption(in, sec, readOption(in));
-		}while(readOption(in).equals(EXIT));
-		System.out.println(SUCCESS_EXIT);
->>>>>>> Stashed changes
+
 		in.close();
 	}
 
