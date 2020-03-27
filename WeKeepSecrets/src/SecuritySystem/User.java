@@ -1,3 +1,4 @@
+package SecuritySystem;
 
 public interface User {
 	public void upload(String name);

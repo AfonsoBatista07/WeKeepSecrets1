@@ -1,3 +1,4 @@
+package SecuritySystem;
 
 public class ClassifiedDocumentClass extends DocumentClass{
 	private String level;
