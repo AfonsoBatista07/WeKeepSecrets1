@@ -9,9 +9,9 @@ public class UserClass implements User {
 	private static final int MAX_DOCS = 500;
 	private static final int GROW_FACTOR = 2;
 	
-	public UserClass(String id) {
+	public UserClass(String id, String level) {
 		this.id = id;
-		this.level = "official";
+		this.level = level;
 		current = 0;
 		
 		docsUploaded= new String[MAX_DOCS];
