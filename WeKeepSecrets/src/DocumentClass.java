@@ -6,9 +6,10 @@ public class DocumentClass implements Document{
 	
 	private static final int MAX_NAMES = 10;
 	
-	public DocumentClass(String manager, String name, String level, String description) {
+	public DocumentClass(String manager, String name, String description) {
 		this.manager = manager;
 		this.name = name;
+		this.level = "official";
 		this.level = level;
 		this.description = description;
 		
