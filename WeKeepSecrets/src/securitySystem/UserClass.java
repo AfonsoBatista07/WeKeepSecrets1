@@ -4,7 +4,7 @@ public class UserClass implements User {
 
 protected String id, level, kind;
 	
-	private String[] docsUploaded;
+	private Document[] docsUploaded;
 	
 	private int current;
 	
@@ -16,14 +16,19 @@ protected String id, level, kind;
 		this.level = level;
 		current = 0;
 		
-		docsUploaded= new String[MAX_DOCS];
+		docsUploaded= new Document[MAX_DOCS];
 	}
 	
-	public void upload(String name) {
-		if(current == docsUploaded.length) {
+	public void upload(String id, String docName, String level, String description) {
+		if(fullUpload()) {
 			resize();
 		}
-		docsUploaded[current++] = name;
+		if(level.equals("official"))
+			docsUploaded[current++] = new DocumentClass(id, docName, description); 
+		else 
+			docsUploaded[current++] = new ClassifiedDocumentClass( id, docName, level, description);
+		if(fullUpload())
+			resize();
 	}
 	
 	public String getId() {
@@ -39,11 +44,30 @@ protected String id, level, kind;
 	}
 	
 	private void resize() {
-		String[] sl = new String[GROW_FACTOR * docsUploaded.length];
+		Document[] sl = new Document[GROW_FACTOR * docsUploaded.length];
 		for (int i = 0; i < current; i++)
 			sl[i] = docsUploaded[i];
 		docsUploaded = sl;
 
 	}
+	
+	private boolean fullUpload() {
+		return current == docsUploaded.length;
+	}
 
+	private int findDoc(String docName) {
+        int i = 0;
+        while ((i < current)) {
+            if (docsUploaded[i].getName().equals(docName)) {
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
+	
+	public boolean docExist(String docName) {
+		return findDoc(docName)!=-1;
+	}
+	
 }

@@ -2,31 +2,27 @@ package securitySystem;
 
 public class SecuritySystemClass implements SecuritySystem {
 
-	User users[];
-	int counterUsers;
-	
-	private static final int DEFAULT_SIZE = 50, GROW_FACTOR = 2;
+	UserCollection users;
+	DocumentCollection docs;
 	
 	public SecuritySystemClass() {
-		users = new User[DEFAULT_SIZE];
-		counterUsers = 0;
+		users = new UserCollectionClass();
+		docs = new DocumentCollectionClass();
 		
 	}
 	
 	public boolean idExist(String id) {
-		return findUser(id)!=-1;
+		return users.idExist(id);
 	}
 
 	
 	public boolean docExist(String id, String docName) {
-		
-		return false;
+		return users.getUser(id).docExist(docName);
 	}
 
 	
-	public boolean canManage(String id) {
-		
-		return false;
+	public boolean canManage(String id, String level) {
+		return levelToNum(users.getUser(id).getLevel())>=levelToNum(level);
 	}
 
 	
@@ -61,17 +57,13 @@ public class SecuritySystemClass implements SecuritySystem {
 
 	
 	public void regist(String kind, String id, String level) {
-		if(kind.equals("officer"))
-			users[counterUsers++] = new OfficerClass(id, level);
-		else if(kind.equals("clerk"))
-			users[counterUsers++] = new ClerkClass(id, level);
-		if(fullUsers())
-			resize();
+		users.addUser(id, level, kind);
 	}
 
 	
 	public void newDocument(String docName, String id, String level, String description) {
-		
+		docs.addDocument(id, docName, level, description);
+		users.getUser(id).upload(id, docName, level, description);
 	}
 
 	
@@ -96,27 +88,18 @@ public class SecuritySystemClass implements SecuritySystem {
 		return null;
 	}
 	
-	public boolean fullUsers() {
-		return counterUsers==users.length;
+	public int levelToNum(String level) {
+		switch(level) {
+			case "official":
+				return 0;
+			case "confidencial":
+				return 1;
+			case "secret":
+				return 2;
+			case "topsecret":
+				return 3;
+		}
+		return -1;
 	}
-	
-	private void resize() {
-		User[] sl = new User[GROW_FACTOR * users.length];
-		for (int i = 0; i < counterUsers; i++)
-			sl[i] = users[i];
-		users = sl;
-
-	}
-	
-	private int findUser(String userId) {
-        int i = 0;
-        while ((i < counterUsers)) {
-            if (users[i].getId().equals(userId)) {
-                return i;
-            }
-            i++;
-        }
-        return -1;
-    }
 
 }

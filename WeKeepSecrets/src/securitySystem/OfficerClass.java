@@ -5,7 +5,7 @@ public class OfficerClass extends UserClass {
 	int granted;
 	
 	public OfficerClass(String id, String level) {
-		super(id, level, "Officer");
+		super(id, level, "officer");
 		
 		granted = 0;
 	}

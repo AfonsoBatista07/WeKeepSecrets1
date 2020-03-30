@@ -96,11 +96,10 @@ public class Main {
 	}
 	
 	private static void regist( Scanner in, SecuritySystem sec) {
-		String kind = in.next();
+		String kind = in.next().toLowerCase();
 		String id = in.next();
-		String level = in.next();
+		String level = in.next().toLowerCase();
 		in.nextLine();
-		kind.toLowerCase();
 		
 		if(sec.idExist(id))
 			System.out.printf(ERROR_REGIST, id);
@@ -127,14 +126,14 @@ public class Main {
 	private static void uploadDocoment( Scanner in, SecuritySystem sec ) {
 		String docName = in.next();
 		String id = in.next();
-		String docLevel = in.next();
+		String docLevel = in.next().toLowerCase();
 		String description = in.nextLine();
 		
 		if(!sec.idExist(id))
 			System.out.printf(ERROR_USER_DONT_EXIST, id);
 		else if(sec.docExist(id, docName))
 			System.out.printf(ERROR_ALREADY_EXIST_DOCUMENT, docName);
-		else if(sec.canManage(id))
+		else if(!sec.canManage(id, docLevel))
 			System.out.println(ERROR_LOWER_CLEARANCE);
 		else {
 			sec.newDocument(docName, id, docLevel, description);	

@@ -2,7 +2,7 @@ package securitySystem;
 public class ClerkClass extends UserClass {
 
 	public ClerkClass(String id, String level) {
-		super(id, level, "Clerk");
+		super(id, level, "clerk");
 		
 	}
 	

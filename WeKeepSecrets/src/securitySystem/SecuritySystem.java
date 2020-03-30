@@ -4,7 +4,7 @@ public interface SecuritySystem {
 
 	boolean idExist(String id);
 	boolean docExist(String id, String docName);
-	boolean canManage(String id);
+	boolean canManage(String id, String docName);
 	boolean officialDoc(String docName);
 	boolean userClerk(String id);
 	boolean granted(String id, String docName);
