@@ -2,10 +2,19 @@ package securitySystem;
 
 public class SecuritySystemClass implements SecuritySystem {
 
+	User users[];
+	int counterUsers;
+	
+	private static final int DEFAULT_SIZE = 50, GROW_FACTOR = 2;
+	
+	public SecuritySystemClass() {
+		users = new User[DEFAULT_SIZE];
+		counterUsers = 0;
+		
+	}
 	
 	public boolean idExist(String id) {
-		
-		return false;
+		return findUser(id)!=-1;
 	}
 
 	
@@ -52,18 +61,21 @@ public class SecuritySystemClass implements SecuritySystem {
 
 	
 	public void regist(String kind, String id, String level) {
-		
-
+		if(kind.equals("officer"))
+			users[counterUsers++] = new OfficerClass(id, level);
+		else if(kind.equals("clerk"))
+			users[counterUsers++] = new ClerkClass(id, level);
+		if(fullUsers())
+			resize();
 	}
 
 	
 	public void newDocument(String docName, String id, String level, String description) {
 		
-
 	}
 
 	
-	public void setDescription(String description) {
+	public void write(String description) {
 		
 
 	}
@@ -83,5 +95,28 @@ public class SecuritySystemClass implements SecuritySystem {
 		
 		return null;
 	}
+	
+	public boolean fullUsers() {
+		return counterUsers==users.length;
+	}
+	
+	private void resize() {
+		User[] sl = new User[GROW_FACTOR * users.length];
+		for (int i = 0; i < counterUsers; i++)
+			sl[i] = users[i];
+		users = sl;
+
+	}
+	
+	private int findUser(String userId) {
+        int i = 0;
+        while ((i < counterUsers)) {
+            if (users[i].getId().equals(userId)) {
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
 
 }

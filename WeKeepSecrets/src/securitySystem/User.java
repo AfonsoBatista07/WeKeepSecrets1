@@ -1,6 +1,6 @@
 package securitySystem;
 
-public interface Clerk {
+public interface User {
 	public void upload(String name);
 	
 	public String getId();

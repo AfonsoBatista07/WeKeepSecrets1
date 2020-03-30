@@ -19,7 +19,7 @@ public class Main {
 	private static final String HELP = "HELP";
 	
 	/* Error Constants */
-	private static final String ERROR_REGIST = "Identifier %s is already assigned to another user.\n";
+	private static final String ERROR_REGIST = "Identifier %s is already assigned to another user.\n\n";
 	private static final String ERROR_LIST_USERS = "There are no registered users.\n\n";
 	private static final String ERROR_USER_DONT_EXIST = "User %s is not a registered user.\n\n";
 	private static final String ERROR_USERS_NOT_REGISTERED = "Not a registered user.\n";
@@ -100,6 +100,7 @@ public class Main {
 		String id = in.next();
 		String level = in.next();
 		in.nextLine();
+		kind.toLowerCase();
 		
 		if(sec.idExist(id))
 			System.out.printf(ERROR_REGIST, id);
@@ -174,7 +175,7 @@ public class Main {
 		else if(sec.canManage(idAcces))
 			System.out.println(ERROR_LOWER_CLEARANCE);
 		else {
-			sec.setDescription(description);
+			sec.write(description);
 			System.out.printf(SUCCESS_WRITE, docName);
 		}
 	}
