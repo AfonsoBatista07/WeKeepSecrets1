@@ -115,7 +115,7 @@ public class Main {
 			System.out.println(ERROR_LIST_USERS);
 		else {
 			while(userList.hasNext()) {
-				UserClass user = userList.next();
+				ClerkClass user = userList.next();
 			
 				System.out.printf("%s %s %s\n", user.getKind(), user.getId(), user.getLevel());
 			}

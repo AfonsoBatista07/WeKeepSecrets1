@@ -1,5 +1,5 @@
 package securitySystem;
-public class UserClass implements User {
+public class ClerkClass implements Clerk {
 	private String id, level, kind;
 	
 	private String[] docsUploaded;
@@ -9,9 +9,10 @@ public class UserClass implements User {
 	private static final int MAX_DOCS = 500;
 	private static final int GROW_FACTOR = 2;
 	
-	public UserClass(String id, String level) {
+	public ClerkClass(String id, String level, String kind) {
 		this.id = id;
 		this.level = level;
+		this.kind = kind;
 		current = 0;
 		
 		docsUploaded= new String[MAX_DOCS];

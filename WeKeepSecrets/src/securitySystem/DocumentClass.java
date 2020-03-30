@@ -1,6 +1,6 @@
 package securitySystem;
 public class DocumentClass implements Document{
-	private String manager, name, level, description;
+	protected String manager, name, level, description;
 	private int current;
 	private String[] lastRead;
 	
@@ -22,10 +22,6 @@ public class DocumentClass implements Document{
 			current = 0;
 		}
 		lastRead[current++] = userId;
-	}
-	
-	public void write(String description) {
-		this.description = description;
 	}
 	
 	public String getLevel() {

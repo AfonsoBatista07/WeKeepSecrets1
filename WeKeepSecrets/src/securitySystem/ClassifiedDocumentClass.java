@@ -17,6 +17,10 @@ public class ClassifiedDocumentClass extends DocumentClass{
 		grants = new String[MAX_GRANTS];
 	}
 	
+	public void write(String description) {
+		super.description = description;
+	}
+	
 	// falta lista de names e se são write ou read
 	//falta tb implementar o metodo de dar grants
 	
