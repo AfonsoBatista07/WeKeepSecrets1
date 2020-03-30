@@ -1,6 +1,6 @@
 package securitySystem;
 
-public class ClassifiedDocumentClass extends DocumentClass{
+public class ClassifiedDocumentClass extends DocumentClass implements ClassifiedDocument{
 	private String level;
 	
 	private String[] grants, whoAccessed, action, grantsRevoked;
