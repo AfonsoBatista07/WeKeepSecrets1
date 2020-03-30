@@ -43,7 +43,7 @@ public class Main {
 	private static final String SUCCESS_WRITE = "Document %s was updated.\n\n";
 	private static final String SUCCESS_READ = "Document: %s\n\n";
 	private static final String SUCCESS_GRANT = "Access to document %s has been granted.\n\n";
-	private static final String SUCCESS_REVOKE = "Access to document %s was been revoked.\n\n";
+	private static final String SUCCESS_REVOKE = "Access to document %s has been revoked.\n\n";
 	private static final String SUCCESS_USERDOCS = "%s: ";
  	private static final String SUCCESS_EXIT = "Bye!\n";
 	private static final String SUCCESS_UNKOWN = "Unknown command. Type help to see available commands.\n";
@@ -214,6 +214,10 @@ public class Main {
 			System.out.printf(ERROR_NO_ACCESS, idGranted);
 		else if(sec.revoked(idGranted, docName))
 			System.out.printf(ERROR_GRANT_ALREADY_REVOKED, idGranted);
+		else {
+			sec.revokeUser(idGranted, docName);
+			System.out.println(SUCCESS_REVOKE);
+		}
 		
 	}
 	

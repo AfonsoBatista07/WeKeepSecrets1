@@ -14,6 +14,7 @@ public interface SecuritySystem {
 	void newDocument(String docName, String id, String level, String description);
 	void setDescription(String description);
 	void accessToDocument(String id, String docName);
+	void revokeUser(String id, String docName);
 	String getDecription(String docName);
 	
 }
