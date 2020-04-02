@@ -15,7 +15,7 @@ protected String id, level, kind;
 		this.level = level;
 		current = 0;
 		
-		docsUploaded= new Document[MAX_DOCS];
+		docsUploaded = new Document[MAX_DOCS];
 	}
 	
 	public void upload(Document doc) {
@@ -24,10 +24,6 @@ protected String id, level, kind;
 	
 		if(fullUpload())
 			resize();
-	}
-	
-	public void write(String docName, String description, String userId) {
-		docsUploaded[findDoc(docName)].write(description, userId);
 	}
 	
 	public String getId() {
@@ -57,7 +53,7 @@ protected String id, level, kind;
 	private int findDoc(String docName) {
         int i = 0;
         while ((i < current)) {
-            if (docsUploaded[i].getName().equals(docName)) {
+            if (docsUploaded[i].getDocName().equals(docName)) {
                 return i;
             }
             i++;
@@ -67,14 +63,6 @@ protected String id, level, kind;
 	
 	public boolean docExist(String docName) {
 		return findDoc(docName)!=-1;
-	}
-	
-	public boolean isGranted(String docName) {
-		return docsUploaded[findDoc(docName)].isGranted();
-	}
-	
-	public boolean isRevoked(String docName) {
-		return docsUploaded[findDoc(docName)].isRevoked();
 	}
 	
 }

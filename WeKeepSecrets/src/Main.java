@@ -41,7 +41,7 @@ public class Main {
 	private static final String SUCCESS_REGIST = "User %s was registered.\n\n";
 	private static final String SUCCESS_UPLOAD = "Document %s was uploaded.\n\n";
 	private static final String SUCCESS_WRITE = "Document %s was updated.\n\n";
-	private static final String SUCCESS_READ = "Document: %s\n\n";
+	private static final String SUCCESS_READ = "Document:%s\n\n";
 	private static final String SUCCESS_GRANT = "Access to document %s has been granted.\n\n";
 	private static final String SUCCESS_REVOKE = "Access to document %s has been revoked.\n\n";
 	private static final String SUCCESS_USERDOCS = "%s: ";

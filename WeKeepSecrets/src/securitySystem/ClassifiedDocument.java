@@ -2,7 +2,7 @@ package securitySystem;
 
 public interface ClassifiedDocument extends Document {
 	
-	void readClassified(String userId);
+	void read(String userId);
 	
 	String getLevel();
 	
@@ -14,7 +14,7 @@ public interface ClassifiedDocument extends Document {
 	
 	void write(String description, String user);
 	
-	boolean isGranted();
+	boolean isGranted(String userId);
 	
-	boolean isRevoked();
+	boolean isRevoked(String userId);
 }

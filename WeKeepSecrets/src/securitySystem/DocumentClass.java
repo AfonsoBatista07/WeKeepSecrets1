@@ -1,28 +1,23 @@
 package securitySystem;
-public class DocumentClass implements Document{
+public abstract class DocumentClass implements Document{
+	
 	protected String manager, docName, level, description;
-	private int current;
-	private String[] lastRead;
 	
-	private static final int MAX_NAMES = 10;
-	
-	public DocumentClass(String manager, String docName, String description) {
+	public DocumentClass(String manager, String docName, String description, String level) {
 		this.manager = manager;
 		this.docName = docName;
-		this.level = "official";
 		this.description = description;
+		this.level = level;
 		
-		current = 0;
-		
-		lastRead = new String[MAX_NAMES];
 	}
 	
-	public void read(String userId) {
-		if(current == MAX_NAMES) {
-			current = 0;
-		}
-		lastRead[current++] = userId;
-	}
+	public abstract void read(String userId);
+	
+	public abstract void write(String description, String userId);
+	
+	public abstract boolean isGranted(String userId);
+	
+	public abstract boolean isRevoked(String userId);
 	
 	public String getLevel() {
 		return level;

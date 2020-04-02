@@ -32,7 +32,7 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 	
 	public boolean officialDoc(String docName) {
-		return getDocLevel(docName)!=0;
+		return getDocLevel(docName)==0;
 	}
 
 	
@@ -42,12 +42,12 @@ public class SecuritySystemClass implements SecuritySystem {
 
 
 	public boolean granted(String id, String docName) {
-		return users.isGranted(id, docName);
+		return docs.isGranted(id, docName);
 	}
 
 	
 	public boolean revoked(String id, String docName) {
-		return users.isRevoked(id, docName);
+		return docs.isRevoked(id, docName);
 	}
 
 	
@@ -65,7 +65,7 @@ public class SecuritySystemClass implements SecuritySystem {
 	public void newDocument(String docName, String id, String level, String description) {
 		Document doc;
 		if(level.equals("official"))
-			doc = new DocumentClass(id, docName,description); 
+			doc = new OfficialDocumentClass(id, docName, description); 
 		else 
 			doc = new ClassifiedDocumentClass( id, docName, level, description);
 		
@@ -76,7 +76,6 @@ public class SecuritySystemClass implements SecuritySystem {
 	
 	public void write(String id, String docName, String description) {
 		docs.write(id, docName, description);
-		users.write(id, docName, description);
 	}
 	
 	public void read(String id) {

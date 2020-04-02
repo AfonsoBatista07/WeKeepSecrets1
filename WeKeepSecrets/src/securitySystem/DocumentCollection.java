@@ -6,5 +6,7 @@ public interface DocumentCollection {
 	boolean docExist(String docName);
 	void read(String id);
 	void write(String id, String docName, String description);
+	boolean isGranted(String userId, String docName);
+	boolean isRevoked(String userId, String docName);
 	String getDescription(String docName);
 }

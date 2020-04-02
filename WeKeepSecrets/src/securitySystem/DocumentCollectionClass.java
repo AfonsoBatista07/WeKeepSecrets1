@@ -22,6 +22,13 @@ public class DocumentCollectionClass implements DocumentCollection {
 			resize();
 	}
 
+	public boolean isGranted(String id, String docName) {
+		return getDoc(docName).isGranted(id);
+	}
+	
+	public boolean isRevoked(String id, String docName) {
+		return getDoc(docName).isRevoked(id);
+	}
 	
 	public Document getDoc(String docName) {
 		return documents[findDoc(docName)];
@@ -40,10 +47,7 @@ public class DocumentCollectionClass implements DocumentCollection {
 	}
 	
 	public void read(String id) {
-		if(getDoc(id).getLevel().equals("official"))
 			getDoc(id).read(id);
-		else
-			getDoc(id).readClassified(id);
 	}
 
 	private void resize() {

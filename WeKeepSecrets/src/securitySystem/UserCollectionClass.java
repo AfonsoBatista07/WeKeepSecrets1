@@ -20,14 +20,6 @@ public class UserCollectionClass implements UserCollection {
 		if(fullUsers())
 			resize();
 	}
-	
-	public boolean isGranted(String id, String docName) {
-		return getUser(id).isGranted(docName);
-	}
-	
-	public boolean isRevoked(String id, String docName) {
-		return getUser(id).isRevoked(docName);
-	}
 
 	public User getUser(String id) {
 		return users[findUser(id)];
@@ -39,10 +31,6 @@ public class UserCollectionClass implements UserCollection {
 	
 	public void upload(String id, Document doc) {
 		getUser(id).upload(doc);
-	}
-	
-	public void write(String id, String docName, String description) {
-		getUser(id).write(docName, description, id);
 	}
 
 	private void resize() {

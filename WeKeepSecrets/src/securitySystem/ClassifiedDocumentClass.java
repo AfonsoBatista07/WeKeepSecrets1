@@ -7,19 +7,14 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 	
 	private int currentAccess, currentGrant, currentRevokedGrant;
 	
-	private boolean isGranted, isRevoked;
-	
 	private static final int MAX_GRANTS = 100;
 
 	public ClassifiedDocumentClass(String manager, String name, String level, String description) {
-		super(manager, name, description);
+		super(manager, name, description, level);
 		this.level = level;
 		currentAccess = 0;
 		currentGrant = 0;
 		currentRevokedGrant = 0;
-		
-		isGranted = false;
-		isRevoked = false;
 		
 		whoAccessed = new String[MAX_GRANTS];
 		action = new String[MAX_GRANTS];
@@ -27,7 +22,7 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 		grantsRevoked = new String[MAX_GRANTS];
 	}
 	
-	public void readClassified(String userId) {
+	public void read(String userId) {
 		whoAccessed[currentAccess] = userId;
 		action[currentAccess]= "read";
 		currentAccess++;
@@ -46,20 +41,16 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 			resize(grants, currentGrant);
 		}
 		grants[currentGrant++] = userId;
-		isGranted = true;
-		isRevoked = false;
 	}
 	
 	public void revokeGrant(String userId) {
-		for( int i = findUser(userId); i < currentGrant-1; i++ ) {
+		for( int i = findUser(userId, grants); i < currentGrant-1; i++ ) {
 			grants[i]= grants[i+1];
 		}
 		if(currentRevokedGrant == grantsRevoked.length) {
 			resize(grantsRevoked, currentRevokedGrant);
 		}
 		grantsRevoked[currentRevokedGrant++] = userId;
-		isGranted = false;
-		isRevoked = true;
 	}
 	
 	public void write(String description, String userId) {
@@ -69,10 +60,10 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 		currentAccess++;
 	}
 	
-	private int findUser(String userId) {
+	private int findUser(String userId, String[] list) {
 		int i = 0;
 		while ((i < currentGrant)) {
-			if (grants[i].equals(userId)) {
+			if (list[i].equals(userId)) {
 				return i;
 			}
 			i++;
@@ -88,12 +79,12 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 
 	}
 	
-	public boolean isGranted() {
-		return isGranted;
+	public boolean isGranted(String userId) {
+		return findUser(userId, grants)!=-1;
 	}
 	
-	public boolean isRevoked() {
-		return isRevoked;
+	public boolean isRevoked(String userId) {
+		return findUser(userId, grantsRevoked)!=-1;
 	}
 
 }

@@ -2,14 +2,20 @@ package securitySystem;
 
 public interface Document {
 
-	public void read(String userId);
+	void read(String userId);
 	
-	public String getLevel();
+	void write(String description, String userId);
 	
-	public String getDescription();
+	boolean isGranted(String userId);
 	
-	public String getManager();
+	boolean isRevoked(String userId);
 	
-	public String getDocName();
+	String getLevel();
+	
+	String getDescription();
+	
+	String getManager();
+	
+	String getDocName();
 	
 }
