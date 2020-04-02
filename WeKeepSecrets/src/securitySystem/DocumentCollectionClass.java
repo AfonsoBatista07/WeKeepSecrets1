@@ -21,13 +21,21 @@ public class DocumentCollectionClass implements DocumentCollection {
 		if(fullDocs())
 			resize();
 	}
-
-	public boolean isGranted(String id, String docName) {
-		return getDoc(docName).isGranted(id);
+	
+	public void grantUser(String userId, String docName) {
+		((ClassifiedDocument) getDoc(docName)).addGrant(userId);
 	}
 	
-	public boolean isRevoked(String id, String docName) {
-		return getDoc(docName).isRevoked(id);
+	public void revokeUser(String userId, String docName) {
+		((ClassifiedDocument) getDoc(docName)).revokeGrant(userId);
+	}
+
+	public boolean isGranted(String userId, String docName) {
+		return ((ClassifiedDocument) getDoc(docName)).isGranted(userId);
+	}
+	
+	public boolean isRevoked(String userId, String docName) {
+		return ((ClassifiedDocument) getDoc(docName)).isRevoked(userId);
 	}
 	
 	public Document getDoc(String docName) {
@@ -42,12 +50,12 @@ public class DocumentCollectionClass implements DocumentCollection {
 		return getDoc(docName).getDescription();
 	}
 	
-	public void write(String id, String docName, String description) {
-		getDoc(docName).write(description, id);
+	public void write(String userId, String docName, String description) {
+		((ClassifiedDocument) getDoc(docName)).write(description, userId);
 	}
 	
-	public void read(String id) {
-			getDoc(id).read(id);
+	public void read(String userId) {
+		getDoc(userId).read(userId);
 	}
 
 	private void resize() {

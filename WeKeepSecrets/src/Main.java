@@ -216,7 +216,7 @@ public class Main {
 			System.out.printf(ERROR_GRANT_ALREADY_REVOKED, idGranted);
 		else {
 			sec.revokeUser(idGranted, docName);
-			System.out.println(SUCCESS_REVOKE);
+			System.out.printf(SUCCESS_REVOKE, docName);
 		}
 		
 	}

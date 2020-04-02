@@ -4,6 +4,8 @@ public interface DocumentCollection {
 	void addDocument(Document doc);
 	Document getDoc(String docName);
 	boolean docExist(String docName);
+	void grantUser(String id, String docName);
+	void revokeUser(String id, String docName);
 	void read(String id);
 	void write(String id, String docName, String description);
 	boolean isGranted(String userId, String docName);

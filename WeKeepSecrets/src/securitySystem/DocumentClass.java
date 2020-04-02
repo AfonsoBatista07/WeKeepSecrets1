@@ -13,12 +13,6 @@ public abstract class DocumentClass implements Document{
 	
 	public abstract void read(String userId);
 	
-	public abstract void write(String description, String userId);
-	
-	public abstract boolean isGranted(String userId);
-	
-	public abstract boolean isRevoked(String userId);
-	
 	public String getLevel() {
 		return level;
 	}

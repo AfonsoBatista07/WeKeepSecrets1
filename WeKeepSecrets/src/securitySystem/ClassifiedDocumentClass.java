@@ -37,6 +37,10 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 	}
 	
 	public void addGrant(String userId) {
+		if(isRevoked(userId)) {
+			remove(userId, grantsRevoked, currentRevokedGrant);
+			currentRevokedGrant--;
+		}
 		if(currentGrant == grants.length) {
 			resize(grants, currentGrant);
 		}
@@ -44,9 +48,9 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 	}
 	
 	public void revokeGrant(String userId) {
-		for( int i = findUser(userId, grants); i < currentGrant-1; i++ ) {
-			grants[i]= grants[i+1];
-		}
+		remove(userId, grants, currentGrant);
+		currentGrant--;
+		System.out.println(grants[0]);
 		if(currentRevokedGrant == grantsRevoked.length) {
 			resize(grantsRevoked, currentRevokedGrant);
 		}
@@ -60,15 +64,21 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 		currentAccess++;
 	}
 	
-	private int findUser(String userId, String[] list) {
+	private int findUser(String userId, String[] list, int current) {
 		int i = 0;
-		while ((i < currentGrant)) {
+		while ((i < current)) {
 			if (list[i].equals(userId)) {
 				return i;
 			}
 			i++;
 		}
 		return -1;
+	}
+	
+	private void remove(String userId, String[] list, int current) {
+		for( int i = findUser(userId, list, current); i < current-1; i++ ) {
+			list[i]= list[i+1];
+		}
 	}
 	
 	private void resize(String[] list, int current) {
@@ -80,11 +90,11 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 	}
 	
 	public boolean isGranted(String userId) {
-		return findUser(userId, grants)!=-1;
+		return findUser(userId, grants, currentGrant)!=-1;
 	}
 	
 	public boolean isRevoked(String userId) {
-		return findUser(userId, grantsRevoked)!=-1;
+		return findUser(userId, grantsRevoked, currentRevokedGrant)!=-1;
 	}
 
 }

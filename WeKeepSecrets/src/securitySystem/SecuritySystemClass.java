@@ -28,7 +28,7 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 
 	public boolean canManage(String id, String docName) {
-		return getUserLevel(id)>=getDocLevel(docName);
+		return getUserLevel(id)>=getDocLevel(docName) || granted(id,docName);
 	}
 	
 	public boolean officialDoc(String docName) {
@@ -37,12 +37,12 @@ public class SecuritySystemClass implements SecuritySystem {
 
 	
 	public boolean userClerk(String id) {
-		return getUserLevel(id)!=0;
+		return getUserLevel(id)==0;
 	}
 
 
 	public boolean granted(String id, String docName) {
-		return docs.isGranted(id, docName);
+		return docs.isGranted(id, docName);						// Pode ser private
 	}
 
 	
@@ -83,12 +83,12 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 	
 	public void grantUser(String id, String docName) {
-		
+		docs.grantUser(id, docName);
 
 	}
 	
 	public void revokeUser(String id, String docName) {
-		
+		docs.revokeUser(id, docName);
 	}
 
 	

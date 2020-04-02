@@ -21,16 +21,4 @@ public class OfficialDocumentClass extends DocumentClass implements OfficialDocu
 		lastRead[current++] = userId;
 	}
 	
-	public void write(String description, String userId) {       
-		       																// ?????????????????????????????????
-	}
-	
-	public boolean isGranted(String userId) {
-		return false;
-	}
-	
-	public boolean isRevoked(String userId) {
-		return false;
-	}
-	
 }
