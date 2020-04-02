@@ -2,12 +2,13 @@ package securitySystem;
 
 public class OfficerClass extends UserClass {
 	
-	int granted;
+	int granted, revoked;
 	
 	public OfficerClass(String id, String level) {
 		super(id, level, "officer");
 		
 		granted = 0;
+		revoked = 0;
 	}
 	
 	public void incGranted() {

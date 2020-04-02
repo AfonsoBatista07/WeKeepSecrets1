@@ -8,8 +8,7 @@ protected String id, level, kind;
 	
 	private int current;
 	
-	private static final int MAX_DOCS = 500;
-	private static final int GROW_FACTOR = 2;
+	private static final int MAX_DOCS = 500, GROW_FACTOR = 2;
 	
 	public UserClass(String id, String level, String kind) {
 		this.id = id;
@@ -19,16 +18,16 @@ protected String id, level, kind;
 		docsUploaded= new Document[MAX_DOCS];
 	}
 	
-	public void upload(String id, String docName, String level, String description) {
-		if(fullUpload()) {
-			resize();
-		}
-		if(level.equals("official"))
-			docsUploaded[current++] = new DocumentClass(id, docName, description); 
-		else 
-			docsUploaded[current++] = new ClassifiedDocumentClass( id, docName, level, description);
+	public void upload(Document doc) {
+		
+			docsUploaded[current++] = doc;
+	
 		if(fullUpload())
 			resize();
+	}
+	
+	public void write(String docName, String description, String userId) {
+		docsUploaded[findDoc(docName)].write(description, userId);
 	}
 	
 	public String getId() {
@@ -68,6 +67,14 @@ protected String id, level, kind;
 	
 	public boolean docExist(String docName) {
 		return findDoc(docName)!=-1;
+	}
+	
+	public boolean isGranted(String docName) {
+		return docsUploaded[findDoc(docName)].isGranted();
+	}
+	
+	public boolean isRevoked(String docName) {
+		return docsUploaded[findDoc(docName)].isRevoked();
 	}
 	
 }

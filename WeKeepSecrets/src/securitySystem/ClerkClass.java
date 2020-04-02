@@ -5,7 +5,4 @@ public class ClerkClass extends UserClass {
 		super(id, level, "clerk");
 		
 	}
-	
-	
-
 }

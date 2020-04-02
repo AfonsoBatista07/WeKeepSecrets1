@@ -1,7 +1,10 @@
 package securitySystem;
 
 public interface DocumentCollection {
-	void addDocument(String docName, String id, String level, String description);
-	Document getDocument(String docName);
+	void addDocument(Document doc);
+	Document getDoc(String docName);
 	boolean docExist(String docName);
+	void read(String id);
+	void write(String id, String docName, String description);
+	String getDescription(String docName);
 }
