@@ -133,7 +133,7 @@ public class Main {
 			System.out.printf(ERROR_USER_DONT_EXIST, id);
 		else if(sec.docExist(id, docName))
 			System.out.printf(ERROR_ALREADY_EXIST_DOCUMENT, docName);
-		else if(!sec.canManage(id, docLevel))
+		else if(sec.lowerSecurityLevel(id, docLevel))
 			System.out.println(ERROR_LOWER_CLEARANCE);
 		else {
 			sec.newDocument(docName, id, docLevel, description);	
@@ -151,7 +151,7 @@ public class Main {
 			System.out.println(ERROR_USERS_NOT_REGISTERED);
 		else if(!sec.docExist(idManager, docName))
 			System.out.printf(ERROR_DOES_NOT_EXIST_DOCUMENT, docName);
-		else if(sec.canManage(idAcces))
+		else if(!sec.canManage(idAcces, docName))
 			System.out.println(ERROR_LOWER_CLEARANCE);
 		else {
 			System.out.printf(SUCCESS_READ, sec.getDecription(docName));
@@ -171,10 +171,10 @@ public class Main {
 			System.out.printf(ERROR_DOES_NOT_EXIST_DOCUMENT, docName);
 		else if(sec.officialDoc(docName))
 			System.out.printf(ERROR_CAN_NOT_UPDATE, docName);
-		else if(sec.canManage(idAcces))
+		else if(!sec.canManage(idAcces, docName))
 			System.out.println(ERROR_LOWER_CLEARANCE);
 		else {
-			sec.write(description);
+			sec.write(idManager , docName, description);
 			System.out.printf(SUCCESS_WRITE, docName);
 		}
 	}
@@ -194,7 +194,7 @@ public class Main {
 		else if(sec.granted(idGranted, docName))
 			System.out.printf(ERROR_ALREADY_ACCESS, docName);
 		else {
-			sec.accessToDocument(idGranted, docName);
+			sec.grantUser(idGranted, docName);
 			System.out.printf(SUCCESS_GRANT, docName);
 		}
 		
@@ -223,11 +223,11 @@ public class Main {
 	
 	private static void userDocs( Scanner in, SecuritySystem sec ) {
 		String id = in.next();
-		String type = in.next();
+		String level = in.next();
 		
 		if(!sec.idExist(id))
 			System.out.printf(ERROR_USER_DONT_EXIST, id);
-		else if(sec.canManage(id))                                      // Completar !!!
+		else if(sec.lowerSecurityLevel(id, level))                                      // Completar !!!
 			System.out.println(ERROR_LOWER_CLEARANCE);
 		else
 			System.out.println();

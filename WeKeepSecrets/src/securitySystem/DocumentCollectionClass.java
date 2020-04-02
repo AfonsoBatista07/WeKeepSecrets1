@@ -14,23 +14,36 @@ public class DocumentCollectionClass implements DocumentCollection {
 		
 	}
 	
-	public void addDocument(String docName, String id, String level, String description) {
-		if(level.equals("official"))
-			documents[counterDoc++] = new DocumentClass(id, docName,description); 
-		else 
-			documents[counterDoc++] = new ClassifiedDocumentClass( id, docName, level, description);
+	public void addDocument(Document doc) {
+		
+			documents[counterDoc++] = doc; 
+		
 		if(fullDocs())
 			resize();
 	}
 
 	
-	public Document getDocument(String docName) {
+	public Document getDoc(String docName) {
 		return documents[findDoc(docName)];
 	}
-
 	
 	public boolean docExist(String docName) {
 		return findDoc(docName)!=-1;
+	}
+	
+	public String getDescription(String docName) {
+		return getDoc(docName).getDescription();
+	}
+	
+	public void write(String id, String docName, String description) {
+		getDoc(docName).write(description, id);
+	}
+	
+	public void read(String id) {
+		if(getDoc(id).getLevel().equals("official"))
+			getDoc(id).read(id);
+		else
+			getDoc(id).readClassified(id);
 	}
 
 	private void resize() {
@@ -47,9 +60,7 @@ public class DocumentCollectionClass implements DocumentCollection {
 	private int findDoc(String docName) {
         int i = 0;
         while ((i < counterDoc)) {
-            if (documents[i].getName().equals(docName)) {
-            	System.out.println(documents[i].getName());
-            	System.out.println(docName);
+            if (documents[i].getDocName().equals(docName)) {
                 return i;
             }
             i++;

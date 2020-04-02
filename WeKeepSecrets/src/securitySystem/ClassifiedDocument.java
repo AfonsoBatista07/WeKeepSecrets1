@@ -1,16 +1,20 @@
 package securitySystem;
 
-public interface ClassifiedDocument {
+public interface ClassifiedDocument extends Document {
 	
-	public void read(String userId);
+	void readClassified(String userId);
 	
-	public String getLevel();
+	String getLevel();
 	
-	public int getNumGrants();
+	int getNumGrants();
 	
-	public void addGrant(String userId);
+	void addGrant(String userId);
 	
-	public void revokeGrant(String userId);
+	void revokeGrant(String userId);
 	
-	public void write(String description, String userId);
+	void write(String description, String user);
+	
+	boolean isGranted();
+	
+	boolean isRevoked();
 }

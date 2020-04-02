@@ -1,10 +1,14 @@
 package securitySystem;
 
 public interface User {
-	public void upload(String docName, String id, String level, String description);
+	void upload(Document doc);
+	void write(String docName, String description, String userId);
 	
-	public String getId();
+	String getId();
 	
-	public String getLevel();
-	public boolean docExist(String docName);
+	String getLevel();
+	boolean docExist(String docName);
+	boolean isGranted(String docName);
+	boolean isRevoked(String docName);
+	
 }

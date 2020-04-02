@@ -5,6 +5,8 @@ public class SecuritySystemClass implements SecuritySystem {
 	UserCollection users;
 	DocumentCollection docs;
 	
+	private static final String OFFICIAL = "official", CONFIDENCIAL = "confidencial", SECRET = "secret", TOPSECRET = "topsecret"; 
+	
 	public SecuritySystemClass() {
 		users = new UserCollectionClass();
 		docs = new DocumentCollectionClass();
@@ -21,32 +23,31 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 
 	
-	public boolean canManage(String id, String level) {
-		return levelToNum(users.getUser(id).getLevel())>=levelToNum(level);
+	public boolean lowerSecurityLevel(String id, String level) {
+		return getUserLevel(id)<levelToNum(level);
 	}
 
+	public boolean canManage(String id, String docName) {
+		return getUserLevel(id)>=getDocLevel(docName);
+	}
 	
 	public boolean officialDoc(String docName) {
-		
-		return false;
+		return getDocLevel(docName)!=0;
 	}
 
 	
 	public boolean userClerk(String id) {
-	
-		return false;
+		return getUserLevel(id)!=0;
 	}
 
 
 	public boolean granted(String id, String docName) {
-	
-		return false;
+		return users.isGranted(id, docName);
 	}
 
 	
 	public boolean revoked(String id, String docName) {
-
-		return false;
+		return users.isRevoked(id, docName);
 	}
 
 	
@@ -62,18 +63,27 @@ public class SecuritySystemClass implements SecuritySystem {
 
 	
 	public void newDocument(String docName, String id, String level, String description) {
-		docs.addDocument(id, docName, level, description);
-		users.getUser(id).upload(id, docName, level, description);
-	}
-
-	
-	public void write(String description) {
+		Document doc;
+		if(level.equals("official"))
+			doc = new DocumentClass(id, docName,description); 
+		else 
+			doc = new ClassifiedDocumentClass( id, docName, level, description);
 		
-
+		docs.addDocument(doc);
+		users.upload(id, doc);
 	}
 
 	
-	public void accessToDocument(String id, String docName) {
+	public void write(String id, String docName, String description) {
+		docs.write(id, docName, description);
+		users.write(id, docName, description);
+	}
+	
+	public void read(String id) {
+		docs.read(id);
+	}
+	
+	public void grantUser(String id, String docName) {
 		
 
 	}
@@ -84,19 +94,26 @@ public class SecuritySystemClass implements SecuritySystem {
 
 	
 	public String getDecription(String docName) {
-		
-		return null;
+		return docs.getDescription(docName);
+	}
+	
+	public int getUserLevel(String id) {
+		return levelToNum(users.getUser(id).getLevel());
+	}
+	
+	public int getDocLevel(String docName) {
+		return levelToNum(docs.getDoc(docName).getLevel());
 	}
 	
 	public int levelToNum(String level) {
 		switch(level) {
-			case "official":
+			case OFFICIAL:
 				return 0;
-			case "confidencial":
+			case CONFIDENCIAL:
 				return 1;
-			case "secret":
+			case SECRET:
 				return 2;
-			case "topsecret":
+			case TOPSECRET:
 				return 3;
 		}
 		return -1;

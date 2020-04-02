@@ -10,5 +10,6 @@ public interface Document {
 	
 	public String getManager();
 	
-	public String getName();
+	public String getDocName();
+	
 }

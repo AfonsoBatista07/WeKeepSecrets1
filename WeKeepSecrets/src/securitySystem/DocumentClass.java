@@ -1,14 +1,14 @@
 package securitySystem;
 public class DocumentClass implements Document{
-	protected String manager, name, level, description;
+	protected String manager, docName, level, description;
 	private int current;
 	private String[] lastRead;
 	
 	private static final int MAX_NAMES = 10;
 	
-	public DocumentClass(String manager, String name, String description) {
+	public DocumentClass(String manager, String docName, String description) {
 		this.manager = manager;
-		this.name = name;
+		this.docName = docName;
 		this.level = "official";
 		this.description = description;
 		
@@ -36,9 +36,8 @@ public class DocumentClass implements Document{
 		return manager;
 	}
 	
-	public String getName() {
-		return name;
+	public String getDocName() {
+		return docName;
 	}
-	
 	
 }
