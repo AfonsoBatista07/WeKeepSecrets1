@@ -1,5 +1,10 @@
 package securitySystem;
 
+import Documents.Document;
+import Users.ClerkClass;
+import Users.OfficerClass;
+import Users.User;
+
 public class UserCollectionClass implements UserCollection {
 
 	User users[];
@@ -13,9 +18,9 @@ public class UserCollectionClass implements UserCollection {
 	}
 	
 	public void addUser(String id, String level, String kind) {
-		if(kind.equals("officer"))
+		if(kind.equals("OFFICER"))
 			users[counterUsers++] = new OfficerClass(id, level);
-		else if(kind.equals("clerk"))
+		else if(kind.equals("CLERK"))
 			users[counterUsers++] = new ClerkClass(id, level);
 		if(fullUsers())
 			resize();

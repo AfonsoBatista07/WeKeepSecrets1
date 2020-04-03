@@ -1,5 +1,8 @@
 package securitySystem;
 
+import Documents.ClassifiedDocument;
+import Documents.Document;
+
 public class DocumentCollectionClass implements DocumentCollection {
 
 	Document documents[];

@@ -1,4 +1,6 @@
-package securitySystem;
+package Users;
+
+import Documents.Document;
 
 public class UserClass implements User {
 

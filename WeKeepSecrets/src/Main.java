@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import Users.ClerkClass;
 import securitySystem.*;
 
 public class Main {
@@ -96,16 +97,16 @@ public class Main {
 	}
 	
 	private static void regist( Scanner in, SecuritySystem sec) {
-		String kind = in.next().toLowerCase();
-		String id = in.next();
-		String level = in.next().toLowerCase();
+		String kind = in.next().toUpperCase();
+		String UserId = in.next();
+		String level = in.next().toUpperCase();
 		in.nextLine();
 		
-		if(sec.idExist(id))
-			System.out.printf(ERROR_REGIST, id);
+		if(sec.idExist(UserId))
+			System.out.printf(ERROR_REGIST, UserId);
 		else {
-			sec.regist(kind, id, level);
-			System.out.printf(SUCCESS_REGIST, id);
+			sec.regist(kind, UserId, level);
+			System.out.printf(SUCCESS_REGIST, UserId);
 		}
 	}
 	
@@ -125,18 +126,18 @@ public class Main {
 	
 	private static void uploadDocoment( Scanner in, SecuritySystem sec ) {
 		String docName = in.next();
-		String id = in.next();
-		String docLevel = in.next().toLowerCase();
+		String UserId = in.next();
+		String docLevel = in.next().toUpperCase();
 		String description = in.nextLine();
 		
-		if(!sec.idExist(id))
-			System.out.printf(ERROR_USER_DONT_EXIST, id);
-		else if(sec.docExist(id, docName))
+		if(!sec.idExist(UserId))
+			System.out.printf(ERROR_USER_DONT_EXIST, UserId);
+		else if(sec.docExist(UserId, docName))
 			System.out.printf(ERROR_ALREADY_EXIST_DOCUMENT, docName);
-		else if(sec.lowerSecurityLevel(id, docLevel))
+		else if(sec.lowerSecurityLevel(UserId, docLevel))
 			System.out.println(ERROR_LOWER_CLEARANCE);
 		else {
-			sec.newDocument(docName, id, docLevel, description);	
+			sec.newDocument(docName, UserId, docLevel, description);	
 			System.out.printf(SUCCESS_UPLOAD, docName);
 		}
 		
@@ -222,12 +223,12 @@ public class Main {
 	}
 	
 	private static void userDocs( Scanner in, SecuritySystem sec ) {
-		String id = in.next();
-		String level = in.next();
+		String UserId = in.next();
+		String level = in.next().toUpperCase();
 		
-		if(!sec.idExist(id))
-			System.out.printf(ERROR_USER_DONT_EXIST, id);
-		else if(sec.lowerSecurityLevel(id, level))                                      // Completar !!!
+		if(!sec.idExist(UserId))
+			System.out.printf(ERROR_USER_DONT_EXIST, UserId);
+		else if(sec.lowerSecurityLevel(UserId, level))                                      // Completar !!!
 			System.out.println(ERROR_LOWER_CLEARANCE);
 		else
 			System.out.println();

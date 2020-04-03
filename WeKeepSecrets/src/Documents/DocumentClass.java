@@ -1,4 +1,5 @@
-package securitySystem;
+package Documents;
+
 public abstract class DocumentClass implements Document{
 	
 	protected String manager, docName, level, description;

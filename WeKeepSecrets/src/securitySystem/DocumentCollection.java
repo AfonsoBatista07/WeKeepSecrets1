@@ -1,5 +1,7 @@
 package securitySystem;
 
+import Documents.Document;
+
 public interface DocumentCollection {
 	void addDocument(Document doc);
 	Document getDoc(String docName);

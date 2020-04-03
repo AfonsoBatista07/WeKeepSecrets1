@@ -1,11 +1,12 @@
 package securitySystem;
 
+import Documents.*;
+
+
 public class SecuritySystemClass implements SecuritySystem {
 
 	UserCollection users;
 	DocumentCollection docs;
-	
-	private static final String OFFICIAL = "official", CONFIDENCIAL = "confidencial", SECRET = "secret", TOPSECRET = "topsecret"; 
 	
 	public SecuritySystemClass() {
 		users = new UserCollectionClass();
@@ -13,22 +14,22 @@ public class SecuritySystemClass implements SecuritySystem {
 		
 	}
 	
-	public boolean idExist(String id) {
-		return users.idExist(id);
+	public boolean idExist(String UserId) {
+		return users.idExist(UserId);
 	}
 
 	
-	public boolean docExist(String id, String docName) {
-		return users.getUser(id).docExist(docName);
+	public boolean docExist(String UserId, String docName) {
+		return users.getUser(UserId).docExist(docName);
 	}
 
 	
-	public boolean lowerSecurityLevel(String id, String level) {
-		return getUserLevel(id)<levelToNum(level);
+	public boolean lowerSecurityLevel(String UserId, String level) {
+		return getUserLevel(UserId)<levelToNum(level);
 	}
 
-	public boolean canManage(String id, String docName) {
-		return getUserLevel(id)>=getDocLevel(docName) || granted(id,docName);
+	public boolean canManage(String UserId, String docName) {
+		return getUserLevel(UserId)>=getDocLevel(docName) || granted(UserId,docName);
 	}
 	
 	public boolean officialDoc(String docName) {
@@ -36,18 +37,18 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 
 	
-	public boolean userClerk(String id) {
-		return getUserLevel(id)==0;
+	public boolean userClerk(String UserId) {
+		return getUserLevel(UserId)==0;
 	}
 
 
-	public boolean granted(String id, String docName) {
-		return docs.isGranted(id, docName);						// Pode ser private
+	public boolean granted(String UserId, String docName) {
+		return docs.isGranted(UserId, docName);						// Pode ser private
 	}
 
 	
-	public boolean revoked(String id, String docName) {
-		return docs.isRevoked(id, docName);
+	public boolean revoked(String UserId, String docName) {
+		return docs.isRevoked(UserId, docName);
 	}
 
 	
@@ -57,38 +58,38 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 
 	
-	public void regist(String kind, String id, String level) {
-		users.addUser(id, level, kind);
+	public void regist(String kind, String UserId, String level) {
+		users.addUser(UserId, level, kind);
 	}
 
 	
-	public void newDocument(String docName, String id, String level, String description) {
+	public void newDocument(String docName, String UserId, String level, String description) {
 		Document doc;
-		if(level.equals("official"))
-			doc = new OfficialDocumentClass(id, docName, description); 
+		if(level.equals("OFFICIAL"))
+			doc = new OfficialDocumentClass(UserId, docName, description); 
 		else 
-			doc = new ClassifiedDocumentClass( id, docName, level, description);
+			doc = new ClassifiedDocumentClass(UserId, docName, level, description);
 		
 		docs.addDocument(doc);
-		users.upload(id, doc);
+		users.upload(UserId, doc);
 	}
 
 	
-	public void write(String id, String docName, String description) {
-		docs.write(id, docName, description);
+	public void write(String UserId, String docName, String description) {
+		docs.write(UserId, docName, description);
 	}
 	
-	public void read(String id) {
-		docs.read(id);
+	public void read(String UserId) {
+		docs.read(UserId);
 	}
 	
-	public void grantUser(String id, String docName) {
-		docs.grantUser(id, docName);
+	public void grantUser(String UserId, String docName) {
+		docs.grantUser(UserId, docName);
 
 	}
 	
-	public void revokeUser(String id, String docName) {
-		docs.revokeUser(id, docName);
+	public void revokeUser(String UserId, String docName) {
+		docs.revokeUser(UserId, docName);
 	}
 
 	
@@ -96,8 +97,8 @@ public class SecuritySystemClass implements SecuritySystem {
 		return docs.getDescription(docName);
 	}
 	
-	public int getUserLevel(String id) {
-		return levelToNum(users.getUser(id).getLevel());
+	public int getUserLevel(String UserId) {
+		return levelToNum(users.getUser(UserId).getLevel());
 	}
 	
 	public int getDocLevel(String docName) {
@@ -105,15 +106,15 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 	
 	public int levelToNum(String level) {
-		switch(level) {
+		switch(Levels.valueOf(level)) {
 			case OFFICIAL:
-				return 0;
+				return Levels.OFFICIAL.getIntLevel();
 			case CONFIDENCIAL:
-				return 1;
+				return Levels.CONFIDENCIAL.getIntLevel();
 			case SECRET:
-				return 2;
+				return Levels.SECRET.getIntLevel();
 			case TOPSECRET:
-				return 3;
+				return Levels.TOPSECRET.getIntLevel();
 		}
 		return -1;
 	}

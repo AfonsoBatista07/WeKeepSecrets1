@@ -1,4 +1,4 @@
-package securitySystem;
+package Documents;
 
 public interface OfficialDocument {
 	

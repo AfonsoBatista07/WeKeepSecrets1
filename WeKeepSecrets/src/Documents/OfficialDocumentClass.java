@@ -1,4 +1,4 @@
-package securitySystem;
+package Documents;
 
 public class OfficialDocumentClass extends DocumentClass implements OfficialDocument{
 

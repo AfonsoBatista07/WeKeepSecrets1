@@ -1,4 +1,4 @@
-package securitySystem;
+package Documents;
 
 public class ClassifiedDocumentClass extends DocumentClass implements ClassifiedDocument{
 	private String level;
