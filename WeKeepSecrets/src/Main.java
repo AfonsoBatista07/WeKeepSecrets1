@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
-import Users.ClerkClass;
+import Users.User;
+import Documents.Document;
 import securitySystem.*;
 
 public class Main {
@@ -32,6 +33,7 @@ public class Main {
 	private static final String ERROR_ALREADY_ACCESS = "Already has access to document %s.\n\n";
 	private static final String ERROR_NO_ACCESS = "Grant for officer does not exist.\n";
 	private static final String ERROR_GRANT_ALREADY_REVOKED = "Grant for officer was already revoked.\n\n";
+	private static final String ERROR_NO_DOCUMENTS = "There are no %s documents.\n";
 	private static final String ERROR_NO_ACCESSES = "There are no accesses.\n";
 	private static final String ERROR_NO_GRANTS = "There are no grants.\n";
 	private static final String ERROR_NO_TYPE = "There are no documents with security level %s./n/n";
@@ -111,14 +113,14 @@ public class Main {
 	}
 	
 	private static void listUsers( SecuritySystem sec ) {
-		Iterator userList = sec.createIterator();
+		IteratorUser userList = sec.createIteratorUser();
 		if(!userList.hasNext())
 			System.out.println(ERROR_LIST_USERS);
 		else {
 			while(userList.hasNext()) {
-				ClerkClass user = userList.next();
+				User user = userList.next();
 			
-				System.out.printf("%s %s %s\n", user.getKind(), user.getId(), user.getLevel());
+				System.out.printf("%s %s %s\n", user.getKind(), user.getId(), user.getLevel().toLowerCase());
 			}
 		}
 		System.out.println("");
@@ -223,16 +225,26 @@ public class Main {
 	}
 	
 	private static void userDocs( Scanner in, SecuritySystem sec ) {
-		String UserId = in.next();
-		String level = in.next().toUpperCase();
+		String userId = in.next();
+		String type = in.next().toUpperCase();
 		
-		if(!sec.idExist(UserId))
-			System.out.printf(ERROR_USER_DONT_EXIST, UserId);
-		else if(sec.lowerSecurityLevel(UserId, level))                                      // Completar !!!
+		if(!sec.idExist(userId))
+			System.out.printf(ERROR_USER_DONT_EXIST, userId);
+		else if(sec.matchesType(userId, type))                                      // Completar !!!
 			System.out.println(ERROR_LOWER_CLEARANCE);
-		else
-			System.out.println();
-		
+		else {
+			IteratorDocs docList = sec.createIteratorDocs(userId, type);
+			if(!docList.hasNext())
+				System.out.printf(ERROR_NO_DOCUMENTS, type);
+			else {
+				while(docList.hasNext()) {
+					Document doc = docList.next();
+				
+					System.out.printf("%s\n", doc.getDocName());
+				}
+			}
+			System.out.println("");
+		}
 	}
 	
 	private static void topLeaked( Scanner in, SecuritySystem sec ) {

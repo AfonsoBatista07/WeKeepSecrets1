@@ -8,7 +8,7 @@ public class OfficialDocumentClass extends DocumentClass implements OfficialDocu
 	private static final int MAX_NAMES = 10;
 	
 	public OfficialDocumentClass(String manager, String docName, String description) {
-		super(manager, docName, description,"Official");
+		super(manager, docName, description, "OFFICIAL", "OFFICIAL");
 		
 		
 		current = 0;

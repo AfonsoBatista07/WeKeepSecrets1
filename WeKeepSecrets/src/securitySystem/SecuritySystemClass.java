@@ -2,7 +2,6 @@ package securitySystem;
 
 import Documents.*;
 
-
 public class SecuritySystemClass implements SecuritySystem {
 
 	UserCollection users;
@@ -19,17 +18,20 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 
 	
-	public boolean docExist(String UserId, String docName) {
-		return users.getUser(UserId).docExist(docName);
+	public boolean docExist(String userId, String docName) {
+		return users.getUser(userId).docExist(docName);
 	}
-
 	
-	public boolean lowerSecurityLevel(String UserId, String level) {
-		return getUserLevel(UserId)<levelToNum(level);
+	public boolean lowerSecurityLevel(String userId, String level) {
+		return getUserLevel(userId)<levelToNum(level);
 	}
 
-	public boolean canManage(String UserId, String docName) {
-		return getUserLevel(UserId)>=getDocLevel(docName) || granted(UserId,docName);
+	public boolean matchesType(String userId, String type) {
+		return getUserLevel(userId)<1 && type.equals("CLASSIFIED");              // Quando tiverem com o cerebro menos derretido metam isto mais bonito :D
+	}
+	
+	public boolean canManage(String userId, String docName) {
+		return getUserLevel(userId)>=getDocLevel(docName) || granted(userId,docName);
 	}
 	
 	public boolean officialDoc(String docName) {
@@ -37,59 +39,61 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 
 	
-	public boolean userClerk(String UserId) {
-		return getUserLevel(UserId)==0;
+	public boolean userClerk(String userId) {
+		return getUserLevel(userId)==0;
 	}
 
 
-	public boolean granted(String UserId, String docName) {
-		return docs.isGranted(UserId, docName);						// Pode ser private
-	}
-
-	
-	public boolean revoked(String UserId, String docName) {
-		return docs.isRevoked(UserId, docName);
+	public boolean granted(String userId, String docName) {
+		return docs.isGranted(userId, docName);						// Pode ser private
 	}
 
 	
-	public Iterator createIterator() {
-		
-		return null;
+	public boolean revoked(String userId, String docName) {
+		return docs.isRevoked(userId, docName);
 	}
 
 	
-	public void regist(String kind, String UserId, String level) {
-		users.addUser(UserId, level, kind);
+	public IteratorUser createIteratorUser() {
+		return users.getIteratorUser();
+	}
+	
+	public IteratorDocs createIteratorDocs(String userId, String type) {
+		return users.getIteratorDocs(userId, type);
+	}
+	
+	public void regist(String kind, String userId, String level) {
+		users.addUser(userId, level, kind);
 	}
 
 	
-	public void newDocument(String docName, String UserId, String level, String description) {
+	public void newDocument(String docName, String userId, String level, String description) {
 		Document doc;
 		if(level.equals("OFFICIAL"))
-			doc = new OfficialDocumentClass(UserId, docName, description); 
+			doc = new OfficialDocumentClass(userId, docName, description); 
 		else 
-			doc = new ClassifiedDocumentClass(UserId, docName, level, description);
+			doc = new ClassifiedDocumentClass(userId, docName, level, description);
 		
 		docs.addDocument(doc);
-		users.upload(UserId, doc);
+		users.upload(userId, doc);
 	}
 
 	
-	public void write(String UserId, String docName, String description) {
-		docs.write(UserId, docName, description);
+	public void write(String userId, String docName, String description) {
+		docs.write(userId, docName, description);
 	}
 	
-	public void read(String UserId) {
-		docs.read(UserId);
+	public void read(String userId) {
+		docs.read(userId);
 	}
 	
-	public void grantUser(String UserId, String docName) {
-		docs.grantUser(UserId, docName);
+	public void grantUser(String userId, String docName) {
+		docs.grantUser(userId, docName);
 
 	}
 	
-	public void revokeUser(String UserId, String docName) {
-		docs.revokeUser(UserId, docName);
+	public void revokeUser(String userId, String docName) {
+		docs.revokeUser(userId, docName);
 	}
 
 	
@@ -97,8 +101,8 @@ public class SecuritySystemClass implements SecuritySystem {
 		return docs.getDescription(docName);
 	}
 	
-	public int getUserLevel(String UserId) {
-		return levelToNum(users.getUser(UserId).getLevel());
+	public int getUserLevel(String userId) {
+		return levelToNum(users.getUser(userId).getLevel());
 	}
 	
 	public int getDocLevel(String docName) {

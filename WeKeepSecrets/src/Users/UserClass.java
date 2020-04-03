@@ -1,6 +1,8 @@
 package Users;
 
 import Documents.Document;
+import securitySystem.IteratorDocs;
+import securitySystem.IteratorDocsClass;
 
 public class UserClass implements User {
 
@@ -15,6 +17,7 @@ protected String id, level, kind;
 	public UserClass(String id, String level, String kind) {
 		this.id = id;
 		this.level = level;
+		this.kind = kind;
 		current = 0;
 		
 		docsUploaded = new Document[MAX_DOCS];
@@ -65,6 +68,12 @@ protected String id, level, kind;
 	
 	public boolean docExist(String docName) {
 		return findDoc(docName)!=-1;
+	}
+	
+	public IteratorDocs getIteratorDocs(String type) {
+		IteratorDocs iteratorDocs = new IteratorDocsClass(docsUploaded, current, type);
+		return iteratorDocs;
+
 	}
 	
 }

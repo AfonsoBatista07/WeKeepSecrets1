@@ -4,8 +4,6 @@ public interface ClassifiedDocument extends Document {
 	
 	void read(String userId);
 	
-	String getLevel();
-	
 	int getNumGrants();
 	
 	void addGrant(String userId);

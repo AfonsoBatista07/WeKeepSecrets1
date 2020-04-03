@@ -2,23 +2,25 @@ package securitySystem;
 
 public interface SecuritySystem {
 
-	boolean idExist(String id);
-	boolean docExist(String id, String docName);
-	boolean canManage(String id, String docName);
-	boolean lowerSecurityLevel(String id, String level);
+	boolean idExist(String userId);
+	boolean docExist(String userId, String docName);
+	boolean canManage(String userId, String docName);
+	boolean lowerSecurityLevel(String userId, String level);
 	boolean officialDoc(String docName);
-	boolean userClerk(String id);
-	boolean granted(String id, String docName);
-	boolean revoked(String id, String docName);
-	Iterator createIterator();
-	void regist(String kind, String id, String level);
-	void newDocument(String docName, String id, String level, String description);
-	void write(String id, String docName, String description);
-	void grantUser(String id, String docName);
-	void revokeUser(String id, String docName);
-	void read(String id);
+	boolean userClerk(String userId);
+	boolean matchesType(String userId, String type);
+	boolean granted(String userId, String docName);
+	boolean revoked(String userId, String docName);
+	IteratorUser createIteratorUser();
+	IteratorDocs createIteratorDocs(String userId, String type);
+	void regist(String kind, String userId, String level);
+	void newDocument(String docName, String userId, String level, String description);
+	void write(String userId, String docName, String description);
+	void grantUser(String userId, String docName);
+	void revokeUser(String userId, String docName);
+	void read(String userId);
 	String getDecription(String docName);
-	int getUserLevel(String id);
+	int getUserLevel(String userId);
 	int getDocLevel(String docName);
 	
 	

@@ -1,6 +1,7 @@
 package Users;
 
 import Documents.Document;
+import securitySystem.IteratorDocs;
 
 public interface User {
 	void upload(Document doc);
@@ -8,6 +9,8 @@ public interface User {
 	String getId();
 	
 	String getLevel();
-	boolean docExist(String docName);
 	
+	String getKind();
+	boolean docExist(String docName);
+	IteratorDocs getIteratorDocs(String type);
 }

@@ -8,4 +8,6 @@ public interface UserCollection {
 	User getUser(String id);
 	boolean idExist(String id);
 	void upload(String id, Document doc);
+	IteratorUser getIteratorUser();
+	IteratorDocs getIteratorDocs(String userId, String type);
 }

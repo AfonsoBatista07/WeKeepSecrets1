@@ -1,7 +1,6 @@
 package Documents;
 
 public class ClassifiedDocumentClass extends DocumentClass implements ClassifiedDocument{
-	private String level;
 	
 	private String[] action, whoAccessed, grantsRevoked, grants;
 	
@@ -10,8 +9,7 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 	private static final int MAX_GRANTS = 100;
 
 	public ClassifiedDocumentClass(String manager, String name, String level, String description) {
-		super(manager, name, description, level);
-		this.level = level;
+		super(manager, name, description, level, "CLASSIFIED");
 		currentAccess = 0;
 		currentGrant = 0;
 		currentRevokedGrant = 0;
@@ -26,10 +24,6 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 		whoAccessed[currentAccess] = userId;
 		action[currentAccess]= "read";
 		currentAccess++;
-	}
-	
-	public String getLevel() {
-		return level;
 	}
 	
 	public int getNumGrants() {

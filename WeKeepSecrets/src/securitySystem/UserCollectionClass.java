@@ -60,4 +60,14 @@ public class UserCollectionClass implements UserCollection {
         return -1;
     }
 	
+	public IteratorUser getIteratorUser() {
+		IteratorUser iteratorUser = new IteratorUserClass(users, counterUsers);
+		return iteratorUser;
+
+	}
+	
+	public IteratorDocs getIteratorDocs(String userId, String type) {
+		return getUser(userId).getIteratorDocs(type);
+
+	}
 }
