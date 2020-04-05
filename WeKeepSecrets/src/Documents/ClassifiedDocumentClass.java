@@ -24,6 +24,7 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 		whoAccessed[currentAccess] = userId;
 		action[currentAccess]= "read";
 		currentAccess++;
+		super.numAccesses++;
 	}
 	
 	public int getNumGrants() {
@@ -55,6 +56,7 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 		whoAccessed[currentAccess] = userId;
 		action[currentAccess]= "write";
 		currentAccess++;
+		super.numAccesses++;
 	}
 	
 	private int findUser(String userId, String[] list, int current) {

@@ -18,7 +18,7 @@ public interface SecuritySystem {
 	void write(String userId, String docName, String description);
 	void grantUser(String userId, String docName);
 	void revokeUser(String userId, String docName);
-	void read(String userId);
+	void read(String userId, String docName);
 	String getDecription(String docName);
 	int getUserLevel(String userId);
 	int getDocLevel(String docName);

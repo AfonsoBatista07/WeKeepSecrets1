@@ -57,8 +57,8 @@ public class DocumentCollectionClass implements DocumentCollection {
 		((ClassifiedDocument) getDoc(docName)).write(description, userId);
 	}
 	
-	public void read(String userId) {
-		getDoc(userId).read(userId);
+	public void read(String userId, String docName) {
+		getDoc(docName).read(userId);
 	}
 
 	private void resize() {

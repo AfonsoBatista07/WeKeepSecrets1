@@ -8,7 +8,7 @@ public interface DocumentCollection {
 	boolean docExist(String docName);
 	void grantUser(String id, String docName);
 	void revokeUser(String id, String docName);
-	void read(String id);
+	void read(String id, String docName);
 	void write(String id, String docName, String description);
 	boolean isGranted(String userId, String docName);
 	boolean isRevoked(String userId, String docName);

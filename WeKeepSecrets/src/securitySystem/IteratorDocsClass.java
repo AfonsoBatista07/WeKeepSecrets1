@@ -8,7 +8,7 @@ public class IteratorDocsClass implements IteratorDocs {
 	private Document[] docs;
 	private int counterDocs, nextDoc; 
 		
-	public IteratorDocsClass(Document[] docs, int counterDocs, String kind) {
+	public IteratorDocsClass(Document[] docs, int counterDocs, String type) {
 		this.counterDocs = counterDocs; 
 		this.docs = docs;
 		initialize(type);

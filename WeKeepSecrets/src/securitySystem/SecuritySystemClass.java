@@ -83,8 +83,8 @@ public class SecuritySystemClass implements SecuritySystem {
 		docs.write(userId, docName, description);
 	}
 	
-	public void read(String userId) {
-		docs.read(userId);
+	public void read(String userId, String docName) {
+		docs.read(userId, docName);
 	}
 	
 	public void grantUser(String userId, String docName) {

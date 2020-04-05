@@ -33,9 +33,9 @@ public class Main {
 	private static final String ERROR_ALREADY_ACCESS = "Already has access to document %s.\n";
 	private static final String ERROR_GRANT_ALREADY_REVOKED = "Grant for officer %s was already revoked.\n";
 	private static final String ERROR_NO_DOCUMENTS = "There are no %s documents.";
-	private static final String ERROR_NOT_RESGISTERED = "Not a registered user.";
+	private static final String ERROR_NOT_RESGISTERED = "Not a registered user.\n";
 	private static final String ERROR_INAPPROPRIATE_LEVEL = "Inappropriate security level.";
-	private static final String ERROR_NO_ACCESSES = "There are no accesses.\n";
+	private static final String ERROR_NO_ACCESSES = "There are no accesses.";
 	private static final String ERROR_NO_GRANTS = "There are no grants.\n";
 	private static final String ERROR_NO_TYPE = "There are no documents with security level %s.";
 	private static final String ERROR_NO_LEAKED = "There are no leaked documents.\n";
@@ -186,6 +186,7 @@ public class Main {
 		else if(!sec.canManage(idAcces, docName))
 			System.out.println(ERROR_LOWER_CLEARANCE);
 		else {
+			sec.read(idAcces, docName);
 			System.out.printf(SUCCESS_READ, sec.getDecription(docName));
 		}
 		
@@ -270,11 +271,14 @@ public class Main {
 			else {
 				while(docList.hasNext()) {
 					Document doc = docList.next();
-				
-					System.out.printf("%s\n", doc.getDocName());
+					if(doc.getNumAccesses()==0) {
+						System.out.printf("%s %s: %s\n", doc.getDocName(), doc.getNumAccesses(), ERROR_NO_ACCESSES);
+					}
+					else {
+						System.out.printf("%s %s:\n", doc.getDocName(), doc.getNumAccesses());
+					}
 				}
 			}
-			System.out.println("");
 		}
 	}
 	

@@ -4,6 +4,8 @@ public interface Document {
 
 	void read(String userId);
 	
+	int getNumAccesses();
+	
 	String getLevel();
 	
 	String getDescription();

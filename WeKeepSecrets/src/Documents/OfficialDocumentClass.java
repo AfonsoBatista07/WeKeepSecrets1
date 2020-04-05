@@ -19,6 +19,7 @@ public class OfficialDocumentClass extends DocumentClass implements OfficialDocu
 		if(current == MAX_NAMES)
 			current = 0;
 		lastRead[current++] = userId;
+		super.numAccesses++;   											// Perguntar ao prof se isto é shadowing
 	}
 	
 }
