@@ -23,7 +23,6 @@ public class Main {
 	/* Error Constants */
 	private static final String ERROR_REGIST = "Identifier %s is already assigned to another user.\n";
 	private static final String ERROR_LIST_USERS = "There are no registered users.\n";
-	private static final String ERROR_USER_DONT_EXIST = "User %s is not a registered user.\n";
 	private static final String ERROR_USERS_NOT_REGISTERED = "Not a registered user.";
 	private static final String ERROR_ALREADY_EXIST_DOCUMENT = "Document %s already exists in the user account.\n";
 	private static final String ERROR_DOES_NOT_EXIST_DOCUMENT = "Document %s does not exist in the user account.\n";
@@ -32,8 +31,7 @@ public class Main {
 	private static final String ERROR_IS_CLERK = "Grants can only be issued between officers.\n";
 	private static final String ERROR_ALREADY_ACCESS = "Already has access to document %s.\n";
 	private static final String ERROR_GRANT_ALREADY_REVOKED = "Grant for officer %s was already revoked.\n";
-	private static final String ERROR_NO_DOCUMENTS = "There are no %s documents.";
-	private static final String ERROR_NOT_RESGISTERED = "Not a registered user.\n";
+	private static final String ERROR_NO_DOCUMENTS = "There are no %s documents.\n";
 	private static final String ERROR_INAPPROPRIATE_LEVEL = "Inappropriate security level.";
 	private static final String ERROR_NO_ACCESSES = "There are no accesses.";
 	private static final String ERROR_NO_GRANTS = "There are no grants.\n";
@@ -128,7 +126,7 @@ public class Main {
 	
 	private static void help() {
 		System.out.printf("register - registers a new user\n"
-				+ "listUsers - list all registered users\n"
+				+ "listusers - list all registered users\n"
 				+ "upload - upload a document\n"
 				+ "read - read a document\n"
 				+ "write - write a document\n"
@@ -144,7 +142,7 @@ public class Main {
 	private static void listUsers( SecuritySystem sec ) {
 		IteratorUser userList = sec.createIteratorUser();
 		if(!userList.hasNext())
-			System.out.printf(ERROR_LIST_USERS);
+			System.out.println(ERROR_LIST_USERS);
 		else {
 			while(userList.hasNext()) {
 				User user = userList.next();
@@ -156,19 +154,19 @@ public class Main {
 	
 	private static void uploadDocoment( Scanner in, SecuritySystem sec ) {
 		String docName = in.next();
-		String UserId = in.next();
+		String userId = in.next();
 		String docLevel = in.next().toLowerCase();
 		in.nextLine();
 		String description = in.nextLine();
 		
-		if(!sec.idExist(UserId))
-			System.out.printf(ERROR_USER_DONT_EXIST, UserId);
-		else if(sec.docExist(UserId, docName))
+		if(!sec.idExist(userId))
+			System.out.println(ERROR_USERS_NOT_REGISTERED);
+		else if(sec.docExist(userId, docName))
 			System.out.printf(ERROR_ALREADY_EXIST_DOCUMENT, docName);
-		else if(sec.lowerSecurityLevel(UserId, docLevel))
+		else if(sec.lowerSecurityLevel(userId, docLevel))
 			System.out.println(ERROR_LOWER_CLEARANCE);
 		else {
-			sec.newDocument(docName, UserId, docLevel, description);	
+			sec.newDocument(docName, userId, docLevel, description);	
 			System.out.printf(SUCCESS_UPLOAD, docName);
 		}
 		
@@ -261,7 +259,7 @@ public class Main {
 		in.nextLine();
 		
 		if(!sec.idExist(userId))
-			System.out.printf(ERROR_NOT_RESGISTERED);
+			System.out.println(ERROR_USERS_NOT_REGISTERED);
 		else if(sec.matchesType(userId, type))                                      // Completar !!!
 			System.out.println(ERROR_INAPPROPRIATE_LEVEL);
 		else {
