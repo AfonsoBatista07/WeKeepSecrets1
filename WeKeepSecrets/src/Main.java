@@ -21,35 +21,35 @@ public class Main {
 	private static final String HELP = "HELP";
 	
 	/* Error Constants */
-	private static final String ERROR_REGIST = "Identifier %s is already assigned to another user.\n\n";
-	private static final String ERROR_LIST_USERS = "There are no registered users.\n\n";
-	private static final String ERROR_USER_DONT_EXIST = "User %s is not a registered user.\n\n";
+	private static final String ERROR_REGIST = "Identifier %s is already assigned to another user.\n";
+	private static final String ERROR_LIST_USERS = "There are no registered users.\n";
+	private static final String ERROR_USER_DONT_EXIST = "User %s is not a registered user.\n";
 	private static final String ERROR_USERS_NOT_REGISTERED = "Not a registered user.\n";
-	private static final String ERROR_ALREADY_EXIST_DOCUMENT = "Document %s already exists in the user account.\n\n";
-	private static final String ERROR_DOES_NOT_EXIST_DOCUMENT = "Document %s does not exist in the user acount.\n\n";
-	private static final String ERROR_LOWER_CLEARANCE = "Insuficient security clearance.\n";
-	private static final String ERROR_CAN_NOT_UPDATE = "Document %s cannot be updated.\n\n";
-	private static final String ERROR_IS_CLERK = "Access to document %s has been denied.\n\n";
-	private static final String ERROR_ALREADY_ACCESS = "Already has access to document %s.\n\n";
+	private static final String ERROR_ALREADY_EXIST_DOCUMENT = "Document %s already exists in the user account.\n";
+	private static final String ERROR_DOES_NOT_EXIST_DOCUMENT = "Document %s does not exist in the user acount.\n";
+	private static final String ERROR_LOWER_CLEARANCE = "Insuficient security clearance.";
+	private static final String ERROR_CAN_NOT_UPDATE = "Document %s cannot be updated.\n";
+	private static final String ERROR_IS_CLERK = "Access to document %s has been denied.\n";
+	private static final String ERROR_ALREADY_ACCESS = "Already has access to document %s.\n";
 	private static final String ERROR_NO_ACCESS = "Grant for officer does not exist.\n";
-	private static final String ERROR_GRANT_ALREADY_REVOKED = "Grant for officer was already revoked.\n\n";
+	private static final String ERROR_GRANT_ALREADY_REVOKED = "Grant for officer was already revoked.\n";
 	private static final String ERROR_NO_DOCUMENTS = "There are no %s documents.\n";
 	private static final String ERROR_NO_ACCESSES = "There are no accesses.\n";
 	private static final String ERROR_NO_GRANTS = "There are no grants.\n";
-	private static final String ERROR_NO_TYPE = "There are no documents with security level %s./n/n";
+	private static final String ERROR_NO_TYPE = "There are no documents with security level %s./n";
 	private static final String ERROR_NO_LEAKED = "There are no leaked documents.\n";
 	private static final String ERROR_NO_OFFICER_GRANT = "No officer has given grants.\n";
 	
 	/* Success Constants */
-	private static final String SUCCESS_REGIST = "User %s was registered.\n\n";
-	private static final String SUCCESS_UPLOAD = "Document %s was uploaded.\n\n";
-	private static final String SUCCESS_WRITE = "Document %s was updated.\n\n";
-	private static final String SUCCESS_READ = "Document:%s\n\n";
-	private static final String SUCCESS_GRANT = "Access to document %s has been granted.\n\n";
-	private static final String SUCCESS_REVOKE = "Access to document %s has been revoked.\n\n";
+	private static final String SUCCESS_REGIST = "User %s was registered.\n";
+	private static final String SUCCESS_UPLOAD = "Document %s was uploaded.\n";
+	private static final String SUCCESS_WRITE = "Document %s was updated.\n";
+	private static final String SUCCESS_READ = "Document:%s\n";
+	private static final String SUCCESS_GRANT = "Access to document %s has been granted.\n";
+	private static final String SUCCESS_REVOKE = "Access to document %s has been revoked.\n";
 	private static final String SUCCESS_USERDOCS = "%s: ";
  	private static final String SUCCESS_EXIT = "Bye!\n";
-	private static final String SUCCESS_UNKOWN = "Unknown command. Type help to see available commands.\n";
+	private static final String SUCCESS_UNKOWN = "Unknown command. Type help to see available commands.";
 	
 	private static String readOption( Scanner in ) {
 		return in.next().toUpperCase();
@@ -94,8 +94,21 @@ public class Main {
 				exit();
 				break;
 			default:
-				System.out.println(SUCCESS_UNKOWN);
+				System.out.printf(SUCCESS_UNKOWN);
 		}
+	}
+	
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		SecuritySystem sec = new SecuritySystemClass();
+		String cm;
+		do{
+			cm = readOption(in);
+			in.nextLine();
+			exeOption(in, sec, cm);
+		}while(!cm.equals(EXIT));
+
+		in.close();
 	}
 	
 	private static void regist( Scanner in, SecuritySystem sec) {
@@ -112,10 +125,25 @@ public class Main {
 		}
 	}
 	
+	private static void help() {
+		System.out.printf("register - registers a new user\n"
+				+ "listUsers - list all registered users\n"
+				+ "upload - upload a document\n"
+				+ "read - read a document\n"
+				+ "write - write a document\n"
+				+ "grant - grant access to a document\n"
+				+ "revoke - revoke a grant to access a document\n"
+				+ "userdocs - list the official or classified documents of an user\n"
+				+ "topleaked - list the top 10 documents with more grants\n"
+				+ "topgranters - list the top 10 officers that have given more grants\n"
+				+ "help - shows the available commands\n"
+				+ "exit - terminates the execution of the program\n");
+	}
+	
 	private static void listUsers( SecuritySystem sec ) {
 		IteratorUser userList = sec.createIteratorUser();
 		if(!userList.hasNext())
-			System.out.println(ERROR_LIST_USERS);
+			System.out.printf(ERROR_LIST_USERS);
 		else {
 			while(userList.hasNext()) {
 				User user = userList.next();
@@ -123,13 +151,13 @@ public class Main {
 				System.out.printf("%s %s %s\n", user.getKind(), user.getId(), user.getLevel().toLowerCase());
 			}
 		}
-		System.out.println("");
 	}
 	
 	private static void uploadDocoment( Scanner in, SecuritySystem sec ) {
 		String docName = in.next();
 		String UserId = in.next();
 		String docLevel = in.next().toUpperCase();
+		in.nextLine();
 		String description = in.nextLine();
 		
 		if(!sec.idExist(UserId))
@@ -259,36 +287,8 @@ public class Main {
 		
 	}
 	
-	private static void help() {
-		System.out.println("register - registers a new user\n"
-				+ "listUsers - list all registered users\n"
-				+ "upload - upload a document\n"
-				+ "read - read a document\n"
-				+ "write - write a document\n"
-				+ "grant - grant access a document\n"
-				+ "revoke - revoke a grant to access a document\n"
-				+ "userdocs - list the ocial or classified documents of an user\n"
-				+ "topleaked - list the top 10 documents with more grants\n"
-				+ "topgranters - list the top 10 officers that have given more grants\n"
-				+ "help - shows the available commands\n"
-				+ "exit - terminates the execution of the program\n");
-	}
-	
 	private static void exit() {
-		System.out.println(SUCCESS_EXIT);
-	}
-	
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		SecuritySystem sec = new SecuritySystemClass();
-		String cm;
-		do{
-			System.out.print("> ");
-			cm = readOption(in);
-			exeOption(in, sec, cm);
-		}while(!cm.equals(EXIT));
-
-		in.close();
+		System.out.printf(SUCCESS_EXIT);
 	}
 
 }

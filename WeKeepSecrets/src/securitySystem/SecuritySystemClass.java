@@ -113,8 +113,8 @@ public class SecuritySystemClass implements SecuritySystem {
 		switch(Levels.valueOf(level)) {
 			case OFFICIAL:
 				return Levels.OFFICIAL.getIntLevel();
-			case CONFIDENCIAL:
-				return Levels.CONFIDENCIAL.getIntLevel();
+			case CONFIDENTIAL:
+				return Levels.CONFIDENTIAL.getIntLevel();
 			case SECRET:
 				return Levels.SECRET.getIntLevel();
 			case TOPSECRET:

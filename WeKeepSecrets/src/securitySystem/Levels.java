@@ -3,7 +3,7 @@ package securitySystem;
 public enum Levels {
 
 	OFFICIAL(0),
-	CONFIDENCIAL(1),
+	CONFIDENTIAL(1),
 	SECRET(2),
 	TOPSECRET(3);
 	
