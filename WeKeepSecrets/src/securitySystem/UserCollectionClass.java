@@ -18,9 +18,9 @@ public class UserCollectionClass implements UserCollection {
 	}
 	
 	public void addUser(String id, String level, String kind) {
-		if(kind.equals("OFFICER"))
+		if(kind.equals("officer"))
 			users[counterUsers++] = new OfficerClass(id, level);
-		else if(kind.equals("CLERK"))
+		else if(kind.equals("clerk"))
 			users[counterUsers++] = new ClerkClass(id, level);
 		if(fullUsers())
 			resize();

@@ -223,7 +223,7 @@ public class Main {
 		else if(!sec.docExist(idManager, docName))
 			System.out.printf(ERROR_DOES_NOT_EXIST_DOCUMENT, docName);
 		else if(sec.userClerk(idGranted))
-			System.out.printf(ERROR_IS_CLERK, docName);
+			System.out.printf(ERROR_IS_CLERK);
 		else if(sec.canManage(idGranted, docName))
 			System.out.printf(ERROR_ALREADY_ACCESS, docName);
 		else {
@@ -244,7 +244,7 @@ public class Main {
 		else if(!sec.docExist(idManager, docName))
 			System.out.printf(ERROR_DOES_NOT_EXIST_DOCUMENT, docName);
 		else if(sec.userClerk(idGranted))
-			System.out.printf(ERROR_IS_CLERK, idGranted);
+			System.out.printf(ERROR_IS_CLERK);
 		else if(sec.revoked(idGranted, docName))
 			System.out.printf(ERROR_GRANT_ALREADY_REVOKED, idManager);
 		else {
@@ -260,7 +260,7 @@ public class Main {
 		in.nextLine();
 		
 		if(!sec.idExist(userId))
-			System.out.printf(ERROR_NOT_RESGISTERED, userId);
+			System.out.printf(ERROR_NOT_RESGISTERED);
 		else if(sec.matchesType(userId, type))                                      // Completar !!!
 			System.out.println(ERROR_INAPPROPRIATE_LEVEL);
 		else {
