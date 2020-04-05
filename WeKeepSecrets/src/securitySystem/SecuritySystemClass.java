@@ -27,7 +27,7 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 
 	public boolean matchesType(String userId, String type) {
-		return getUserLevel(userId)<1 && type.equals("CLASSIFIED");              // Quando tiverem com o cerebro menos derretido metam isto mais bonito :D
+		return getUserLevel(userId)<1 && type.equalsIgnoreCase("classified");              // Quando tiverem com o cerebro menos derretido metam isto mais bonito :D
 	}
 	
 	public boolean canManage(String userId, String docName) {
@@ -69,7 +69,7 @@ public class SecuritySystemClass implements SecuritySystem {
 	
 	public void newDocument(String docName, String userId, String level, String description) {
 		Document doc;
-		if(level.equals("OFFICIAL"))
+		if(level.equals("official"))
 			doc = new OfficialDocumentClass(userId, docName, description); 
 		else 
 			doc = new ClassifiedDocumentClass(userId, docName, level, description);
@@ -110,7 +110,7 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 	
 	public int levelToNum(String level) {
-		switch(Levels.valueOf(level)) {
+		switch(Levels.valueOf(level.toUpperCase())) {
 			case OFFICIAL:
 				return Levels.OFFICIAL.getIntLevel();
 			case CONFIDENTIAL:

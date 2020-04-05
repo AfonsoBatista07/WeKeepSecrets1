@@ -9,7 +9,7 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 	private static final int MAX_GRANTS = 100;
 
 	public ClassifiedDocumentClass(String manager, String name, String level, String description) {
-		super(manager, name, description, level, "CLASSIFIED");
+		super(manager, name, description, level, "classified");
 		currentAccess = 0;
 		currentGrant = 0;
 		currentRevokedGrant = 0;
@@ -44,7 +44,6 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 	public void revokeGrant(String userId) {
 		remove(userId, grants, currentGrant);
 		currentGrant--;
-		System.out.println(grants[0]);
 		if(currentRevokedGrant == grantsRevoked.length) {
 			resize(grantsRevoked, currentRevokedGrant);
 		}

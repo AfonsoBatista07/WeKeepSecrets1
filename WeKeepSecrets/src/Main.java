@@ -24,19 +24,20 @@ public class Main {
 	private static final String ERROR_REGIST = "Identifier %s is already assigned to another user.\n";
 	private static final String ERROR_LIST_USERS = "There are no registered users.\n";
 	private static final String ERROR_USER_DONT_EXIST = "User %s is not a registered user.\n";
-	private static final String ERROR_USERS_NOT_REGISTERED = "Not a registered user.\n";
+	private static final String ERROR_USERS_NOT_REGISTERED = "Not a registered user.";
 	private static final String ERROR_ALREADY_EXIST_DOCUMENT = "Document %s already exists in the user account.\n";
-	private static final String ERROR_DOES_NOT_EXIST_DOCUMENT = "Document %s does not exist in the user acount.\n";
-	private static final String ERROR_LOWER_CLEARANCE = "Insuficient security clearance.";
+	private static final String ERROR_DOES_NOT_EXIST_DOCUMENT = "Document %s does not exist in the user account.\n";
+	private static final String ERROR_LOWER_CLEARANCE = "Insufficient security clearance.";
 	private static final String ERROR_CAN_NOT_UPDATE = "Document %s cannot be updated.\n";
-	private static final String ERROR_IS_CLERK = "Access to document %s has been denied.\n";
+	private static final String ERROR_IS_CLERK = "Grants can only be issued between officers.\n";
 	private static final String ERROR_ALREADY_ACCESS = "Already has access to document %s.\n";
-	private static final String ERROR_NO_ACCESS = "Grant for officer does not exist.\n";
-	private static final String ERROR_GRANT_ALREADY_REVOKED = "Grant for officer was already revoked.\n";
-	private static final String ERROR_NO_DOCUMENTS = "There are no %s documents.\n";
+	private static final String ERROR_GRANT_ALREADY_REVOKED = "Grant for officer %s was already revoked.\n";
+	private static final String ERROR_NO_DOCUMENTS = "There are no %s documents.";
+	private static final String ERROR_NOT_RESGISTERED = "Not a registered user.";
+	private static final String ERROR_INAPPROPRIATE_LEVEL = "Inappropriate security level.";
 	private static final String ERROR_NO_ACCESSES = "There are no accesses.\n";
 	private static final String ERROR_NO_GRANTS = "There are no grants.\n";
-	private static final String ERROR_NO_TYPE = "There are no documents with security level %s./n";
+	private static final String ERROR_NO_TYPE = "There are no documents with security level %s.";
 	private static final String ERROR_NO_LEAKED = "There are no leaked documents.\n";
 	private static final String ERROR_NO_OFFICER_GRANT = "No officer has given grants.\n";
 	
@@ -44,12 +45,12 @@ public class Main {
 	private static final String SUCCESS_REGIST = "User %s was registered.\n";
 	private static final String SUCCESS_UPLOAD = "Document %s was uploaded.\n";
 	private static final String SUCCESS_WRITE = "Document %s was updated.\n";
-	private static final String SUCCESS_READ = "Document:%s\n";
+	private static final String SUCCESS_READ = "Document: %s\n";
 	private static final String SUCCESS_GRANT = "Access to document %s has been granted.\n";
 	private static final String SUCCESS_REVOKE = "Access to document %s has been revoked.\n";
 	private static final String SUCCESS_USERDOCS = "%s: ";
  	private static final String SUCCESS_EXIT = "Bye!\n";
-	private static final String SUCCESS_UNKOWN = "Unknown command. Type help to see available commands.";
+	private static final String SUCCESS_UNKOWN = "Unknown command. Type help to see available commands.\n";
 	
 	private static String readOption( Scanner in ) {
 		return in.next().toUpperCase();
@@ -112,9 +113,9 @@ public class Main {
 	}
 	
 	private static void regist( Scanner in, SecuritySystem sec) {
-		String kind = in.next().toUpperCase();
+		String kind = in.next().toLowerCase();
 		String UserId = in.next();
-		String level = in.next().toUpperCase();
+		String level = in.next().toLowerCase();
 		in.nextLine();
 		
 		if(sec.idExist(UserId))
@@ -156,7 +157,7 @@ public class Main {
 	private static void uploadDocoment( Scanner in, SecuritySystem sec ) {
 		String docName = in.next();
 		String UserId = in.next();
-		String docLevel = in.next().toUpperCase();
+		String docLevel = in.next().toLowerCase();
 		in.nextLine();
 		String description = in.nextLine();
 		
@@ -178,7 +179,7 @@ public class Main {
 		String idManager = in.next();
 		String idAcces = in.next();
 		
-		if( !sec.idExist(idManager) && !sec.idExist(idAcces) )
+		if( !sec.idExist(idManager) || !sec.idExist(idAcces) )
 			System.out.println(ERROR_USERS_NOT_REGISTERED);
 		else if(!sec.docExist(idManager, docName))
 			System.out.printf(ERROR_DOES_NOT_EXIST_DOCUMENT, docName);
@@ -194,9 +195,10 @@ public class Main {
 		String docName = in.next();
 		String idManager = in.next();
 		String idAcces = in.next();
+		in.nextLine();
 		String description = in.nextLine();
 		
-		if( !sec.idExist(idManager) && !sec.idExist(idAcces) )
+		if( !sec.idExist(idManager) || !sec.idExist(idAcces) )
 			System.out.println(ERROR_USERS_NOT_REGISTERED);
 		else if(!sec.docExist(idManager, docName))
 			System.out.printf(ERROR_DOES_NOT_EXIST_DOCUMENT, docName);
@@ -214,15 +216,15 @@ public class Main {
 		String docName = in.next();
 		String idManager = in.next();
 		String idGranted = in.next();
-		in.hasNextLine();
+		in.nextLine();
 		
-		if( !sec.idExist(idManager) && !sec.idExist(idGranted) )
+		if( !sec.idExist(idManager) || !sec.idExist(idGranted) )
 			System.out.println(ERROR_USERS_NOT_REGISTERED);
 		else if(!sec.docExist(idManager, docName))
 			System.out.printf(ERROR_DOES_NOT_EXIST_DOCUMENT, docName);
 		else if(sec.userClerk(idGranted))
 			System.out.printf(ERROR_IS_CLERK, docName);
-		else if(sec.granted(idGranted, docName))
+		else if(sec.canManage(idGranted, docName))
 			System.out.printf(ERROR_ALREADY_ACCESS, docName);
 		else {
 			sec.grantUser(idGranted, docName);
@@ -235,16 +237,16 @@ public class Main {
 		String docName = in.next();
 		String idManager = in.next();
 		String idGranted = in.next();
-		in.hasNextLine();
+		in.nextLine();
 		
-		if( !sec.idExist(idManager) && !sec.idExist(idGranted) )
+		if( !sec.idExist(idManager) || !sec.idExist(idGranted) )
 			System.out.println(ERROR_USERS_NOT_REGISTERED);
 		else if(!sec.docExist(idManager, docName))
 			System.out.printf(ERROR_DOES_NOT_EXIST_DOCUMENT, docName);
-		else if(!sec.granted(idGranted, docName))
-			System.out.printf(ERROR_NO_ACCESS, idGranted);
+		else if(sec.userClerk(idGranted))
+			System.out.printf(ERROR_IS_CLERK, idGranted);
 		else if(sec.revoked(idGranted, docName))
-			System.out.printf(ERROR_GRANT_ALREADY_REVOKED, idGranted);
+			System.out.printf(ERROR_GRANT_ALREADY_REVOKED, idManager);
 		else {
 			sec.revokeUser(idGranted, docName);
 			System.out.printf(SUCCESS_REVOKE, docName);
@@ -254,12 +256,13 @@ public class Main {
 	
 	private static void userDocs( Scanner in, SecuritySystem sec ) {
 		String userId = in.next();
-		String type = in.next().toUpperCase();
+		String type = in.next().toLowerCase();
+		in.nextLine();
 		
 		if(!sec.idExist(userId))
-			System.out.printf(ERROR_USER_DONT_EXIST, userId);
+			System.out.printf(ERROR_NOT_RESGISTERED, userId);
 		else if(sec.matchesType(userId, type))                                      // Completar !!!
-			System.out.println(ERROR_LOWER_CLEARANCE);
+			System.out.println(ERROR_INAPPROPRIATE_LEVEL);
 		else {
 			IteratorDocs docList = sec.createIteratorDocs(userId, type);
 			if(!docList.hasNext())
