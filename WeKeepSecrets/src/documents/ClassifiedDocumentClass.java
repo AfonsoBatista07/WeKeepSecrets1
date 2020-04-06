@@ -92,7 +92,6 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 		return findUser(userId, grantsRevoked, currentRevokedGrant)!=-1;
 	}
 
-	@Override
 	public int getNumAccesses() {
 		return currentAccess;
 	}

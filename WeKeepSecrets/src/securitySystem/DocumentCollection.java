@@ -1,10 +1,8 @@
 package securitySystem;
 
 import documents.Document;
-<<<<<<< Updated upstream
 import users.User;
-=======
->>>>>>> Stashed changes
+
 
 public interface DocumentCollection {
 	void addDocument(Document doc);

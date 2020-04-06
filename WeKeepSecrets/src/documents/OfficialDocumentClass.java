@@ -1,10 +1,11 @@
 package documents;
 
+import securitySystem.IteratorUser;
 import users.User;
+
 
 public class OfficialDocumentClass extends DocumentClass implements OfficialDocument{
 	
-	private static final int MAX_NAMES = 10;
 	private AccessesOfficial accesses;
 	
 	public OfficialDocumentClass(String manager, String docName, String description) {
@@ -16,8 +17,11 @@ public class OfficialDocumentClass extends DocumentClass implements OfficialDocu
 		accesses.read(user);
 	}
 
-	@Override
 	public int getNumAccesses() {
 		return accesses.getNumAccesses();
+	}
+	
+	public IteratorUser getIteratorAccesses() {
+		return accesses.getIteratorAccesses();
 	}
 }

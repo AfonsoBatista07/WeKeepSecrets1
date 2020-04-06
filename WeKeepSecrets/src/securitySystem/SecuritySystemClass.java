@@ -1,10 +1,7 @@
 package securitySystem;
 
 import documents.*;
-<<<<<<< Updated upstream
-import users.User;
-=======
->>>>>>> Stashed changes
+
 
 public class SecuritySystemClass implements SecuritySystem {
 

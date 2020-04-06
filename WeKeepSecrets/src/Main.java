@@ -110,20 +110,6 @@ public class Main {
 		in.close();
 	}
 	
-	private static void regist( Scanner in, SecuritySystem sec) {
-		String kind = in.next().toLowerCase();
-		String UserId = in.next();
-		String level = in.next().toLowerCase();
-		in.nextLine();
-		
-		if(sec.idExist(UserId))
-			System.out.printf(ERROR_REGIST, UserId);
-		else {
-			sec.regist(kind, UserId, level);
-			System.out.printf(SUCCESS_REGIST, UserId);
-		}
-	}
-	
 	private static void help() {
 		System.out.printf("register - registers a new user\n"
 				+ "listusers - list all registered users\n"
@@ -139,6 +125,21 @@ public class Main {
 				+ "exit - terminates the execution of the program\n");
 	}
 	
+	
+	private static void regist( Scanner in, SecuritySystem sec) {
+		String kind = in.next().toLowerCase();
+		String UserId = in.next();
+		String level = in.next().toLowerCase();
+		in.nextLine();
+		
+		if(sec.idExist(UserId))
+			System.out.printf(ERROR_REGIST, UserId);
+		else {
+			sec.regist(kind, UserId, level);
+			System.out.printf(SUCCESS_REGIST, UserId);
+		}
+	}
+	
 	private static void listUsers( SecuritySystem sec ) {
 		IteratorUser userList = sec.createIteratorUser();
 		if(!userList.hasNext())
@@ -147,7 +148,7 @@ public class Main {
 			while(userList.hasNext()) {
 				User user = userList.next();
 			
-				System.out.printf("%s %s %s\n", user.getKind(), user.getId(), user.getLevel().toLowerCase());
+				System.out.printf("%s %s %s\n", user.getKind(), user.getId(), user.getLevel());
 			}
 		}
 	}
@@ -260,7 +261,7 @@ public class Main {
 		
 		if(!sec.idExist(userId))
 			System.out.println(ERROR_USERS_NOT_REGISTERED);
-		else if(sec.matchesType(userId, type))                                      // Completar !!!
+		else if(sec.matchesType(userId, type))                                      
 			System.out.println(ERROR_INAPPROPRIATE_LEVEL);
 		else {
 			IteratorDocs docList = sec.createIteratorDocs(userId, type);
@@ -269,16 +270,16 @@ public class Main {
 			else {
 				while(docList.hasNext()) {
 					Document doc = docList.next();
-					System.out.printf("%s %s:", doc.getDocName(), doc.getNumAccesses());
-				}
-				IteratorUser userList = sec.createIteratorUser();
-				if(!userList.hasNext())
-					System.out.println(ERROR_NO_ACCESSES);
-				else {
-					while(userList.hasNext()) {
-						User user = userList.next();
-					
-						System.out.printf("%s %s %s\n", user.getKind(), user.getId(), user.getLevel().toLowerCase());
+					System.out.printf("%s %s:\n", doc.getDocName(), doc.getNumAccesses());
+					IteratorUser userList = sec.createIteratorAccesses(doc.getDocName());
+					if(!userList.hasNext())
+						System.out.println(ERROR_NO_ACCESSES);
+					else {
+						while(userList.hasNext()) {
+							User user = userList.next();
+						
+							System.out.printf("%s [%s],", user.getId(), user.getLevel());
+						}
 					}
 				}
 			}
