@@ -1,7 +1,10 @@
 package securitySystem;
 
 import documents.Document;
+<<<<<<< Updated upstream
 import users.User;
+=======
+>>>>>>> Stashed changes
 
 public interface DocumentCollection {
 	void addDocument(Document doc);
@@ -14,4 +17,5 @@ public interface DocumentCollection {
 	boolean isGranted(String userId, String docName);
 	boolean isRevoked(String userId, String docName);
 	String getDescription(String docName);
+	IteratorUser getIteratorAccesses(String docName);
 }

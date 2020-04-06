@@ -1,7 +1,10 @@
 package securitySystem;
 
 import documents.*;
+<<<<<<< Updated upstream
 import users.User;
+=======
+>>>>>>> Stashed changes
 
 public class SecuritySystemClass implements SecuritySystem {
 
@@ -17,7 +20,6 @@ public class SecuritySystemClass implements SecuritySystem {
 	public boolean idExist(String UserId) {
 		return users.idExist(UserId);
 	}
-
 	
 	public boolean docExist(String userId, String docName) {
 		return users.getUser(userId).docExist(docName);
@@ -44,23 +46,24 @@ public class SecuritySystemClass implements SecuritySystem {
 		return getUserLevel(userId)==0;
 	}
 
-
 	public boolean granted(String userId, String docName) {
-		return docs.isGranted(userId, docName);						// Pode ser private
+		return docs.isGranted(userId, docName);	
 	}
-
 	
 	public boolean revoked(String userId, String docName) {
 		return docs.isRevoked(userId, docName);
 	}
 
-	
 	public IteratorUser createIteratorUser() {
 		return users.getIteratorUser();
 	}
 	
 	public IteratorDocs createIteratorDocs(String userId, String type) {
 		return users.getIteratorDocs(userId, type);
+	}
+	
+	public IteratorUser createIteratorAccesses(String docName) {
+		return docs.getIteratorAccesses(docName);
 	}
 	
 	public void regist(String kind, String userId, String level) {

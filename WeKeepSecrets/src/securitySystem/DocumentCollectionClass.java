@@ -1,8 +1,13 @@
 package securitySystem;
 
 import documents.ClassifiedDocument;
+<<<<<<< Updated upstream
 import documents.Document;
 import users.User;
+=======
+import documents.OfficialDocument;
+import documents.Document;
+>>>>>>> Stashed changes
 
 public class DocumentCollectionClass implements DocumentCollection {
 
@@ -84,4 +89,7 @@ public class DocumentCollectionClass implements DocumentCollection {
         return -1;
     }
 	
+	public IteratorUser getIteratorAccesses(String docName) {
+		return ((OfficialDocument) getDoc(docName)).getIteratorUser();
+	}
 }

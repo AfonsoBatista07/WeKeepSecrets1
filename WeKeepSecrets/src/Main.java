@@ -269,11 +269,16 @@ public class Main {
 			else {
 				while(docList.hasNext()) {
 					Document doc = docList.next();
-					if(doc.getNumAccesses()==0) {
-						System.out.printf("%s %s: %s\n", doc.getDocName(), doc.getNumAccesses(), ERROR_NO_ACCESSES);
-					}
-					else {
-						System.out.printf("%s %s:\n", doc.getDocName(), doc.getNumAccesses());
+					System.out.printf("%s %s:", doc.getDocName(), doc.getNumAccesses());
+				}
+				IteratorUser userList = sec.createIteratorUser();
+				if(!userList.hasNext())
+					System.out.println(ERROR_NO_ACCESSES);
+				else {
+					while(userList.hasNext()) {
+						User user = userList.next();
+					
+						System.out.printf("%s %s %s\n", user.getKind(), user.getId(), user.getLevel().toLowerCase());
 					}
 				}
 			}

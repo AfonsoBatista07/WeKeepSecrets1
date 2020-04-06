@@ -16,4 +16,9 @@ public enum Levels {
 	public int getIntLevel() {
 		return hierarchy;
 	}
+	
+	public boolean isGreaterThan(Levels other) {
+		return this.hierarchy > other.hierarchy;
+	}
 }
+
