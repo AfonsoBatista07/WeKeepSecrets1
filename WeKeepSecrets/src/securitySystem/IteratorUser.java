@@ -1,6 +1,6 @@
 package securitySystem;
 
-import Users.User;
+import users.User;
 
 public interface IteratorUser {
 

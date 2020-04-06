@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
-import Users.User;
-import Documents.Document;
+import documents.Document;
 import securitySystem.*;
+import users.User;
 
 public class Main {
 

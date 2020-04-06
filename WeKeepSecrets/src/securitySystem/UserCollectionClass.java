@@ -1,9 +1,9 @@
 package securitySystem;
 
-import Documents.Document;
-import Users.ClerkClass;
-import Users.OfficerClass;
-import Users.User;
+import documents.Document;
+import users.ClerkClass;
+import users.OfficerClass;
+import users.User;
 
 public class UserCollectionClass implements UserCollection {
 

@@ -1,6 +1,7 @@
 package securitySystem;
 
-import Documents.*;
+import documents.*;
+import users.User;
 
 public class SecuritySystemClass implements SecuritySystem {
 
@@ -84,7 +85,8 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 	
 	public void read(String userId, String docName) {
-		docs.read(userId, docName);
+		
+		docs.read(users.getUser(userId), docName);
 	}
 	
 	public void grantUser(String userId, String docName) {

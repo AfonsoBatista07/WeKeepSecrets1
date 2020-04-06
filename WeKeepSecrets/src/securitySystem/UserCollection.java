@@ -1,7 +1,7 @@
 package securitySystem;
 
-import Documents.Document;
-import Users.User;
+import documents.Document;
+import users.User;
 
 public interface UserCollection {
 	void addUser(String id, String level, String kind);

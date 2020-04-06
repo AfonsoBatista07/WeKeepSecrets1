@@ -1,6 +1,6 @@
-package Users;
+package users;
 
-import Documents.Document;
+import documents.Document;
 import securitySystem.IteratorDocs;
 import securitySystem.IteratorDocsClass;
 

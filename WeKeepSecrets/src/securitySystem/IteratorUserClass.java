@@ -1,5 +1,5 @@
 package securitySystem;
-import Users.User;
+import users.User;
 
 public class IteratorUserClass implements IteratorUser {
 

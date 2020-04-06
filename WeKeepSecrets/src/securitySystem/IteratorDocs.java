@@ -1,6 +1,6 @@
 package securitySystem;
 
-import Documents.Document;
+import documents.Document;
 
 public interface IteratorDocs {
 

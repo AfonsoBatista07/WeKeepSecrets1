@@ -1,4 +1,6 @@
-package Documents;
+package documents;
+
+import users.User;
 
 public class ClassifiedDocumentClass extends DocumentClass implements ClassifiedDocument{
 	
@@ -20,11 +22,10 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 		grantsRevoked = new String[MAX_GRANTS];
 	}
 	
-	public void read(String userId) {
-		whoAccessed[currentAccess] = userId;
+	public void read(User user) {
+		whoAccessed[currentAccess] = user.getId();
 		action[currentAccess]= "read";
 		currentAccess++;
-		super.numAccesses++;
 	}
 	
 	public int getNumGrants() {
@@ -56,7 +57,6 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 		whoAccessed[currentAccess] = userId;
 		action[currentAccess]= "write";
 		currentAccess++;
-		super.numAccesses++;
 	}
 	
 	private int findUser(String userId, String[] list, int current) {
@@ -90,6 +90,11 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 	
 	public boolean isRevoked(String userId) {
 		return findUser(userId, grantsRevoked, currentRevokedGrant)!=-1;
+	}
+
+	@Override
+	public int getNumAccesses() {
+		return currentAccess;
 	}
 
 }

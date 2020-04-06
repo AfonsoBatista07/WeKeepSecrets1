@@ -1,7 +1,8 @@
 package securitySystem;
 
-import Documents.ClassifiedDocument;
-import Documents.Document;
+import documents.ClassifiedDocument;
+import documents.Document;
+import users.User;
 
 public class DocumentCollectionClass implements DocumentCollection {
 
@@ -57,8 +58,8 @@ public class DocumentCollectionClass implements DocumentCollection {
 		((ClassifiedDocument) getDoc(docName)).write(description, userId);
 	}
 	
-	public void read(String userId, String docName) {
-		getDoc(docName).read(userId);
+	public void read(User user, String docName) {
+		getDoc(docName).read(user);
 	}
 
 	private void resize() {

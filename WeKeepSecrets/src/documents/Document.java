@@ -1,8 +1,10 @@
-package Documents;
+package documents;
+
+import users.User;
 
 public interface Document {
 
-	void read(String userId);
+	void read(User user);
 	
 	int getNumAccesses();
 	
