@@ -55,6 +55,10 @@ public class SecuritySystemClass implements SecuritySystem {
 		return users.getIteratorUser();
 	}
 	
+	public IteratorUser createIteratorUserByGrant() {
+		return users.getIteratorUserByGrant();
+	}
+	
 	public IteratorDocs createIteratorDocs(String userId, String type) {
 		return users.getIteratorDocs(userId, type);
 	}
@@ -89,13 +93,15 @@ public class SecuritySystemClass implements SecuritySystem {
 		docs.read(users.getUser(userId), docName);
 	}
 	
-	public void grantUser(String userId, String docName) {
+	public void grantUser(String userId, String ManagerId, String docName) {
 		docs.grantUser(userId, docName);
+		users.grant(ManagerId);
 
 	}
 	
-	public void revokeUser(String userId, String docName) {
+	public void revokeUser(String userId,String ManagerId, String docName) {
 		docs.revokeUser(userId, docName);
+		users.revoke(ManagerId);
 	}
 
 	

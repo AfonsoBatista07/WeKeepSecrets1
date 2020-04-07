@@ -29,7 +29,7 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 	}
 	
 	public int getNumGrants() {
-		return grants.length;
+		return currentGrant;
 	}
 	
 	public void addGrant(String userId) {

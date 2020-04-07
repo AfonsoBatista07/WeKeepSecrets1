@@ -1,20 +1,21 @@
 package securitySystem;
 
+import documents.ClassifiedDocument;
 import documents.Document;
-import users.ClerkClass;
-import users.OfficerClass;
-import users.User;
+import users.*;
 
 public class UserCollectionClass implements UserCollection {
 
-	User users[];
-	int counterUsers;
+	User users[], usersByGrants[];
+	int counterUsers, counterUserByGrants;
 	
 	private static final int DEFAULT_SIZE=50, GROW_FACTOR=2;
 	
 	public UserCollectionClass() {
 		users = new User[DEFAULT_SIZE];
+		usersByGrants = new User[DEFAULT_SIZE];
 		counterUsers = 0;
+		counterUserByGrants = 0;
 	}
 	
 	public void addUser(String id, String level, String kind) {
@@ -28,6 +29,14 @@ public class UserCollectionClass implements UserCollection {
 
 	public User getUser(String id) {
 		return users[findUser(id)];
+	}
+	
+	public void grant(String id) {
+		((Officer) getUser(id)).incGranted();
+	}
+	
+	public void revoke(String id) {
+		((Officer) getUser(id)).incRevoked();
 	}
 
 	public boolean idExist(String id) {
@@ -69,5 +78,50 @@ public class UserCollectionClass implements UserCollection {
 	public IteratorDocs getIteratorDocs(String userId, String type) {
 		return getUser(userId).getIteratorDocs(type);
 
+	}
+	
+	public IteratorUser getIteratorUserByGrant() {
+		listOnlyOfficers();
+		sortByName();
+		sortByGrants();
+		IteratorUser iteratorUser = new IteratorUserClass(usersByGrants, counterUserByGrants);
+		return iteratorUser;
+
+	}
+	
+	private void listOnlyOfficers() {
+		for(int i = 0; i < counterUsers; i++) {
+			if(users[i].getKind().equalsIgnoreCase("officer")) {
+				if(((Officer) users[i]).getNumGrants() > 0) {
+					usersByGrants[counterUserByGrants++] = users[i];
+				}
+			}
+		}
+	}
+	
+	private void sortByGrants() {
+		for (int i = 1; i < counterUserByGrants; i++) { 
+			for (int j = counterUserByGrants -1; j >= i; j--) {
+				if (((Officer)usersByGrants[j-1]).getNumGrants()<(((Officer)usersByGrants[j]).getNumGrants())) { 
+					
+					User temp = usersByGrants[j - 1]; 
+					usersByGrants[j-1] = usersByGrants[j]; 
+					usersByGrants[j] = temp; 
+				}
+			}
+		}
+	}
+	
+	private void sortByName() {
+		for (int i = 0; i < counterUserByGrants; i++) { 
+			for (int j = i+1; j < counterUserByGrants; j++) {
+				if (usersByGrants[i].getId().compareTo(usersByGrants[j].getId())>0) { 
+					
+					User temp = usersByGrants[i]; 
+					usersByGrants[i] = usersByGrants[j]; 
+					usersByGrants[j] = temp; 
+				}
+			}
+		}
 	}
 }

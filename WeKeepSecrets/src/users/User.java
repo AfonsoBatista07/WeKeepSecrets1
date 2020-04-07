@@ -11,6 +11,10 @@ public interface User {
 	String getLevel();
 	
 	String getKind();
+	
 	boolean docExist(String docName);
+	
 	IteratorDocs getIteratorDocs(String type);
+	
+	int getNumDocs();
 }

@@ -1,6 +1,6 @@
 package users;
 
-public class OfficerClass extends UserClass {
+public class OfficerClass extends UserClass implements Officer{
 	
 	int granted, revoked;
 	
@@ -15,8 +15,16 @@ public class OfficerClass extends UserClass {
 		granted++;
 	}
 	
-	public int getGranted() {
+	public int getNumGrants() {
 		return granted;
+	}
+	
+	public void incRevoked() {
+		revoked++;
+	}
+	
+	public int getNumRevokes() {
+		return revoked;
 	}
 	
 }

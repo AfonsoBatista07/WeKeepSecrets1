@@ -43,6 +43,10 @@ protected String id, level, kind;
 		return kind;
 	}
 	
+	public int getNumDocs() {
+		return current;
+	}
+	
 	private void resize() {
 		Document[] sl = new Document[GROW_FACTOR * docsUploaded.length];
 		for (int i = 0; i < current; i++)

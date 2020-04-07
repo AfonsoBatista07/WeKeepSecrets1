@@ -3,6 +3,7 @@ import java.util.Scanner;
 import documents.Document;
 import securitySystem.*;
 import users.User;
+import users.Officer;
 
 public class Main {
 
@@ -227,7 +228,7 @@ public class Main {
 		else if(sec.canManage(idGranted, docName))
 			System.out.printf(ERROR_ALREADY_ACCESS, docName);
 		else {
-			sec.grantUser(idGranted, docName);
+			sec.grantUser(idGranted, idManager, docName);
 			System.out.printf(SUCCESS_GRANT, docName);
 		}
 		
@@ -248,7 +249,7 @@ public class Main {
 		else if(sec.revoked(idGranted, docName))
 			System.out.printf(ERROR_GRANT_ALREADY_REVOKED, idManager);
 		else {
-			sec.revokeUser(idGranted, docName);
+			sec.revokeUser(idGranted,idManager, docName);
 			System.out.printf(SUCCESS_REVOKE, docName);
 		}
 		
@@ -270,15 +271,28 @@ public class Main {
 			else {
 				while(docList.hasNext()) {
 					Document doc = docList.next();
-					System.out.printf("%s %s:\n", doc.getDocName(), doc.getNumAccesses());
-					IteratorUser userList = sec.createIteratorAccesses(doc.getDocName());
-					if(!userList.hasNext())
-						System.out.println(ERROR_NO_ACCESSES);
+					if(type.equals("official")) {
+						System.out.printf("%s %s:\n", doc.getDocName(), doc.getNumAccesses());
+						IteratorUser userList = sec.createIteratorAccesses(doc.getDocName());
+						if(!userList.hasNext())
+							System.out.println(ERROR_NO_ACCESSES);
+						else {
+							while(userList.hasNext()) {
+								User user = userList.next();
+							
+								System.out.printf("%s [%s],", user.getId(), user.getLevel());
+							}
+						}
+					}
 					else {
-						while(userList.hasNext()) {
-							User user = userList.next();
-						
-							System.out.printf("%s [%s],", user.getId(), user.getLevel());
+						System.out.printf("%s %s %s\n\n", doc.getDocName(), doc.getLevel(), doc.getNumAccesses());
+						IteratorUser userList = sec.createIteratorAccesses(doc.getDocName());
+						if(!userList.hasNext())
+							System.out.println(ERROR_NO_ACCESSES);
+						else {
+							while(userList.hasNext()) {	
+								System.out.printf("%s [%s],");
+							}
 						}
 					}
 				}
@@ -293,7 +307,17 @@ public class Main {
 	}
 	
 	private static void topGranters( Scanner in, SecuritySystem sec ) {
-
+		IteratorUser userList = sec.createIteratorUserByGrant();
+		if(!userList.hasNext())
+			System.out.printf(ERROR_NO_OFFICER_GRANT);
+		else {
+			int pos = 0;
+			while(userList.hasNext() && pos < 10) {
+				Officer user = (Officer) userList.next();
+				System.out.printf("%s %s %d %d %d\n",user.getId(),user.getLevel(), user.getNumDocs(), user.getNumGrants(), user.getNumRevokes());
+				pos++;
+			}
+		}
 																		// Completar !!!
 		
 	}

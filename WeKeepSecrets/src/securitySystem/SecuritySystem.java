@@ -12,13 +12,14 @@ public interface SecuritySystem {
 	boolean granted(String userId, String docName);
 	boolean revoked(String userId, String docName);
 	IteratorUser createIteratorUser();
+	IteratorUser createIteratorUserByGrant();
 	IteratorDocs createIteratorDocs(String userId, String type);
 	IteratorUser createIteratorAccesses(String docName);
 	void regist(String kind, String userId, String level);
 	void newDocument(String docName, String userId, String level, String description);
 	void write(String userId, String docName, String description);
-	void grantUser(String userId, String docName);
-	void revokeUser(String userId, String docName);
+	void grantUser(String userId, String ManagerId, String docName);
+	void revokeUser(String userId, String ManagerId,String docName);
 	void read(String userId, String docName);
 	String getDecription(String docName);
 	int getUserLevel(String userId);

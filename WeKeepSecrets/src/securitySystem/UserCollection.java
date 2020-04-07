@@ -8,6 +8,9 @@ public interface UserCollection {
 	User getUser(String id);
 	boolean idExist(String id);
 	void upload(String id, Document doc);
+	void grant(String id);
+	void revoke(String id);
 	IteratorUser getIteratorUser();
+	IteratorUser getIteratorUserByGrant();
 	IteratorDocs getIteratorDocs(String userId, String type);
 }
