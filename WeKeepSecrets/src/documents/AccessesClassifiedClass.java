@@ -112,7 +112,7 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 	}
 	
 	public IteratorUser getIteratorGrants() {
-		IteratorUser iteratorGrants = new IteratorUserClass(accesses, counterGrants);
+		IteratorUser iteratorGrants = new IteratorUserClass(grants, counterGrants);
 		return iteratorGrants;
 	}
 	
@@ -122,7 +122,7 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 	}
 	
 	public IteratorString getIteratorStringGrants() {
-		IteratorString iteratorStringGrants = new IteratorStringClass(grantType, counterAccesses);
+		IteratorString iteratorStringGrants = new IteratorStringClass(grantType, counterGrants);
 		return iteratorStringGrants;
 	}
 }
