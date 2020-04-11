@@ -195,20 +195,20 @@ public class Main {
 	private static void writeDocoment( Scanner in, SecuritySystem sec ) {
 		String docName = in.next();
 		String idManager = in.next();
-		String idAcces = in.next();
+		String idAccess = in.next();
 		in.nextLine();
 		String description = in.nextLine();
 		
-		if( !sec.idExist(idManager) || !sec.idExist(idAcces) )
+		if( !sec.idExist(idManager) || !sec.idExist(idAccess) )
 			System.out.println(ERROR_USERS_NOT_REGISTERED);
 		else if(!sec.docExist(idManager, docName))
 			System.out.printf(ERROR_DOES_NOT_EXIST_DOCUMENT, docName);
 		else if(sec.officialDoc(docName))
 			System.out.printf(ERROR_CAN_NOT_UPDATE, docName);
-		else if(!sec.canManage(idAcces, docName))
+		else if(!sec.canManage(idAccess, docName))
 			System.out.println(ERROR_LOWER_CLEARANCE);
 		else {
-			sec.write(idManager , docName, description);
+			sec.write(idAccess , docName, description);
 			System.out.printf(SUCCESS_WRITE, docName);
 		}
 	}
@@ -283,7 +283,7 @@ public class Main {
 								if(userList.hasNext())
 									System.out.print(", ");
 							}
-							
+							System.out.println("");
 						}
 					}
 					else {

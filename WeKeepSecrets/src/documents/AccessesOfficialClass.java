@@ -16,13 +16,12 @@ public class AccessesOfficialClass implements AccessesOfficial{
 	}
 	
 	public void read(User user) {
-		if(counter == 10) {
-			for(int i = 0; i < counter-1; i++) {
-				accesses[i] = accesses[i+1];
-			}
-			counter--;
+		for(int i = 9; i >= 1; i--) {
+			accesses[i] = accesses[i-1];
 		}
-		accesses[counter++] = user;
+		accesses[0] = user;
+		if(counter < 10)
+			counter++;
 		numAccesses++;
 	}
 	
