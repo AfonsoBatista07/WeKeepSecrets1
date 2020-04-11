@@ -272,7 +272,7 @@ public class Main {
 				while(docList.hasNext()) {
 					Document doc = docList.next();
 					if(type.equals("official")) {
-						System.out.printf("%s %s:\n", doc.getDocName(), doc.getNumAccesses());
+						System.out.printf("%s %s: ", doc.getDocName(), doc.getNumAccesses());
 						IteratorUser userList = sec.createIteratorAccessesOfficial(doc.getDocName());
 						if(!userList.hasNext())
 							System.out.println(ERROR_NO_ACCESSES);
