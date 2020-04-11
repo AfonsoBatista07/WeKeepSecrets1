@@ -1,5 +1,6 @@
 package documents;
 
+import securitySystem.IteratorString;
 import securitySystem.IteratorUser;
 import users.User;
 
@@ -14,4 +15,6 @@ public interface AccessesClassified {
 	boolean hasRevoke(User user);
 	IteratorUser getIteratorAccesses();
 	IteratorUser getIteratorGrants();
+	IteratorString getIteratorStringAccesses();
+	IteratorString getIteratorStringGrants();
 }

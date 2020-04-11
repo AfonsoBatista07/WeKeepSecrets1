@@ -63,15 +63,32 @@ public class SecuritySystemClass implements SecuritySystem {
 		return users.getIteratorDocs(userId, type);
 	}
 	
-	public IteratorUser createIteratorAccesses(String docName) {
-		return docs.getIteratorAccesses(docName);
+	public IteratorUser createIteratorAccessesOfficial(String docName) {
+		return docs.getIteratorAccessesOfficial(docName);
+	}
+	
+	public IteratorUser createIteratorAccessesClassified(String docName) {
+		return docs.getIteratorAccessesClassified(docName);
+	}
+	
+	public IteratorUser createIteratorGrants(String docName) {
+		return docs.getIteratorGrants(docName);
+	}
+	
+	public IteratorString createIteratorStringAccesses(String docName) {
+		return docs.getIteratorStringAccesses(docName);
+	}
+	
+	public IteratorString createIteratorStringGrants(String docName) {
+		return docs.getIteratorStringGrants(docName);
 	}
 	
 	public void regist(String kind, String userId, String level) {
 		users.addUser(userId, level, kind);
 	}
-
 	
+	
+
 	public void newDocument(String docName, String userId, String level, String description) {
 		Document doc;
 		if(level.equals("official"))

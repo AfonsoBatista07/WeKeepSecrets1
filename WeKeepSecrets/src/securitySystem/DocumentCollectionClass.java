@@ -1,7 +1,6 @@
 package securitySystem;
 
 import documents.ClassifiedDocument;
-
 import documents.Document;
 import users.User;
 import documents.OfficialDocument;
@@ -87,7 +86,23 @@ public class DocumentCollectionClass implements DocumentCollection {
         return -1;
     }
 	
-	public IteratorUser getIteratorAccesses(String docName) {
+	public IteratorUser getIteratorAccessesOfficial(String docName) {
 		return ((OfficialDocument) getDoc(docName)).getIteratorAccesses();
+	}
+	
+	public IteratorUser getIteratorAccessesClassified(String docName) {
+		return ((ClassifiedDocument) getDoc(docName)).getIteratorAccesses();
+	}
+	
+	public IteratorUser getIteratorGrants(String docName) {
+		return ((ClassifiedDocument) getDoc(docName)).getIteratorGrants();
+	}
+	
+	public IteratorString getIteratorStringAccesses(String docName) {
+		return ((ClassifiedDocument) getDoc(docName)).getIteratorStringAccesses();
+	}
+	
+	public IteratorString getIteratorStringGrants(String docName) {
+		return ((ClassifiedDocument) getDoc(docName)).getIteratorStringGrants();
 	}
 }

@@ -2,6 +2,8 @@ package documents;
 
 import securitySystem.IteratorUser;
 import securitySystem.IteratorUserClass;
+import securitySystem.IteratorString;
+import securitySystem.IteratorStringClass;
 import users.User;
 
 public class AccessesClassifiedClass implements AccessesClassified  {
@@ -97,7 +99,7 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 	}
 	
 	private boolean fullAccesses() {
-		return counterAccesses==accesses.length;
+		return counterAccesses == accesses.length;
 	}
 	
 	private boolean fullGrants() {
@@ -105,14 +107,22 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 	}
 	
 	public IteratorUser getIteratorAccesses() {
-		IteratorUser iteratorUser = new IteratorUserClass(accesses, counterAccesses);
-		return iteratorUser;
+		IteratorUser iteratorAccesses = new IteratorUserClass(accesses, counterAccesses);
+		return iteratorAccesses;
 	}
 	
 	public IteratorUser getIteratorGrants() {
-		IteratorUser iteratorUser = new IteratorUserClass(accesses, counterGrants);
-		return iteratorUser;
+		IteratorUser iteratorGrants = new IteratorUserClass(accesses, counterGrants);
+		return iteratorGrants;
 	}
 	
-	//Falta Iterador De Strings
+	public IteratorString getIteratorStringAccesses() {
+		IteratorString iteratorStringAccesses = new IteratorStringClass(accessesType, counterAccesses);
+		return iteratorStringAccesses;
+	}
+	
+	public IteratorString getIteratorStringGrants() {
+		IteratorString iteratorStringGrants = new IteratorStringClass(grantType, counterAccesses);
+		return iteratorStringGrants;
+	}
 }

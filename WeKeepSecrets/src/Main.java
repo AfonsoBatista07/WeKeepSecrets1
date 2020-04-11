@@ -35,7 +35,7 @@ public class Main {
 	private static final String ERROR_NO_DOCUMENTS = "There are no %s documents.\n";
 	private static final String ERROR_INAPPROPRIATE_LEVEL = "Inappropriate security level.";
 	private static final String ERROR_NO_ACCESSES = "There are no accesses.";
-	private static final String ERROR_NO_GRANTS = "There are no grants.\n";
+	private static final String ERROR_NO_GRANTS = "There are no grants.";
 	private static final String ERROR_NO_TYPE = "There are no documents with security level %s.";
 	private static final String ERROR_NO_LEAKED = "There are no leaked documents.\n";
 	private static final String ERROR_NO_OFFICER_GRANT = "No officer has given grants.\n";
@@ -273,26 +273,49 @@ public class Main {
 					Document doc = docList.next();
 					if(type.equals("official")) {
 						System.out.printf("%s %s:\n", doc.getDocName(), doc.getNumAccesses());
-						IteratorUser userList = sec.createIteratorAccesses(doc.getDocName());
+						IteratorUser userList = sec.createIteratorAccessesOfficial(doc.getDocName());
 						if(!userList.hasNext())
 							System.out.println(ERROR_NO_ACCESSES);
 						else {
 							while(userList.hasNext()) {
 								User user = userList.next();
-							
-								System.out.printf("%s [%s],", user.getId(), user.getLevel());
+								System.out.printf("%s [%s]", user.getId(), user.getLevel());
+								if(userList.hasNext())
+									System.out.print(", ");
 							}
+							
 						}
 					}
 					else {
-						System.out.printf("%s %s %s\n\n", doc.getDocName(), doc.getLevel(), doc.getNumAccesses());
-						IteratorUser userList = sec.createIteratorAccesses(doc.getDocName());
-						if(!userList.hasNext())
+						System.out.printf("%s %s %s\n", doc.getDocName(), doc.getLevel(), doc.getNumAccesses());
+						IteratorUser userListAccess = sec.createIteratorAccessesClassified(doc.getDocName());
+						IteratorString accessType = sec.createIteratorStringAccesses(doc.getDocName());
+						if(!userListAccess.hasNext() && !accessType.hasNext())
 							System.out.println(ERROR_NO_ACCESSES);
 						else {
-							while(userList.hasNext()) {	
-								System.out.printf("%s [%s],");
+							while(userListAccess.hasNext() && accessType.hasNext()) {
+								String access = accessType.next();
+								User user = userListAccess.next();
+								System.out.printf("%s [%s, %s]", user.getId(), user.getLevel(), access);
+								if(userListAccess.hasNext())
+									System.out.print(", ");
 							}
+							System.out.println("");
+						}
+						IteratorUser userListGrants = sec.createIteratorGrants(doc.getDocName());
+						IteratorString grantsType = sec.createIteratorStringGrants(doc.getDocName());
+						if(!userListGrants.hasNext() && !grantsType.hasNext())
+							System.out.println(ERROR_NO_GRANTS);
+						else {
+							while(userListGrants.hasNext() && grantsType.hasNext()) {
+								String grant = grantsType.next();
+								User user = userListGrants.next();
+								System.out.printf("%s [%s, %s]", user.getId(), user.getLevel(), grant);
+								if(userListGrants.hasNext())
+									System.out.print(", ");
+								
+							}
+							System.out.println("");
 						}
 					}
 				}

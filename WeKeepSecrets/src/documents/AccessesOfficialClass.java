@@ -17,10 +17,10 @@ public class AccessesOfficialClass implements AccessesOfficial{
 	
 	public void read(User user) {
 		if(counter == 10) {
-			for(int i = 0; i-1 < counter; i++) {
+			for(int i = 0; i < counter-1; i++) {
 				accesses[i] = accesses[i+1];
 			}
-			counter = 9;
+			counter--;
 		}
 		accesses[counter++] = user;
 		numAccesses++;

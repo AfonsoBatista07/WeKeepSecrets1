@@ -1,5 +1,7 @@
 package documents;
 
+import securitySystem.IteratorString;
+import securitySystem.IteratorUser;
 import users.User;
 
 public interface ClassifiedDocument extends Document {
@@ -19,4 +21,12 @@ public interface ClassifiedDocument extends Document {
 	boolean isGranted(User user);
 	
 	boolean isRevoked(User user);
+	
+	IteratorUser getIteratorAccesses();
+	
+	IteratorUser getIteratorGrants();
+	
+	IteratorString getIteratorStringAccesses();
+	
+	IteratorString getIteratorStringGrants();
 }

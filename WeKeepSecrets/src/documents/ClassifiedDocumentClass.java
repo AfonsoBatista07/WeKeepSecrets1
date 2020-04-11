@@ -1,5 +1,7 @@
 package documents;
 
+import securitySystem.IteratorString;
+import securitySystem.IteratorUser;
 import users.User;
 
 public class ClassifiedDocumentClass extends DocumentClass implements ClassifiedDocument{
@@ -43,5 +45,20 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 	public boolean isRevoked(User user) {
 		return accesses.hasRevoke(user);
 	}
+	
+	public IteratorUser getIteratorAccesses() {
+		return accesses.getIteratorAccesses();
+	}
+	public IteratorUser getIteratorGrants() {
+		return accesses.getIteratorGrants();
+	}
+	public IteratorString getIteratorStringAccesses() {
+		return accesses.getIteratorStringAccesses();
+	}
+	public IteratorString getIteratorStringGrants() {
+		return accesses.getIteratorStringGrants();
+	}
+	
+	
 
 }
