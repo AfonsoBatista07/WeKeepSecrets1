@@ -69,7 +69,7 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 	public boolean hasRevoke(User user) {
 		if(backwardsFindUser(user, grants, counterGrants) == -1)
 			return false;
-		if(grantType[backwardsFindUser(user, grants, counterGrants)].equals("revoke")  )
+		if(grantType[backwardsFindUser(user, grants, counterGrants)].equals("revoked")  )
 			return true;
 		else return false;
 	}

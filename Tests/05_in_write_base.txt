@@ -77,11 +77,11 @@ confidentialDoc2 knowsSomeStuff knowsSecrets
 This document is a confidential document that was updated!
 write
 confidentialDoc3 knowsSomeStuff Q
-This document is a confidential document that was twice!
+This document is a confidential document that was updated twice!
 write
 confidentialDoc1 knowsSomeStuff knowsSecrets
-This document is a confidential document that was twice!
+This document is a confidential document that was updated twice!
 write
 confidentialDoc1 knowsSomeStuff knowsTopSecrets
-This document is a confidential document that was thrice!
+This document is a confidential document that was updated thrice!
 exit

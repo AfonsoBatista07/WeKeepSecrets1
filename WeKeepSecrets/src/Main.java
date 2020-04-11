@@ -247,7 +247,7 @@ public class Main {
 		else if(sec.userClerk(idGranted))
 			System.out.printf(ERROR_IS_CLERK);
 		else if(sec.revoked(idGranted, docName))
-			System.out.printf(ERROR_GRANT_ALREADY_REVOKED, idManager);
+			System.out.printf(ERROR_GRANT_ALREADY_REVOKED, idGranted);
 		else {
 			sec.revokeUser(idGranted,idManager, docName);
 			System.out.printf(SUCCESS_REVOKE, docName);

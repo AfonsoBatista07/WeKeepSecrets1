@@ -1,6 +1,6 @@
 Unknown command. Type help to see available commands.
 register - registers a new user
-listUsers - list all registered users
+listusers - list all registered users
 upload - upload a document
 read - read a document
 write - write a document
@@ -12,7 +12,7 @@ topgranters - list the top 10 officers that have given more grants
 help - shows the available commands
 exit - terminates the execution of the program
 register - registers a new user
-listUsers - list all registered users
+listusers - list all registered users
 upload - upload a document
 read - read a document
 write - write a document
@@ -24,7 +24,7 @@ topgranters - list the top 10 officers that have given more grants
 help - shows the available commands
 exit - terminates the execution of the program
 register - registers a new user
-listUsers - list all registered users
+listusers - list all registered users
 upload - upload a document
 read - read a document
 write - write a document

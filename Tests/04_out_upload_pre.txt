@@ -34,7 +34,8 @@ Document confidentialDoc1 was uploaded.
 Document confidentialDoc2 was uploaded.
 Document confidentialDoc3 was uploaded.
 Document confidentialDoc2 already exists in the user account.
-Not a registered user.Insufficient security clearance.
+Not a registered user.
+Insufficient security clearance.
 Insufficient security clearance.
 Insufficient security clearance.
 Bye!
