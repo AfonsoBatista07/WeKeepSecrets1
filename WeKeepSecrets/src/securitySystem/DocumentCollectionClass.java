@@ -29,20 +29,20 @@ public class DocumentCollectionClass implements DocumentCollection {
 			resize();
 	}
 	
-	public void grantUser(String userId, String docName) {
-		((ClassifiedDocument) getDoc(docName)).addGrant(userId);
+	public void grantUser(User user, String docName) {
+		((ClassifiedDocument) getDoc(docName)).addGrant(user);
 	}
 	
-	public void revokeUser(String userId, String docName) {
-		((ClassifiedDocument) getDoc(docName)).revokeGrant(userId);
+	public void revokeUser(User user, String docName) {
+		((ClassifiedDocument) getDoc(docName)).revokeGrant(user);
 	}
 
-	public boolean isGranted(String userId, String docName) {
-		return ((ClassifiedDocument) getDoc(docName)).isGranted(userId);
+	public boolean isGranted(User user, String docName) {
+		return ((ClassifiedDocument) getDoc(docName)).isGranted(user);
 	}
 	
-	public boolean isRevoked(String userId, String docName) {
-		return ((ClassifiedDocument) getDoc(docName)).isRevoked(userId);
+	public boolean isRevoked(User user, String docName) {
+		return ((ClassifiedDocument) getDoc(docName)).isRevoked(user);
 	}
 	
 	public Document getDoc(String docName) {
@@ -57,8 +57,8 @@ public class DocumentCollectionClass implements DocumentCollection {
 		return getDoc(docName).getDescription();
 	}
 	
-	public void write(String userId, String docName, String description) {
-		((ClassifiedDocument) getDoc(docName)).write(description, userId);
+	public void write(User user, String docName, String description) {
+		((ClassifiedDocument) getDoc(docName)).write(description, user);
 	}
 	
 	public void read(User user, String docName) {

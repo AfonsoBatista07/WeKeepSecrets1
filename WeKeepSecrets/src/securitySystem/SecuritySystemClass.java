@@ -44,11 +44,11 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 
 	public boolean granted(String userId, String docName) {
-		return docs.isGranted(userId, docName);	
+		return docs.isGranted(users.getUser(userId), docName);	
 	}
 	
 	public boolean revoked(String userId, String docName) {
-		return docs.isRevoked(userId, docName);
+		return docs.isRevoked(users.getUser(userId), docName);
 	}
 
 	public IteratorUser createIteratorUser() {
@@ -85,7 +85,7 @@ public class SecuritySystemClass implements SecuritySystem {
 
 	
 	public void write(String userId, String docName, String description) {
-		docs.write(userId, docName, description);
+		docs.write(users.getUser(userId), docName, description);
 	}
 	
 	public void read(String userId, String docName) {
@@ -94,13 +94,13 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 	
 	public void grantUser(String userId, String ManagerId, String docName) {
-		docs.grantUser(userId, docName);
+		docs.grantUser(users.getUser(userId), docName);
 		users.grant(ManagerId);
 
 	}
 	
 	public void revokeUser(String userId,String ManagerId, String docName) {
-		docs.revokeUser(userId, docName);
+		docs.revokeUser(users.getUser(userId), docName);
 		users.revoke(ManagerId);
 	}
 

@@ -8,13 +8,15 @@ public interface ClassifiedDocument extends Document {
 	
 	int getNumGrants();
 	
-	void addGrant(String userId);
+	int getNumAccesses();
 	
-	void revokeGrant(String userId);
+	void addGrant(User user);
 	
-	void write(String description, String user);
+	void revokeGrant(User user);
 	
-	boolean isGranted(String userId);
+	void write(String description, User user);
 	
-	boolean isRevoked(String userId);
+	boolean isGranted(User user);
+	
+	boolean isRevoked(User user);
 }
