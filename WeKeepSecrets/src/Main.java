@@ -290,7 +290,7 @@ public class Main {
 						System.out.printf("%s %s %s\n", doc.getDocName(), doc.getLevel(), doc.getNumAccesses());
 						IteratorUser userListAccess = sec.createIteratorAccessesClassified(doc.getDocName());
 						IteratorString accessType = sec.createIteratorStringAccesses(doc.getDocName());
-						if(!userListAccess.hasNext() && !accessType.hasNext())
+						if(!userListAccess.hasNext() || !accessType.hasNext())
 							System.out.println(ERROR_NO_ACCESSES);
 						else {
 							while(userListAccess.hasNext() && accessType.hasNext()) {
@@ -304,7 +304,7 @@ public class Main {
 						}
 						IteratorUser userListGrants = sec.createIteratorGrants(doc.getDocName());
 						IteratorString grantsType = sec.createIteratorStringGrants(doc.getDocName());
-						if(!userListGrants.hasNext() && !grantsType.hasNext())
+						if(!userListGrants.hasNext() || !grantsType.hasNext())
 							System.out.println(ERROR_NO_GRANTS);
 						else {
 							while(userListGrants.hasNext() && grantsType.hasNext()) {
