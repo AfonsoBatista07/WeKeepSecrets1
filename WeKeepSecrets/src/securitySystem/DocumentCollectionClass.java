@@ -2,7 +2,6 @@ package securitySystem;
 
 import documents.ClassifiedDocument;
 import documents.Document;
-import users.Officer;
 import users.User;
 import documents.OfficialDocument;
 

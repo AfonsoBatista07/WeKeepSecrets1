@@ -24,7 +24,7 @@ public class Main {
 	
 	/* Error Constants */
 	private static final String ERROR_REGIST = "Identifier %s is already assigned to another user.\n";
-	private static final String ERROR_LIST_USERS = "There are no registered users.\n";
+	private static final String ERROR_LIST_USERS = "There are no registered users.";
 	private static final String ERROR_USERS_NOT_REGISTERED = "Not a registered user.";
 	private static final String ERROR_ALREADY_EXIST_DOCUMENT = "Document %s already exists in the user account.\n";
 	private static final String ERROR_DOES_NOT_EXIST_DOCUMENT = "Document %s does not exist in the user account.\n";
@@ -37,7 +37,6 @@ public class Main {
 	private static final String ERROR_INAPPROPRIATE_LEVEL = "Inappropriate security level.";
 	private static final String ERROR_NO_ACCESSES = "There are no accesses.";
 	private static final String ERROR_NO_GRANTS = "There are no grants.";
-	private static final String ERROR_NO_TYPE = "There are no documents with security level %s.";
 	private static final String ERROR_NO_LEAKED = "There are no leaked documents.\n";
 	private static final String ERROR_NO_OFFICER_GRANT = "No officer has given grants.\n";
 	
@@ -48,7 +47,6 @@ public class Main {
 	private static final String SUCCESS_READ = "Document: %s\n";
 	private static final String SUCCESS_GRANT = "Access to document %s has been granted.\n";
 	private static final String SUCCESS_REVOKE = "Access to document %s has been revoked.\n";
-	private static final String SUCCESS_USERDOCS = "%s: ";
  	private static final String SUCCESS_EXIT = "Bye!\n";
 	private static final String SUCCESS_UNKOWN = "Unknown command. Type help to see available commands.\n";
 	
