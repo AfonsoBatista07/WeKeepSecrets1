@@ -13,6 +13,7 @@ public interface SecuritySystem {
 	boolean revoked(String userId, String docName);
 	IteratorUser createIteratorUser();
 	IteratorUser createIteratorUserByGrant();
+	IteratorDocs createIteratorDocsByGrant();
 	IteratorDocs createIteratorDocs(String userId, String type);
 	IteratorUser createIteratorAccessesOfficial(String docName);
 	void regist(String kind, String userId, String level);

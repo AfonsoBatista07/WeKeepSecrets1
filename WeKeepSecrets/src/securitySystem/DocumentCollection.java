@@ -15,6 +15,7 @@ public interface DocumentCollection {
 	boolean isGranted(User user, String docName);
 	boolean isRevoked(User user, String docName);
 	String getDescription(String docName);
+	IteratorDocs getIteratorDocsByGrants();
 	IteratorUser getIteratorAccessesOfficial(String docName);
 	IteratorUser getIteratorAccessesClassified(String docName);
 	IteratorUser getIteratorGrants(String docName);

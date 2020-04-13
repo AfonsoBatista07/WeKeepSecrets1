@@ -6,6 +6,7 @@ import users.User;
 
 public interface AccessesClassified {
 	int getNumAccesses();
+	int getNumRevoked();
 	int getNumGrants();
 	void read(User user);
 	void write(User user);

@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import documents.ClassifiedDocument;
 import documents.Document;
 import securitySystem.*;
 import users.User;
@@ -324,9 +325,17 @@ public class Main {
 	}
 	
 	private static void topLeaked( Scanner in, SecuritySystem sec ) {
-
-																	    // Completar !!!
-		
+		IteratorDocs docList = sec.createIteratorDocsByGrant();
+		if(!docList.hasNext())
+			System.out.printf(ERROR_NO_LEAKED);
+		else {
+			int pos = 0;
+			while(docList.hasNext() && pos < 10) {
+				ClassifiedDocument doc = (ClassifiedDocument) docList.next();
+				System.out.printf("%s %s %s %d %d %d\n", doc.getDocName(), doc.getManager(), doc.getLevel(), doc.getNumAccesses(), doc.getNumGrants(), doc.getNumRevoked());
+				pos++;
+			}
+		}
 	}
 	
 	private static void topGranters( Scanner in, SecuritySystem sec ) {
@@ -341,8 +350,6 @@ public class Main {
 				pos++;
 			}
 		}
-																		// Completar !!!
-		
 	}
 	
 	private static void exit() {

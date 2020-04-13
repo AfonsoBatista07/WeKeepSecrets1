@@ -81,7 +81,7 @@ public class UserCollectionClass implements UserCollection {
 	}
 	
 	public IteratorUser getIteratorUserByGrant() {
-		listOnlyOfficers();
+		listOnlyOfficersWithGrants();
 		sortByName();
 		sortByGrants();
 		IteratorUser iteratorUser = new IteratorUserClass(usersByGrants, counterUserByGrants);
@@ -89,7 +89,7 @@ public class UserCollectionClass implements UserCollection {
 
 	}
 	
-	private void listOnlyOfficers() {
+	private void listOnlyOfficersWithGrants() {
 		counterUserByGrants = 0;
 		for(int i = 0; i < counterUsers; i++) {
 			if(users[i].getKind().equalsIgnoreCase("officer")) {

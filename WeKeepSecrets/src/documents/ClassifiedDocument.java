@@ -8,9 +8,11 @@ public interface ClassifiedDocument extends Document {
 	
 	void read(User user);
 	
+	int getNumAccesses();
+	
 	int getNumGrants();
 	
-	int getNumAccesses();
+	int getNumRevoked();
 	
 	void addGrant(User user);
 	

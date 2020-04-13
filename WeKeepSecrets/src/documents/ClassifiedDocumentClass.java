@@ -21,6 +21,10 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 		return accesses.getNumGrants();
 	}
 	
+	public int getNumRevoked() {
+		return accesses.getNumRevoked();
+	}
+	
 	public int getNumAccesses() {
 		return accesses.getNumAccesses();
 	}

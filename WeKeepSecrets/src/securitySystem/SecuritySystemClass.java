@@ -59,6 +59,10 @@ public class SecuritySystemClass implements SecuritySystem {
 		return users.getIteratorUserByGrant();
 	}
 	
+	public IteratorDocs createIteratorDocsByGrant() {
+		return docs.getIteratorDocsByGrants();
+	}
+	
 	public IteratorDocs createIteratorDocs(String userId, String type) {
 		return users.getIteratorDocs(userId, type);
 	}

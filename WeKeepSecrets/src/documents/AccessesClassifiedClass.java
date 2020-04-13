@@ -10,7 +10,7 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 	private String[] accessesType, grantType;
 	private User[] accesses, grants;
 	private static final int DEFAULT_SIZE=10, GROW_FACTOR = 2;
-	private int counterGrants, counterAccesses;
+	private int counterGrants, counterAccesses, numGrants, numRevoked;
 	
 	public AccessesClassifiedClass() {
 		accessesType = new String[DEFAULT_SIZE];
@@ -19,6 +19,8 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 		accesses = new User[DEFAULT_SIZE];
 		counterGrants = 0;
 		counterAccesses = 0;
+		numGrants = 0;
+		numRevoked = 0;
 		
 	}
 	
@@ -27,7 +29,11 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 	}
 	
 	public int getNumGrants() {
-		return counterGrants;
+		return numGrants;
+	}
+	
+	public int getNumRevoked() {
+		return numRevoked;
 	}
 	
 	public void read(User user) {
@@ -49,6 +55,7 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 		grants[counterGrants] = user;
 		grantType[counterGrants] = "grant";
 		counterGrants++;
+		numGrants++;
 	}
 	
 	public void revoke(User user) {
@@ -56,6 +63,7 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 		grants[counterGrants] = user;
 		grantType[counterGrants] = "revoked";
 		counterGrants++;
+		numRevoked++;
 	}
 	
 	public boolean hasGrant(User user) {

@@ -2,21 +2,24 @@ package securitySystem;
 
 import documents.ClassifiedDocument;
 import documents.Document;
+import users.Officer;
 import users.User;
 import documents.OfficialDocument;
 
 
 public class DocumentCollectionClass implements DocumentCollection {
 
-	Document documents[];
-	int counterDoc;
+	Document documents[], documentsByGrant[];
+	int counterDoc, counterDocsByGrant;
 	
 	private static final int DEFAULT_SIZE=50, GROW_FACTOR=2;
 	
 	public DocumentCollectionClass() {
 		
 		documents = new Document[DEFAULT_SIZE];
+		documentsByGrant = new Document[DEFAULT_SIZE];
 		counterDoc = 0;
+		counterDocsByGrant = 0;
 		
 	}
 	
@@ -105,4 +108,51 @@ public class DocumentCollectionClass implements DocumentCollection {
 	public IteratorString getIteratorStringGrants(String docName) {
 		return ((ClassifiedDocument) getDoc(docName)).getIteratorStringGrants();
 	}
+	
+	public IteratorDocs getIteratorDocsByGrants() {
+		listOnlyDocumentsWithGrants();
+		sortByName();
+		sortByGrants();
+		IteratorDocs iteratorDocs = new IteratorDocsClass(documentsByGrant, counterDocsByGrant, "classified");
+		return iteratorDocs;
+
+	}
+	
+	private void listOnlyDocumentsWithGrants() {
+		counterDocsByGrant = 0;
+		for(int i = 0; i < counterDoc; i++) {
+			if(documents[i].getType().equalsIgnoreCase("classified")) {
+				if(((ClassifiedDocument) documents[i]).getNumGrants() > 0) {
+					documentsByGrant[counterDocsByGrant++] = documents[i];
+				}
+			}
+		}
+	}
+	
+	private void sortByGrants() {
+		for (int i = 1; i < counterDocsByGrant; i++) { 
+			for (int j = counterDocsByGrant -1; j >= i; j--) {
+				if (((ClassifiedDocument)documentsByGrant[j-1]).getNumGrants()<(((ClassifiedDocument)documentsByGrant[j]).getNumGrants())) { 
+					
+					Document temp = documentsByGrant[j - 1]; 
+					documentsByGrant[j-1] = documentsByGrant[j]; 
+					documentsByGrant[j] = temp; 
+				}
+			}
+		}
+	}
+	
+	private void sortByName() {
+		for (int i = 0; i < counterDocsByGrant; i++) { 
+			for (int j = i+1; j < counterDocsByGrant; j++) {
+				if (documentsByGrant[i].getDocName().compareTo(documentsByGrant[j].getDocName())>0) { 
+					
+					Document temp = documentsByGrant[i]; 
+					documentsByGrant[i] = documentsByGrant[j]; 
+					documentsByGrant[j] = temp; 
+				}
+			}
+		}
+	}
+
 }
