@@ -90,6 +90,7 @@ public class UserCollectionClass implements UserCollection {
 	}
 	
 	private void listOnlyOfficers() {
+		counterUserByGrants = 0;
 		for(int i = 0; i < counterUsers; i++) {
 			if(users[i].getKind().equalsIgnoreCase("officer")) {
 				if(((Officer) users[i]).getNumGrants() > 0) {
