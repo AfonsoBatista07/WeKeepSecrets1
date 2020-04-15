@@ -82,6 +82,26 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 		else return false;
 	}
 	
+	public IteratorUser getIteratorAccesses() {
+		IteratorUser iteratorAccesses = new IteratorUserClass(accesses, counterAccesses);
+		return iteratorAccesses;
+	}
+	
+	public IteratorUser getIteratorGrants() {
+		IteratorUser iteratorGrants = new IteratorUserClass(grants, counterGrants);
+		return iteratorGrants;
+	}
+	
+	public IteratorString getIteratorStringAccesses() {
+		IteratorString iteratorStringAccesses = new IteratorStringClass(accessesType, counterAccesses);
+		return iteratorStringAccesses;
+	}
+	
+	public IteratorString getIteratorStringGrants() {
+		IteratorString iteratorStringGrants = new IteratorStringClass(grantType, counterGrants);
+		return iteratorStringGrants;
+	}
+	
 	private int backwardsFindUser(User user, User[] userArray, int counterUser) {
 		int i = counterUser -1;
         while (i >= 0) {
@@ -112,25 +132,5 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 	
 	private boolean fullGrants() {
 		return counterGrants == grants.length;
-	}
-	
-	public IteratorUser getIteratorAccesses() {
-		IteratorUser iteratorAccesses = new IteratorUserClass(accesses, counterAccesses);
-		return iteratorAccesses;
-	}
-	
-	public IteratorUser getIteratorGrants() {
-		IteratorUser iteratorGrants = new IteratorUserClass(grants, counterGrants);
-		return iteratorGrants;
-	}
-	
-	public IteratorString getIteratorStringAccesses() {
-		IteratorString iteratorStringAccesses = new IteratorStringClass(accessesType, counterAccesses);
-		return iteratorStringAccesses;
-	}
-	
-	public IteratorString getIteratorStringGrants() {
-		IteratorString iteratorStringGrants = new IteratorStringClass(grantType, counterGrants);
-		return iteratorStringGrants;
 	}
 }
