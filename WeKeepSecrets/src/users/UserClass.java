@@ -55,6 +55,16 @@ protected String id, level, kind;
 
 	}
 	
+	public boolean docExist(String docName) {
+		return findDoc(docName)!=-1;
+	}
+	
+	public IteratorDocs getIteratorDocs(String type) {
+		IteratorDocs iteratorDocs = new IteratorDocsClass(docsUploaded, current, type);
+		return iteratorDocs;
+
+	}
+	
 	private boolean fullUpload() {
 		return current == docsUploaded.length;
 	}
@@ -69,15 +79,5 @@ protected String id, level, kind;
         }
         return -1;
     }
-	
-	public boolean docExist(String docName) {
-		return findDoc(docName)!=-1;
-	}
-	
-	public IteratorDocs getIteratorDocs(String type) {
-		IteratorDocs iteratorDocs = new IteratorDocsClass(docsUploaded, current, type);
-		return iteratorDocs;
-
-	}
 	
 }

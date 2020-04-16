@@ -27,7 +27,7 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 
 	public boolean matchesType(String userId, String type) {
-		return getUserLevel(userId)<1 && type.equalsIgnoreCase("classified");              // Quando tiverem com o cerebro menos derretido metam isto mais bonito :D
+		return getUserLevel(userId)<1 && type.equalsIgnoreCase("classified");              
 	}
 	
 	public boolean canManage(String userId, String docName) {

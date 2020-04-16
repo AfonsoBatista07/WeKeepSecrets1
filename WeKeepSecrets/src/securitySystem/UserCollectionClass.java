@@ -57,17 +57,6 @@ public class UserCollectionClass implements UserCollection {
 		return counterUsers==users.length;
 	}
 	
-	private int findUser(String userId) {
-        int i = 0;
-        while ((i < counterUsers)) {
-            if (users[i].getId().equals(userId)) {
-                return i;
-            }
-            i++;
-        }
-        return -1;
-    }
-	
 	public IteratorUser getIteratorUser() {
 		IteratorUser iteratorUser = new IteratorUserClass(users, counterUsers);
 		return iteratorUser;
@@ -124,4 +113,15 @@ public class UserCollectionClass implements UserCollection {
 			}
 		}
 	}
+	
+	private int findUser(String userId) {
+        int i = 0;
+        while ((i < counterUsers)) {
+            if (users[i].getId().equals(userId)) {
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
 }
