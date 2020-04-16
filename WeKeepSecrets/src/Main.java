@@ -50,7 +50,7 @@ public class Main {
 	private static final String SUCCESS_UNKOWN = "Unknown command. Type help to see available commands.\n";
 	
 	private static String readOption( Scanner in ) {
-		return in.next().toUpperCase();
+		return in.nextLine().trim().toUpperCase();
 	}
 	
 	private static void exeOption( Scanner in, SecuritySystem sec, String option ) {
@@ -102,7 +102,6 @@ public class Main {
 		String cm;
 		do{
 			cm = readOption(in);
-			in.nextLine();
 			exeOption(in, sec, cm);
 		}while(!cm.equals(EXIT));
 		in.close();
@@ -176,6 +175,7 @@ public class Main {
 		String docName = in.next();
 		String idManager = in.next();
 		String idAcces = in.next();
+		in.nextLine();
 		
 		if( !sec.idExist(idManager) || !sec.idExist(idAcces) )
 			System.out.println(ERROR_USERS_NOT_REGISTERED);
