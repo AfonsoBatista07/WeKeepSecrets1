@@ -5,7 +5,6 @@ import securitySystem.IteratorUser;
 import users.User;
 
 /**
- * 
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */
