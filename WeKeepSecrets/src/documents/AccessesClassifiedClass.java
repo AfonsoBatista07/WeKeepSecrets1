@@ -12,6 +12,7 @@ import users.User;
  * @author João Jorge 57994
  */
 public class AccessesClassifiedClass implements AccessesClassified  {
+	
 	private String[] accessesType, grantType;
 	private User[] accesses, grants;
 	private static final int DEFAULT_SIZE=10, GROW_FACTOR = 2;
