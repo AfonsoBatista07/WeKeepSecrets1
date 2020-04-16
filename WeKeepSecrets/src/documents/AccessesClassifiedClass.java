@@ -6,6 +6,11 @@ import securitySystem.IteratorString;
 import securitySystem.IteratorStringClass;
 import users.User;
 
+/**
+ * 
+ * @author Afonso Batista 57796
+ * @author João Jorge 57994
+ */
 public class AccessesClassifiedClass implements AccessesClassified  {
 	private String[] accessesType, grantType;
 	private User[] accesses, grants;

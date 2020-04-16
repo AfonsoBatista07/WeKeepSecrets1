@@ -3,7 +3,11 @@ package documents;
 import securitySystem.IteratorUser;
 import users.User;
 
-
+/**
+ * 
+ * @author Afonso Batista 57796
+ * @author João Jorge 57994
+ */
 public class OfficialDocumentClass extends DocumentClass implements OfficialDocument{
 	
 	private AccessesOfficial accesses;

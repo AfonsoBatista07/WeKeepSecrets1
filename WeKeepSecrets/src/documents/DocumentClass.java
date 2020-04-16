@@ -2,6 +2,11 @@ package documents;
 
 import users.User;
 
+/**
+ * 
+ * @author Afonso Batista 57796
+ * @author João Jorge 57994
+ */
 public abstract class DocumentClass implements Document{
 	
 	protected String manager, docName, level, description, type;

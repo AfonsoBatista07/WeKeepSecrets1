@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 import documents.ClassifiedDocument;
 import documents.Document;
 import securitySystem.*;
@@ -106,8 +105,8 @@ public class Main {
 			in.nextLine();
 			exeOption(in, sec, cm);
 		}while(!cm.equals(EXIT));
-
 		in.close();
+		
 	}
 	
 	private static void help() {
