@@ -7,7 +7,7 @@ import users.User;
 /**
  * 
  * @author Afonso Batista 57796
- * @author João Jorge 57994
+ * @author Joao Jorge 57994
  */
 public interface ClassifiedDocument extends Document {
 	
