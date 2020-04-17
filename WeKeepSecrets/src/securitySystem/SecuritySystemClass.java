@@ -41,7 +41,6 @@ public class SecuritySystemClass implements SecuritySystem {
 	public boolean officialDoc(String docName) {
 		return getDocLevel(docName)==0;
 	}
-
 	
 	public boolean userClerk(String userId) {
 		return getUserLevel(userId)==0;
@@ -94,8 +93,6 @@ public class SecuritySystemClass implements SecuritySystem {
 	public void regist(String kind, String userId, String level) {
 		users.addUser(userId, level, kind);
 	}
-	
-	
 
 	public void newDocument(String docName, String userId, String level, String description) {
 		Document doc;
