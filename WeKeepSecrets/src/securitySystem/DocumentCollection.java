@@ -3,7 +3,11 @@ package securitySystem;
 import documents.Document;
 import users.User;
 
-
+/**
+ * 
+ * @author Afonso Batista 57796
+ * @author Joao Jorge 57994
+ */
 public interface DocumentCollection {
 	void addDocument(Document doc);
 	Document getDoc(String docName);
