@@ -15,6 +15,7 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 	private String[] accessesType, grantType;
 	private User[] accesses, grants;
 	private static final int DEFAULT_SIZE=10, GROW_FACTOR = 2;
+	private static final String READ = "read", WRITE = "write", GRANT = "grant", REVOKED = "revoked";
 	private int counterGrants, counterAccesses, numGrants, numRevoked;
 	
 	public AccessesClassifiedClass() {
@@ -44,21 +45,21 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 	public void read(User user) {
 		if(fullAccesses()) resizeBothArrays(accesses, counterAccesses, accessesType);
 		accesses[counterAccesses] = user;
-		accessesType[counterAccesses] = "read";
+		accessesType[counterAccesses] = READ;
 		counterAccesses++;
 	}
 	
 	public void write(User user) {
 		if(fullAccesses()) resizeBothArrays(accesses, counterAccesses, accessesType);
 		accesses[counterAccesses] = user;
-		accessesType[counterAccesses] = "write";
+		accessesType[counterAccesses] = WRITE;
 		counterAccesses++;
 	}
 	
 	public void grant(User user) {
 		if(fullGrants()) resizeBothArrays(grants, counterGrants, grantType);
 		grants[counterGrants] = user;
-		grantType[counterGrants] = "grant";
+		grantType[counterGrants] = GRANT;
 		counterGrants++;
 		numGrants++;
 	}
@@ -66,23 +67,23 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 	public void revoke(User user) {
 		if(fullGrants()) resizeBothArrays(grants, counterGrants, grantType);
 		grants[counterGrants] = user;
-		grantType[counterGrants] = "revoked";
+		grantType[counterGrants] = REVOKED;
 		counterGrants++;
 		numRevoked++;
 	}
 	
-	public boolean hasGrant(User user) {
+	public boolean isGranted(User user) {
 		if(backwardsFindUser(user, grants, counterGrants) == -1)
 			return false;
-		if(grantType[backwardsFindUser(user, grants, counterGrants)].equals("grant")  )
+		if(grantType[backwardsFindUser(user, grants, counterGrants)].equals(GRANT)  )
 			return true;
 		else return false;
 	}
 	
-	public boolean hasRevoke(User user) {
+	public boolean isRevoked(User user) {                                                              // THE FUCKKKK ????????????????????????
 		if(backwardsFindUser(user, grants, counterGrants) == -1)
 			return false;
-		if(grantType[backwardsFindUser(user, grants, counterGrants)].equals("revoked")  )
+		if(grantType[backwardsFindUser(user, grants, counterGrants)].equals(REVOKED)  )
 			return true;
 		else return false;
 	}
@@ -107,8 +108,15 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 		return iteratorStringGrants;
 	}
 	
+	/**
+	 * Search backwards on an array to find the position of a user.
+	 * @param user - The user you want to search.
+	 * @param userArray - The array you want to search in.
+	 * @param counterUser - The array counter.
+	 * @return -1 if the user does not exist in the array or the user position if he do.
+	 */
 	private int backwardsFindUser(User user, User[] userArray, int counterUser) {
-		int i = counterUser -1;
+		int i = counterUser - 1;
         while (i >= 0) {
             if (userArray[i].equals(user)) {
                 return i;
@@ -119,11 +127,17 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 	}
 
 	
+	/**
+	 * Resize an array of Strings and of users.
+	 * @param userArray - The array of users you want to resize.
+	 * @param counter - Array counter.
+	 * @param stringArray - The array of Strings you want to resize.
+	 */
 	private void resizeBothArrays(User[] userArray, int counter, String[] stringArray) {
 		User[] ul = new User[GROW_FACTOR * userArray.length];
 		for (int i = 0; i < counter; i++)
 			ul[i] = userArray[i];
-		userArray = ul;
+		userArray = ul;																						// NÃO DA PARA OPTUMIZAR ???????????
 		
 		String[] sl = new String[GROW_FACTOR * stringArray.length];
 		for (int i = 0; i < counter; i++)
@@ -131,10 +145,16 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 		stringArray = sl;
 	}
 	
+	/**
+	 * @return true if the array accesses is full. 
+	 */
 	private boolean fullAccesses() {
 		return counterAccesses == accesses.length;
 	}
 	
+	/**
+	 * @return true if the array grants is full. 
+	 */
 	private boolean fullGrants() {
 		return counterGrants == grants.length;
 	}

@@ -10,7 +10,21 @@ import users.User;
  */
 public interface AccessesOfficial {
 	
-	void read(User user);
-	IteratorUser getIteratorAccesses();
+	/**
+	 * @return The number of accesses(Reads) an Official Document have.
+	 */
 	int getNumAccesses();
+	
+	/**
+	 * Adds the last ten users to accesses array.
+	 * @param user - The user reading.
+	 */
+	void read(User user);
+	
+	/**
+	 * @return an iterator for accesses array.
+	 */
+	IteratorUser getIteratorAccesses();
+	
+	
 }

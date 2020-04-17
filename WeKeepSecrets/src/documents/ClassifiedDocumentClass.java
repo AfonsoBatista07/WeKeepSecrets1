@@ -48,11 +48,11 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 	}
 	
 	public boolean isGranted(User user) {
-		return accesses.hasGrant(user);
+		return accesses.isGranted(user);
 	}
 	
 	public boolean isRevoked(User user) {
-		return accesses.hasRevoke(user);
+		return accesses.isRevoked(user);
 	}
 	
 	public IteratorUser getIteratorAccesses() {
