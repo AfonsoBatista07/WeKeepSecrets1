@@ -4,6 +4,11 @@ import documents.Document;
 import securitySystem.IteratorDocs;
 import securitySystem.IteratorDocsClass;
 
+/**
+ * 
+ * @author Afonso Batista 57796
+ * @author Joao Jorge 57994
+ */
 public class UserClass implements User {
 
 protected String id, level, kind;
@@ -47,14 +52,6 @@ protected String id, level, kind;
 		return current;
 	}
 	
-	private void resize() {
-		Document[] sl = new Document[GROW_FACTOR * docsUploaded.length];
-		for (int i = 0; i < current; i++)
-			sl[i] = docsUploaded[i];
-		docsUploaded = sl;
-
-	}
-	
 	public boolean docExist(String docName) {
 		return findDoc(docName)!=-1;
 	}
@@ -65,10 +62,32 @@ protected String id, level, kind;
 
 	}
 	
+	/**
+	 * Resizes the Document array.
+	 */
+	private void resize() {
+		Document[] sl = new Document[GROW_FACTOR * docsUploaded.length];
+		for (int i = 0; i < current; i++)
+			sl[i] = docsUploaded[i];
+		docsUploaded = sl;
+
+	}
+	
+	
+	/**
+	 * Verifies if the Document array is full.
+	 * @return True if its full.
+	 */
 	private boolean fullUpload() {
 		return current == docsUploaded.length;
 	}
 
+	
+	/**
+	 * Finds the position of the Document with the name docName in the Users Document array.
+	 * @param docName - Name of the Document.
+	 * @return Position of the Document in the array.
+	 */
 	private int findDoc(String docName) {
         int i = 0;
         while ((i < current)) {

@@ -3,6 +3,11 @@ package securitySystem;
 import documents.Document;
 import users.*;
 
+/**
+ * 
+ * @author Afonso Batista 57796
+ * @author Joao Jorge 57994
+ */
 public class UserCollectionClass implements UserCollection {
 
 	User users[], usersByGrants[];
@@ -77,6 +82,9 @@ public class UserCollectionClass implements UserCollection {
 
 	}
 	
+	/**
+	 * Organizes the userByGrants array with the officers with grants from the users array.
+	 */
 	private void listOnlyOfficersWithGrants() {
 		counterUserByGrants = 0;
 		for(int i = 0; i < counterUsers; i++) {
@@ -88,6 +96,10 @@ public class UserCollectionClass implements UserCollection {
 		}
 	}
 	
+	
+	/**
+	 * Sorts the userByGrants array by number of grants.
+	 */
 	private void sortByGrants() {
 		for (int i = 1; i < counterUserByGrants; i++) { 
 			for (int j = counterUserByGrants -1; j >= i; j--) {
@@ -101,6 +113,9 @@ public class UserCollectionClass implements UserCollection {
 		}
 	}
 	
+	/**
+	 * Sorts userByGrants array by alphabetical order.
+	 */
 	private void sortByName() {
 		for (int i = 0; i < counterUserByGrants; i++) { 
 			for (int j = i+1; j < counterUserByGrants; j++) {
@@ -114,6 +129,11 @@ public class UserCollectionClass implements UserCollection {
 		}
 	}
 	
+	
+	/**
+	 * @param userId - User id.
+	 * @return Position of the User with the Id given in the users array.
+	 */
 	private int findUser(String userId) {
         int i = 0;
         while ((i < counterUsers)) {
