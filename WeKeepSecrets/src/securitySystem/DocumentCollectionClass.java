@@ -5,7 +5,11 @@ import documents.Document;
 import users.User;
 import documents.OfficialDocument;
 
-
+/**
+ * 
+ * @author Afonso Batista 57796
+ * @author Joao Jorge 57994
+ */
 public class DocumentCollectionClass implements DocumentCollection {
 
 	Document documents[], documentsByGrant[];

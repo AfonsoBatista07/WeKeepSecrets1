@@ -1,5 +1,10 @@
 package users;
 
+/**
+ * 
+ * @author Afonso Batista 57796
+ * @author Joao Jorge 57994
+ */
 public class OfficerClass extends UserClass implements Officer{
 	
 	int granted, revoked;
