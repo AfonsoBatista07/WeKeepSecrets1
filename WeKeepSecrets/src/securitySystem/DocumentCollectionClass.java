@@ -54,10 +54,6 @@ public class DocumentCollectionClass implements DocumentCollection {
 		return documents[findDoc(docName)];
 	}
 	
-	public boolean docExist(String docName) {
-		return findDoc(docName)!=-1;
-	}
-	
 	public String getDescription(String docName) {
 		return getDoc(docName).getDescription();
 	}
@@ -80,17 +76,6 @@ public class DocumentCollectionClass implements DocumentCollection {
 	public boolean fullDocs() {
 		return counterDoc==documents.length;
 	}
-	
-	private int findDoc(String docName) {
-        int i = 0;
-        while ((i < counterDoc)) {
-            if (documents[i].getDocName().equals(docName)) {
-                return i;
-            }
-            i++;
-        }
-        return -1;
-    }
 	
 	public IteratorUser getIteratorAccessesOfficial(String docName) {
 		return ((OfficialDocument) getDoc(docName)).getIteratorAccesses();
@@ -116,11 +101,31 @@ public class DocumentCollectionClass implements DocumentCollection {
 		listOnlyDocumentsWithGrants();
 		sortByName();
 		sortByGrants();
+		if(counterDocsByGrant > 10) counterDocsByGrant = 10;
 		IteratorDocs iteratorDocs = new IteratorDocsClass(documentsByGrant, counterDocsByGrant, "classified");
 		return iteratorDocs;
 
 	}
+
+	/**
+	 * Finds the position of the Document with the given name in the documents array or returns -1 if the document isnt in the array.
+	 * @param docName - Name of the Document.
+	 * @return Position of the Document if it exists in the array, else returns 1.
+	 */
+	private int findDoc(String docName) {
+        int i = 0;
+        while ((i < counterDoc)) {
+            if (documents[i].getDocName().equals(docName)) {
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
 	
+	/**
+	 * Organizes the docsByGrant array with the classified with grants from the documents array.
+	 */
 	private void listOnlyDocumentsWithGrants() {
 		counterDocsByGrant = 0;
 		for(int i = 0; i < counterDoc; i++) {
@@ -132,6 +137,9 @@ public class DocumentCollectionClass implements DocumentCollection {
 		}
 	}
 	
+	/**
+	 * Sorts the docsByGrant by decreasing number of grants.
+	 */
 	private void sortByGrants() {
 		for (int i = 1; i < counterDocsByGrant; i++) { 
 			for (int j = counterDocsByGrant -1; j >= i; j--) {
@@ -145,6 +153,9 @@ public class DocumentCollectionClass implements DocumentCollection {
 		}
 	}
 	
+	/**
+	 * Sorts the docsByGrant by alphabetical order.
+	 */
 	private void sortByName() {
 		for (int i = 0; i < counterDocsByGrant; i++) { 
 			for (int j = i+1; j < counterDocsByGrant; j++) {

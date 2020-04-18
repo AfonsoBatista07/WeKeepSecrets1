@@ -391,11 +391,9 @@ public class Main {
 		if(!docList.hasNext())
 			System.out.printf(ERROR_NO_LEAKED);
 		else {
-			int pos = 0;
-			while(docList.hasNext() && pos < 10) {
+			while(docList.hasNext()) {
 				ClassifiedDocument doc = (ClassifiedDocument) docList.next();
 				System.out.printf("%s %s %s %d %d %d\n", doc.getDocName(), doc.getManager(), doc.getLevel(), doc.getNumAccesses(), doc.getNumGrants(), doc.getNumRevoked());
-				pos++;
 			}
 		}
 	}
@@ -409,11 +407,9 @@ public class Main {
 		if(!userList.hasNext())
 			System.out.printf(ERROR_NO_OFFICER_GRANT);
 		else {
-			int pos = 0;
-			while(userList.hasNext() && pos < 10) {
+			while(userList.hasNext()) {
 				Officer user = (Officer) userList.next();
 				System.out.printf("%s %s %d %d %d\n",user.getId(),user.getLevel(), user.getNumDocs(), user.getNumGrants(), user.getNumRevokes());
-				pos++;
 			}
 		}
 	}

@@ -77,6 +77,7 @@ public class UserCollectionClass implements UserCollection {
 		listOnlyOfficersWithGrants();
 		sortByName();
 		sortByGrants();
+		if(counterUserByGrants > 10) counterUserByGrants = 10;
 		IteratorUser iteratorUser = new IteratorUserClass(usersByGrants, counterUserByGrants);
 		return iteratorUser;
 
@@ -98,7 +99,7 @@ public class UserCollectionClass implements UserCollection {
 	
 	
 	/**
-	 * Sorts the userByGrants array by number of grants.
+	 * Sorts the userByGrants array by decreasing number of grants.
 	 */
 	private void sortByGrants() {
 		for (int i = 1; i < counterUserByGrants; i++) { 

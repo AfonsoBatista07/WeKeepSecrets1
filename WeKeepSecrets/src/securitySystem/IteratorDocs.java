@@ -9,7 +9,14 @@ import documents.Document;
  */
 public interface IteratorDocs {
 
+	/**
+	 * @return True if there is a next element in the array.
+	 */
 	boolean hasNext();
+	
+	/**
+	 * @return The next element from the array.
+	 */
 	Document next();
 	
 }
