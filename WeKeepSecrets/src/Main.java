@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import documents.ClassifiedDocument;
-import documents.OfficialDocumentClass;
 import documents.Document;
 import securitySystem.*;
 import users.User;
@@ -55,9 +54,6 @@ public class Main {
  	private static final String SUCCESS_EXIT = "Bye!\n";
 	private static final String SUCCESS_UNKOWN = "Unknown command. Type help to see available commands.\n";
 	
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		SecuritySystem sec = new SecuritySystemClass();
@@ -71,22 +67,24 @@ public class Main {
 	}
 	
 	/**
-	 * @param in
-	 * @return
+	 * Read the user inputs.
+	 * @param in - Scanner.
+	 * @return the user input.
 	 */
 	private static String readOption( Scanner in ) {
 		return in.nextLine().trim().toUpperCase();
 	}
 	
 	/**
-	 * @param in
-	 * @param sec
-	 * @param option
+	 * Execute one available option.
+	 * @param in - Scanner.
+	 * @param sec - SecuritySystem
+	 * @param option - the user input.
 	 */
 	private static void exeOption( Scanner in, SecuritySystem sec, String option ) {
 		switch(option) {
 			case REGISTER:
-				regist(in,sec);
+				register(in,sec);
 				break;
 			case LISTUSERS:
 				listUsers(sec);
@@ -127,29 +125,30 @@ public class Main {
 	}
 	
 	/**
-	 * 
+	 * Shows the available commands.
 	 */
 	private static void help() {
 		System.out.printf("register - registers a new user\n"
-				+ "listusers - list all registered users\n"
-				+ "upload - upload a document\n"
-				+ "read - read a document\n"
-				+ "write - write a document\n"
-				+ "grant - grant access to a document\n"
-				+ "revoke - revoke a grant to access a document\n"
-				+ "userdocs - list the official or classified documents of an user\n"
-				+ "topleaked - list the top 10 documents with more grants\n"
-				+ "topgranters - list the top 10 officers that have given more grants\n"
-				+ "help - shows the available commands\n"
-				+ "exit - terminates the execution of the program\n");
+			+ "listusers - list all registered users\n"
+			+ "upload - upload a document\n"
+			+ "read - read a document\n"
+			+ "write - write a document\n"
+			+ "grant - grant access to a document\n"
+			+ "revoke - revoke a grant to access a document\n"
+			+ "userdocs - list the official or classified documents of an user\n"
+			+ "topleaked - list the top 10 documents with more grants\n"
+			+ "topgranters - list the top 10 officers that have given more grants\n"
+			+ "help - shows the available commands\n"
+			+ "exit - terminates the execution of the program\n");
 	}
 	
 	
 	/**
-	 * @param in
-	 * @param sec
+	 * Register a new user in System.
+	 * @param in - Scanner.
+	 * @param sec - SecuritySystem.
 	 */
-	private static void regist( Scanner in, SecuritySystem sec) {
+	private static void register( Scanner in, SecuritySystem sec) {
 		String kind = in.next().toLowerCase();
 		String UserId = in.next();
 		String level = in.next().toLowerCase();
@@ -164,7 +163,8 @@ public class Main {
 	}
 	
 	/**
-	 * @param sec
+	 * Lists registered users.
+	 * @param sec - SecuritySystem.
 	 */
 	private static void listUsers( SecuritySystem sec ) {
 		IteratorUser userList = sec.createIteratorUser();
@@ -180,8 +180,9 @@ public class Main {
 	}
 	
 	/**
-	 * @param in
-	 * @param sec
+	 * Uploads a new document.
+	 * @param in - Scanner.
+	 * @param sec - SecuritySystem.
 	 */
 	private static void uploadDocoment( Scanner in, SecuritySystem sec ) {
 		String docName = in.next();
@@ -204,8 +205,9 @@ public class Main {
 	}
 	
 	/**
-	 * @param in
-	 * @param sec
+	 * Shows a document (description).
+	 * @param in - Scanner.
+	 * @param sec - SecuritySystem.
 	 */
 	private static void readDocument( Scanner in, SecuritySystem sec ) {
 		String docName = in.next();
@@ -227,8 +229,9 @@ public class Main {
 	}
 	
 	/**
-	 * @param in
-	 * @param sec
+	 * Updates the document (description).
+	 * @param in - Scanner.
+	 * @param sec - SecuritySystem.
 	 */
 	private static void writeDocoment( Scanner in, SecuritySystem sec ) {
 		String docName = in.next();
@@ -252,8 +255,9 @@ public class Main {
 	}
 	
 	/**
-	 * @param in
-	 * @param sec
+	 * A document manager grants access to another user with insufficient security clearance.
+	 * @param in - Scanner.
+	 * @param sec - SecuritySystem.
 	 */
 	private static void grantAccess( Scanner in, SecuritySystem sec ) {
 		String docName = in.next();
@@ -277,8 +281,9 @@ public class Main {
 	}
 	
 	/**
-	 * @param in
-	 * @param sec
+	 * A document owner revokes a previous given grant.
+	 * @param in - Scanner.
+	 * @param sec - SecuritySystem.
 	 */
 	private static void revokeAccess( Scanner in, SecuritySystem sec ) {
 		String docName = in.next();
@@ -302,9 +307,10 @@ public class Main {
 	}
 	
 	/**
-	 * @param userList
-	 * @param StringList
-	 * @param error
+	 * Lists the classified documents of a user.
+	 * @param userList - Iterator of users.
+	 * @param StringList - Iterator of Strings.
+	 * @param error - Error message.
 	 */
 	private static void userDocsClassified(IteratorUser userList, IteratorString StringList, String error) {
 		if(!userList.hasNext() || !StringList.hasNext())
@@ -322,8 +328,9 @@ public class Main {
 	}
 	
 	/**
-	 * @param userList
-	 * @param error
+	 * Lists the official documents of a user.
+	 * @param userList - Iterator of users.
+	 * @param error - Error message.
 	 */
 	private static void userDocsOfficial(IteratorUser userList, String error) {
 		if(!userList.hasNext())
@@ -340,8 +347,9 @@ public class Main {
 	}
 	
 	/**
-	 * @param in
-	 * @param sec
+	 * Lists the official or classified documents of a user.
+	 * @param in - Scanner.
+	 * @param sec - SecuritySystem.
 	 */
 	private static void userDocs( Scanner in, SecuritySystem sec ) {
 		String userId = in.next();
@@ -359,7 +367,7 @@ public class Main {
 			else {
 				while(docList.hasNext()) {
 					Document doc = docList.next();
-					if(doc instanceof OfficialDocumentClass) {
+					if(sec.officialDoc(doc.getDocName())) {
 						System.out.printf("%s %s: ", doc.getDocName(), doc.getNumAccesses());
 						IteratorUser userList = sec.createIteratorAccessesOfficial(doc.getDocName());
 						
@@ -383,8 +391,9 @@ public class Main {
 	}
 	
 	/**
-	 * @param in
-	 * @param sec
+	 * Lists the top 10 documents what where \leaked".
+	 * @param in - Scanner.
+	 * @param sec - SecuritySystem.
 	 */
 	private static void topLeaked( Scanner in, SecuritySystem sec ) {
 		IteratorDocs docList = sec.createIteratorDocsByGrant();
@@ -399,8 +408,9 @@ public class Main {
 	}
 	
 	/**
-	 * @param in
-	 * @param sec
+	 * Lists the top 10 officers with more grants given to lower security officers.
+	 * @param in - Scanner.
+	 * @param sec - SecuritySystem.
 	 */
 	private static void topGranters( Scanner in, SecuritySystem sec ) {
 		IteratorUser userList = sec.createIteratorUserByGrant();
@@ -415,7 +425,7 @@ public class Main {
 	}
 	
 	/**
-	 * 
+	 * Terminates the execution of the program.
 	 */
 	private static void exit() {
 		System.out.printf(SUCCESS_EXIT);
