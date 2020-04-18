@@ -73,19 +73,12 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 	}
 	
 	public boolean isGranted(User user) {
-		if(backwardsFindUser(user, grants, counterGrants) == -1)
-			return false;
-		if(grantType[backwardsFindUser(user, grants, counterGrants)].equals(GRANT)  )
-			return true;
-		else return false;
+		return !(backwardsFindUser(user, grants, counterGrants) == -1) && grantType[backwardsFindUser(user, grants, counterGrants)].equals(GRANT);
+		
 	}
 	
-	public boolean isRevoked(User user) {                                                              // THE FUCKKKK ????????????????????????
-		if(backwardsFindUser(user, grants, counterGrants) == -1)
-			return false;
-		if(grantType[backwardsFindUser(user, grants, counterGrants)].equals(REVOKED)  )
-			return true;
-		else return false;
+	public boolean isRevoked(User user) {                                                            
+		return !(backwardsFindUser(user, grants, counterGrants) == -1) && grantType[backwardsFindUser(user, grants, counterGrants)].equals(REVOKED);
 	}
 	
 	public IteratorUser getIteratorAccesses() {
@@ -137,7 +130,7 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 		User[] ul = new User[GROW_FACTOR * userArray.length];
 		for (int i = 0; i < counter; i++)
 			ul[i] = userArray[i];
-		userArray = ul;																						// NÃO DA PARA OPTUMIZAR ???????????
+		userArray = ul;																			
 		
 		String[] sl = new String[GROW_FACTOR * stringArray.length];
 		for (int i = 0; i < counter; i++)
