@@ -11,13 +11,14 @@ import securitySystem.IteratorDocsClass;
  */
 public class UserClass implements User {
 
-protected String id, level, kind;
+	protected String id, level, kind;
 	
 	private Document[] docsUploaded;
 	
 	private int current;
 	
 	private static final int MAX_DOCS = 500, GROW_FACTOR = 2;
+	protected static final String OFFICER = "officer", CLERK = "clerk" ;
 	
 	public UserClass(String id, String level, String kind) {
 		this.id = id;

@@ -9,7 +9,6 @@ import securitySystem.IteratorDocs;
  * @author Joao Jorge 57994
  */
 public interface User {
-	
 	/**
 	 * Adds Document to the Users Document list.
 	 * @param doc - Document uploaded.
@@ -27,7 +26,7 @@ public interface User {
 	String getLevel();
 	
 	/**
-	 * @return Type of User( Officer or Clerk).
+	 * @return Type of User(Officer or Clerk).
 	 */
 	String getKind();
 	
@@ -39,7 +38,7 @@ public interface User {
 	boolean docExist(String docName);
 	
 	/**
-	 * @param type - Type of document( Official, Classified).
+	 * @param type - Type of document(Official, Classified).
 	 * @return Iterator with an array of the Users Documents with the desired type .
 	 */
 	IteratorDocs getIteratorDocs(String type);

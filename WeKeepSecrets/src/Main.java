@@ -1,10 +1,16 @@
 import java.util.Scanner;
 import documents.ClassifiedDocument;
+import documents.OfficialDocumentClass;
 import documents.Document;
 import securitySystem.*;
 import users.User;
 import users.Officer;
 
+/**
+ * 
+ * @author Afonso Batista
+ * @author Joao Jorge
+ */
 public class Main {
 
 	/* Commands Constants */
@@ -49,10 +55,34 @@ public class Main {
  	private static final String SUCCESS_EXIT = "Bye!\n";
 	private static final String SUCCESS_UNKOWN = "Unknown command. Type help to see available commands.\n";
 	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		SecuritySystem sec = new SecuritySystemClass();
+		String cm;
+		do{
+			cm = readOption(in);
+			exeOption(in, sec, cm);
+		}while(!cm.equals(EXIT));
+		in.close();
+		
+	}
+	
+	/**
+	 * @param in
+	 * @return
+	 */
 	private static String readOption( Scanner in ) {
 		return in.nextLine().trim().toUpperCase();
 	}
 	
+	/**
+	 * @param in
+	 * @param sec
+	 * @param option
+	 */
 	private static void exeOption( Scanner in, SecuritySystem sec, String option ) {
 		switch(option) {
 			case REGISTER:
@@ -96,18 +126,9 @@ public class Main {
 		}
 	}
 	
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		SecuritySystem sec = new SecuritySystemClass();
-		String cm;
-		do{
-			cm = readOption(in);
-			exeOption(in, sec, cm);
-		}while(!cm.equals(EXIT));
-		in.close();
-		
-	}
-	
+	/**
+	 * 
+	 */
 	private static void help() {
 		System.out.printf("register - registers a new user\n"
 				+ "listusers - list all registered users\n"
@@ -124,6 +145,10 @@ public class Main {
 	}
 	
 	
+	/**
+	 * @param in
+	 * @param sec
+	 */
 	private static void regist( Scanner in, SecuritySystem sec) {
 		String kind = in.next().toLowerCase();
 		String UserId = in.next();
@@ -138,6 +163,9 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * @param sec
+	 */
 	private static void listUsers( SecuritySystem sec ) {
 		IteratorUser userList = sec.createIteratorUser();
 		if(!userList.hasNext())
@@ -151,6 +179,10 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * @param in
+	 * @param sec
+	 */
 	private static void uploadDocoment( Scanner in, SecuritySystem sec ) {
 		String docName = in.next();
 		String userId = in.next();
@@ -171,6 +203,10 @@ public class Main {
 		
 	}
 	
+	/**
+	 * @param in
+	 * @param sec
+	 */
 	private static void readDocument( Scanner in, SecuritySystem sec ) {
 		String docName = in.next();
 		String idManager = in.next();
@@ -190,6 +226,10 @@ public class Main {
 		
 	}
 	
+	/**
+	 * @param in
+	 * @param sec
+	 */
 	private static void writeDocoment( Scanner in, SecuritySystem sec ) {
 		String docName = in.next();
 		String idManager = in.next();
@@ -211,6 +251,10 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * @param in
+	 * @param sec
+	 */
 	private static void grantAccess( Scanner in, SecuritySystem sec ) {
 		String docName = in.next();
 		String idManager = in.next();
@@ -232,6 +276,10 @@ public class Main {
 		
 	}
 	
+	/**
+	 * @param in
+	 * @param sec
+	 */
 	private static void revokeAccess( Scanner in, SecuritySystem sec ) {
 		String docName = in.next();
 		String idManager = in.next();
@@ -253,6 +301,11 @@ public class Main {
 		
 	}
 	
+	/**
+	 * @param userList
+	 * @param StringList
+	 * @param error
+	 */
 	private static void userDocsClassified(IteratorUser userList, IteratorString StringList, String error) {
 		if(!userList.hasNext() || !StringList.hasNext())
 			System.out.println(error);
@@ -268,6 +321,10 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * @param userList
+	 * @param error
+	 */
 	private static void userDocsOfficial(IteratorUser userList, String error) {
 		if(!userList.hasNext())
 			System.out.println(error);
@@ -282,6 +339,10 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * @param in
+	 * @param sec
+	 */
 	private static void userDocs( Scanner in, SecuritySystem sec ) {
 		String userId = in.next();
 		String type = in.next().toLowerCase();
@@ -298,7 +359,7 @@ public class Main {
 			else {
 				while(docList.hasNext()) {
 					Document doc = docList.next();
-					if(type.equals("official")) {
+					if(doc instanceof OfficialDocumentClass) {
 						System.out.printf("%s %s: ", doc.getDocName(), doc.getNumAccesses());
 						IteratorUser userList = sec.createIteratorAccessesOfficial(doc.getDocName());
 						
@@ -321,6 +382,10 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * @param in
+	 * @param sec
+	 */
 	private static void topLeaked( Scanner in, SecuritySystem sec ) {
 		IteratorDocs docList = sec.createIteratorDocsByGrant();
 		if(!docList.hasNext())
@@ -335,6 +400,10 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * @param in
+	 * @param sec
+	 */
 	private static void topGranters( Scanner in, SecuritySystem sec ) {
 		IteratorUser userList = sec.createIteratorUserByGrant();
 		if(!userList.hasNext())
@@ -349,6 +418,9 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	private static void exit() {
 		System.out.printf(SUCCESS_EXIT);
 	}

@@ -10,7 +10,7 @@ public class OfficerClass extends UserClass implements Officer{
 	int granted, revoked;
 	
 	public OfficerClass(String id, String level) {
-		super(id, level, "officer");
+		super(id, level, OFFICER);
 		
 		granted = 0;
 		revoked = 0;

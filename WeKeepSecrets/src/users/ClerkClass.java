@@ -8,7 +8,7 @@ package users;
 public class ClerkClass extends UserClass {
 
 	public ClerkClass(String id, String level) {
-		super(id, level, "clerk");
+		super(id, level, CLERK);
 		
 	}
 }
