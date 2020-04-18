@@ -38,15 +38,15 @@ public interface SecuritySystem {
 	 * @param docName - Name of the Document.
 	 * @return True if the Document is an official Document.
 	 */
-	boolean officialDoc(String docName);
+	boolean isOfficialDoc(String docName);
 	
 	/**Verifies if a given User is a Clerk.
 	 * @param userId - Id of the User.
 	 * @return True is the user is a Clerk.
 	 */
-	boolean userClerk(String userId);
+	boolean isUserClerk(String userId);
 	
-	/**Verifies if the Users type matches the type given.
+	/**Verifies if the User is a Clerk and the type is classified.
 	 * @param userId - Id of the User.
 	 * @param type - Type ( Clerk or Officer).
 	 * @return True if Users type matches the type given.
@@ -153,13 +153,13 @@ public interface SecuritySystem {
 	 * @param userId - Id of the User.
 	 * @return Users security level.
 	 */
-	int getUserLevel(String userId);
+	String getUserLevel(String userId);
 	
 	/**
 	 * @param docName - Name of the Document.
 	 * @return Documents security levels.
 	 */
-	int getDocLevel(String docName);
+	String getDocLevel(String docName);
 	
 	/**
 	 * @param docName - Name of the Document.

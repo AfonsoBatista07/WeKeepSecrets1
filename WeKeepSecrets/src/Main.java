@@ -244,7 +244,7 @@ public class Main {
 			System.out.println(ERROR_USERS_NOT_REGISTERED);
 		else if(!sec.docExist(idManager, docName))
 			System.out.printf(ERROR_DOES_NOT_EXIST_DOCUMENT, docName);
-		else if(sec.officialDoc(docName))
+		else if(sec.isOfficialDoc(docName))
 			System.out.printf(ERROR_CAN_NOT_UPDATE, docName);
 		else if(!sec.canManage(idAccess, docName))
 			System.out.println(ERROR_LOWER_CLEARANCE);
@@ -269,7 +269,7 @@ public class Main {
 			System.out.println(ERROR_USERS_NOT_REGISTERED);
 		else if(!sec.docExist(idManager, docName))
 			System.out.printf(ERROR_DOES_NOT_EXIST_DOCUMENT, docName);
-		else if(sec.userClerk(idGranted))
+		else if(sec.isUserClerk(idGranted))
 			System.out.printf(ERROR_IS_CLERK);
 		else if(sec.canManage(idGranted, docName))
 			System.out.printf(ERROR_ALREADY_ACCESS, docName);
@@ -295,7 +295,7 @@ public class Main {
 			System.out.println(ERROR_USERS_NOT_REGISTERED);
 		else if(!sec.docExist(idManager, docName))
 			System.out.printf(ERROR_DOES_NOT_EXIST_DOCUMENT, docName);
-		else if(sec.userClerk(idGranted))
+		else if(sec.isUserClerk(idGranted))
 			System.out.printf(ERROR_IS_CLERK);
 		else if(sec.revoked(idGranted, docName))
 			System.out.printf(ERROR_GRANT_ALREADY_REVOKED, idGranted);
