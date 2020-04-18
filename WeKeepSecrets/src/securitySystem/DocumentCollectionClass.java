@@ -101,6 +101,7 @@ public class DocumentCollectionClass implements DocumentCollection {
 		listOnlyDocumentsWithGrants();
 		sortByName();
 		sortByGrants();
+		if(counterDocsByGrant > 10) counterDocsByGrant = 10;
 		IteratorDocs iteratorDocs = new IteratorDocsClass(documentsByGrant, counterDocsByGrant, "classified");
 		return iteratorDocs;
 
