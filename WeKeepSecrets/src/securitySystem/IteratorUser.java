@@ -9,6 +9,13 @@ import users.User;
  */
 public interface IteratorUser {
 
+	/**
+	 * @return True if there is a next element in the array.
+	 */
 	boolean hasNext();
+	
+	/**
+	 * @return The next User from the array.
+	 */
 	User next();
 }

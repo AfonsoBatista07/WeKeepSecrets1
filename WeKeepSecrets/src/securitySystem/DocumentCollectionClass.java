@@ -54,10 +54,6 @@ public class DocumentCollectionClass implements DocumentCollection {
 		return documents[findDoc(docName)];
 	}
 	
-	public boolean docExist(String docName) {
-		return findDoc(docName)!=-1;
-	}
-	
 	public String getDescription(String docName) {
 		return getDoc(docName).getDescription();
 	}

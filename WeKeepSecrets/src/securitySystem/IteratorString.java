@@ -7,7 +7,15 @@ package securitySystem;
  */
 public interface IteratorString {
 		
+	
+	/**
+	 * @return True if there is a next element in the array.
+	 */
 	public boolean hasNext();
+	
+	/**
+	 * @return The next element from the array.
+	 */
 	public String next();
 	
 }
