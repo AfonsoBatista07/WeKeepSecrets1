@@ -367,7 +367,7 @@ public class Main {
 			else {
 				while(docList.hasNext()) {
 					Document doc = docList.next();
-					if(sec.officialDoc(doc.getDocName())) {
+					if(sec.isOfficialDoc(doc.getDocName())) {
 						System.out.printf("%s %s: ", doc.getDocName(), doc.getNumAccesses());
 						IteratorUser userList = sec.createIteratorAccessesOfficial(doc.getDocName());
 						
