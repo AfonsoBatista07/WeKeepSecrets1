@@ -98,7 +98,7 @@ public class UserCollectionClass implements UserCollection {
 	
 	
 	/**
-	 * Sorts the userByGrants array by number of grants.
+	 * Sorts the userByGrants array by decreasing number of grants.
 	 */
 	private void sortByGrants() {
 		for (int i = 1; i < counterUserByGrants; i++) { 
