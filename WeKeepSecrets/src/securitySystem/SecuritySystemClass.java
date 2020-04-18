@@ -1,6 +1,7 @@
 package securitySystem;
 
 import documents.*;
+import users.ClerkClass;
 
 /**
  * 
@@ -27,23 +28,23 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 	
 	public boolean lowerSecurityLevel(String userId, String level) {
-		return getUserLevel(userId)<levelToNum(level);
+		return Levels.valueOf(getUserLevel(userId).toUpperCase()).isGreaterThan(Levels.valueOf(level.toUpperCase()));
 	}
 
 	public boolean matchesType(String userId, String type) {
-		return getUserLevel(userId)<1 && type.equalsIgnoreCase("classified");              
+		return isUserClerk(userId) && type.equalsIgnoreCase("classified");              
 	}
 	
 	public boolean canManage(String userId, String docName) {
-		return getUserLevel(userId)>=getDocLevel(docName) || granted(userId,docName);
+		return !lowerSecurityLevel(userId, getDocLevel(docName)) || granted(userId,docName);
 	}
 	
-	public boolean officialDoc(String docName) {
-		return getDocLevel(docName)==0;
+	public boolean isOfficialDoc(String docName) {
+		return docs.getDoc(docName) instanceof OfficialDocumentClass;
 	}
 	
-	public boolean userClerk(String userId) {
-		return getUserLevel(userId)==0;
+	public boolean isUserClerk(String userId) {
+		return users.getUser(userId) instanceof ClerkClass;
 	}
 
 	public boolean granted(String userId, String docName) {
@@ -131,26 +132,12 @@ public class SecuritySystemClass implements SecuritySystem {
 		return docs.getDescription(docName);
 	}
 	
-	public int getUserLevel(String userId) {
-		return levelToNum(users.getUser(userId).getLevel());
+	public String getUserLevel(String userId) {
+		return users.getUser(userId).getLevel();
 	}
 	
-	public int getDocLevel(String docName) {
-		return levelToNum(docs.getDoc(docName).getLevel());
-	}
-	
-	public int levelToNum(String level) {
-		switch(Levels.valueOf(level.toUpperCase())) {
-			case OFFICIAL:
-				return Levels.OFFICIAL.getIntLevel();
-			case CONFIDENTIAL:
-				return Levels.CONFIDENTIAL.getIntLevel();
-			case SECRET:
-				return Levels.SECRET.getIntLevel();
-			case TOPSECRET:
-				return Levels.TOPSECRET.getIntLevel();
-		}
-		return -1;
+	public String getDocLevel(String docName) {
+		return docs.getDoc(docName).getLevel();
 	}
 
 }
