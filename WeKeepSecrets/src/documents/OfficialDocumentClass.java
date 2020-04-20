@@ -17,7 +17,7 @@ public class OfficialDocumentClass extends DocumentClass implements OfficialDocu
 	 * Constructor of the OfficialDocumentClass and initialization of variables.
 	 * @param manager Name of the User Managing the Document.
 	 * @param docName - Name of the Document.
-	 * @param description - Description of the Document
+	 * @param description - Description of the Document.
 	 */
 	public OfficialDocumentClass(String manager, String docName, String description) {
 		super(manager, docName, description, OFFICIAL, OFFICIAL);
