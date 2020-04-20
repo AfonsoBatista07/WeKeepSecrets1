@@ -37,6 +37,10 @@ public class UserClass implements User {
 			resize();
 	}
 	
+	public boolean isClerk() {
+		return kind.equalsIgnoreCase("clerk");
+	}
+	
 	public String getId() {
 		return id;
 	}

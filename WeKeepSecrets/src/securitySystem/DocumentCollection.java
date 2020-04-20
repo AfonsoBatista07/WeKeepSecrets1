@@ -69,6 +69,12 @@ public interface DocumentCollection {
 	
 	/**
 	 * @param docName - Name of the Document.
+	 * @return True if the Document is an Official Document.
+	 */
+	boolean isOfficial(String docName);
+	
+	/**
+	 * @param docName - Name of the Document.
 	 * @return Documents description.
 	 */
 	String getDescription(String docName);

@@ -32,6 +32,12 @@ public interface UserCollection {
 	boolean idExist(String id);
 	
 	/**
+	 * @param id - Id of the user.
+	 * @return True is the User is a Clerk.
+	 */
+	boolean isClerk(String id);
+	
+	/**
 	 * Uploads Document to the Users Document array.
 	 * @param id - Id of the user.
 	 * @param doc - Document

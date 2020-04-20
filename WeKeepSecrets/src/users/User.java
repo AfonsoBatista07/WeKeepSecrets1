@@ -17,6 +17,11 @@ public interface User {
 	void upload(Document doc);
 	
 	/**
+	 * @return True if the User is a Clerk.
+	 */
+	boolean isClerk();
+	
+	/**
 	 * @return Users Id.
 	 */
 	String getId();

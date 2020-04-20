@@ -5,7 +5,7 @@ import users.User;
 /**
  * 
  * @author Afonso Batista 57796
- * @author João Jorge 57994
+ * @author Joao Jorge 57994
  */
 public abstract class DocumentClass implements Document{
 	
@@ -22,6 +22,10 @@ public abstract class DocumentClass implements Document{
 	public abstract void read(User user);
 	
 	public abstract int getNumAccesses();
+	
+	public boolean isOfficial() {
+		return type.equalsIgnoreCase("official");
+	}
 	
 	public String getType() {
 		return type;

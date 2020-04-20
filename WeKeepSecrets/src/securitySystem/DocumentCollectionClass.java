@@ -50,6 +50,10 @@ public class DocumentCollectionClass implements DocumentCollection {
 		return ((ClassifiedDocument) getDoc(docName)).isRevoked(user);
 	}
 	
+	public boolean isOfficial(String docName) {
+		return getDoc(docName).isOfficial();
+	}
+	
 	public Document getDoc(String docName) {
 		return documents[findDoc(docName)];
 	}

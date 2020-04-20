@@ -47,6 +47,10 @@ public class UserCollectionClass implements UserCollection {
 		return findUser(id)!=-1;
 	}
 	
+	public boolean isClerk(String id) {
+		return getUser(id).isClerk();
+	}
+	
 	public void upload(String id, Document doc) {
 		getUser(id).upload(doc);
 	}

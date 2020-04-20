@@ -28,7 +28,7 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 	
 	public boolean lowerSecurityLevel(String userId, String level) {
-		return Levels.valueOf(getUserLevel(userId).toUpperCase()).isGreaterThan(Levels.valueOf(level.toUpperCase()));
+		return Levels.valueOf(level.toUpperCase()).isGreaterThan(Levels.valueOf(getUserLevel(userId).toUpperCase()));
 	}
 
 	public boolean matchesType(String userId, String type) {
@@ -40,11 +40,11 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 	
 	public boolean isOfficialDoc(String docName) {
-		return docs.getDoc(docName) instanceof OfficialDocumentClass;
+		return docs.isOfficial(docName);
 	}
 	
 	public boolean isUserClerk(String userId) {
-		return users.getUser(userId) instanceof ClerkClass;
+		return users.isClerk(userId);
 	}
 
 	public boolean granted(String userId, String docName) {
@@ -97,7 +97,7 @@ public class SecuritySystemClass implements SecuritySystem {
 
 	public void newDocument(String docName, String userId, String level, String description) {
 		Document doc;
-		if(level.equals("official"))
+		if(isOfficialDoc(docName))
 			doc = new OfficialDocumentClass(userId, docName, description); 
 		else 
 			doc = new ClassifiedDocumentClass(userId, docName, level, description);
@@ -132,12 +132,21 @@ public class SecuritySystemClass implements SecuritySystem {
 		return docs.getDescription(docName);
 	}
 	
-	public String getUserLevel(String userId) {
+	/**
+	 * @param userId - Id of the User.
+	 * @return Users security level.
+	 * @pre idExists().
+	 */
+	private String getUserLevel(String userId) {
 		return users.getUser(userId).getLevel();
 	}
 	
-	public String getDocLevel(String docName) {
+	/**
+	 * @param docName - Name of the Document.
+	 * @return Documents security levels.
+	 * @pre docExists().
+	 */
+	private String getDocLevel(String docName) {
 		return docs.getDoc(docName).getLevel();
 	}
-
 }

@@ -5,7 +5,7 @@ import users.User;
 /**
  * 
  * @author Afonso Batista 57796
- * @author João Jorge 57994
+ * @author Joao Jorge 57994
  */
 public interface Document {
 
@@ -14,6 +14,11 @@ public interface Document {
 	* @param user - The user reading.
 	*/
 	void read(User user);
+	
+	/**
+	 * @return True if the Document is an Official Document.
+	 */
+	boolean isOfficial();
 	
 	/**
 	 * @return The number of accesses(Writes and Reads) a Classified Document has.

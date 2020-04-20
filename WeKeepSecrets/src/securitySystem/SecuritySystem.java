@@ -166,20 +166,6 @@ public interface SecuritySystem {
 	String getDecription(String docName);
 	
 	/**
-	 * @param userId - Id of the User.
-	 * @return Users security level.
-	 * @pre idExists().
-	 */
-	String getUserLevel(String userId);
-	
-	/**
-	 * @param docName - Name of the Document.
-	 * @return Documents security levels.
-	 * @pre docExists().
-	 */
-	String getDocLevel(String docName);
-	
-	/**
 	 * @param docName - Name of the Document.
 	 * @return Iterator the Users that accessed the Classified Document given.
 	 * @pre docExists().
