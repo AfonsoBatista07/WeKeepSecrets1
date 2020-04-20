@@ -17,7 +17,7 @@ public class IteratorDocsClass implements IteratorDocs {
 		this.counterDocs = counterDocs; 
 		this.docs = docs;
 		initialize(type);
-		nextDoc = 0;
+		
 		
 	}
 	
