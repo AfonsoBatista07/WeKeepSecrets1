@@ -16,7 +16,7 @@ public interface AccessesOfficial {
 	int getNumAccesses();
 	
 	/**
-	 * Adds the last ten users to accesses array.
+	 * Adds user to accesses array.
 	 * @param user - The user reading.
 	 */
 	void read(User user);

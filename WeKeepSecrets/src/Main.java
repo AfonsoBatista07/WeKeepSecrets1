@@ -255,7 +255,7 @@ public class Main {
 	}
 	
 	/**
-	 * A document manager grants access to another user with insufficient security clearance.
+	 * A classified document manager grants access to another officer with insufficient security clearance.
 	 * @param in - Scanner.
 	 * @param sec - SecuritySystem.
 	 */
@@ -391,7 +391,7 @@ public class Main {
 	}
 	
 	/**
-	 * Lists the top 10 documents what where \leaked".
+	 * Lists the top 10 documents what where leaked".
 	 * @param in - Scanner.
 	 * @param sec - SecuritySystem.
 	 */

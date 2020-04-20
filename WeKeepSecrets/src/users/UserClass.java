@@ -74,7 +74,6 @@ public class UserClass implements User {
 
 	}
 	
-	
 	/**
 	 * Verifies if the Document array is full.
 	 * @return True if its full.
@@ -82,7 +81,6 @@ public class UserClass implements User {
 	private boolean fullUpload() {
 		return current == docsUploaded.length;
 	}
-
 	
 	/**
 	 * Finds the position of the Document with the name docName in the Users Document array.

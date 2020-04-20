@@ -39,7 +39,7 @@ public interface UserCollection {
 	void upload(String id, Document doc);
 	
 	/**
-	 * Increments the number of Grants of the User with the given Id.
+	 * Increments the number of grants of the User with the given Id.
 	 * @param id - User Id.
 	 */
 	void grant(String id);
@@ -62,7 +62,7 @@ public interface UserCollection {
 	
 	/**
 	 * @param userId - User Id
-	 * @param type - Type of Document ( Classified or Official)
+	 * @param type - Type of Document (Classified or Official)
 	 * @return Iterator of the Users Documents with the type given.
 	 */
 	IteratorDocs getIteratorDocs(String userId, String type);

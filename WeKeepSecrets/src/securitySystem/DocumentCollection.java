@@ -11,7 +11,7 @@ import users.User;
 public interface DocumentCollection {
 	
 	/**
-	 * Adds Document to document array.
+	 * Adds Document to the documents array.
 	 * @param doc - Document.
 	 */
 	void addDocument(Document doc);

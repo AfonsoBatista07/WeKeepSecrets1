@@ -31,5 +31,4 @@ public class OfficerClass extends UserClass implements Officer{
 	public int getNumRevokes() {
 		return revoked;
 	}
-	
 }

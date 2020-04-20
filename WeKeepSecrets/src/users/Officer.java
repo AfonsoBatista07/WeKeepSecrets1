@@ -7,7 +7,6 @@ package users;
  */
 public interface Officer extends User {
 	
-	
 	/**
 	 * Increments the number of grants the User has given.
 	 */
@@ -18,12 +17,10 @@ public interface Officer extends User {
 	 */
 	int getNumGrants();
 	
-	
 	/**
 	 * Increments the number of revokes the User has given.
 	 */
 	void incRevoked();
-	
 	
 	/**
 	 * @return Number of revoke the User has given.

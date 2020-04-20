@@ -16,7 +16,7 @@ public interface Document {
 	void read(User user);
 	
 	/**
-	 * @return The number of accesses(Writes and Reads) a Classified Document have.
+	 * @return The number of accesses(Writes and Reads) a Classified Document has.
 	 */
 	int getNumAccesses();
 	
@@ -31,17 +31,17 @@ public interface Document {
 	String getDescription();
 	
 	/**
-	 * @return The document Manager
+	 * @return The document Manager.
 	 */
 	String getManager();
 	
 	/**
-	 * @return The document Name
+	 * @return The document Name.
 	 */
 	String getDocName();
 	
 	/**
-	 * @return The document Type
+	 * @return The document Type (Official or Classified).
 	 */
 	String getType();
 	

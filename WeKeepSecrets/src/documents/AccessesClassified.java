@@ -12,17 +12,17 @@ import users.User;
 public interface AccessesClassified {
 	
 	/**
-	 * @return The number of accesses(Writes and Reads) a Classified Document have.
+	 * @return The number of accesses(Writes and Reads) a Classified Document has.
 	 */
 	int getNumAccesses();
 	
 	/**
-	 * @return The number of revokes a Classified Document have.
+	 * @return The number of revokes a Classified Document has.
 	 */
 	int getNumRevoked();
 	
 	/**
-	 * @return The number of grants a Classified Document have.
+	 * @return The number of grants a Classified Document has.
 	 */
 	int getNumGrants();
 	
@@ -52,13 +52,13 @@ public interface AccessesClassified {
 	
 	/**
 	 * @param user - The user.
-	 * @return True if the user has been granted to the Classified Document.
+	 * @return True if the user has been granted access to the Classified Document.
 	 */
 	boolean isGranted(User user);
 	
 	/**
 	 * @param user - The user.
-	 * @return True if the user has been revoked to the Classified Document.
+	 * @return True if the users access has been revoked to the Classified Document.
 	 */
 	boolean isRevoked(User user);
 	

@@ -106,7 +106,7 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 	 * @param user - The user you want to search.
 	 * @param userArray - The array you want to search in.
 	 * @param counterUser - The array counter.
-	 * @return -1 if the user does not exist in the array or the user position if he do.
+	 * @return -1 if the user does not exist in the array or the user position if he does.
 	 */
 	private int backwardsFindUser(User user, User[] userArray, int counterUser) {
 		int i = counterUser - 1;

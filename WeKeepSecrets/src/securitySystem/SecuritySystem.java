@@ -54,7 +54,7 @@ public interface SecuritySystem {
 	 * @param userId - Id of the User.
 	 * @param type - Type ( Clerk or Officer).
 	 * @return True if Users type matches the type given.
-	 * @pre idExists() && docExists();
+	 * @pre idExists();
 	 */
 	boolean matchesType(String userId, String type);
 	
@@ -124,7 +124,7 @@ public interface SecuritySystem {
 	void newDocument(String docName, String userId, String level, String description);
 	
 	/**
-	 * Changes the description of the Document.
+	 * Changes the description of the Document and updates the variables regarding writing.
 	 * @param userId - Id of the User managing the Document.
 	 * @param docName - Name of the Document.
 	 * @param description - New description.
@@ -133,7 +133,7 @@ public interface SecuritySystem {
 	void write(String userId, String docName, String description);
 	
 	/**
-	 * Grants the User access to the Document and increments teh variables regarding writing.
+	 * Grants the User access to the Document.
 	 * @param userId - Id of the User.
 	 * @param ManagerId - Id of the User Managing the Document.
 	 * @param docName - Name of the Document.
@@ -151,7 +151,7 @@ public interface SecuritySystem {
 	void revokeUser(String userId, String ManagerId,String docName);
 	
 	/**
-	 * Increments the variables regarding reading.
+	 * User reads the Document.
 	 * @param userId - Id the User.
 	 * @param docName - Name of the Document.
 	 * @pre idExists() && docExists().
@@ -189,7 +189,7 @@ public interface SecuritySystem {
 	/**
 	 * @param docName - Name of the Document.
 	 * @return Iterator of the Users granted or revoked from the Classified Document given.
-	 * @pre @pre docExists().
+	 * @pre docExists().
 	 */
 	IteratorUser createIteratorGrants(String docName);
 	

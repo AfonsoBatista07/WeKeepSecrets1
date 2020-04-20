@@ -66,13 +66,6 @@ public class DocumentCollectionClass implements DocumentCollection {
 		getDoc(docName).read(user);
 	}
 
-	private void resize() {
-		Document[] sl = new Document[GROW_FACTOR * documents.length];
-		for (int i = 0; i < counterDoc; i++)
-			sl[i] = documents[i];
-		documents = sl;
-	}
-	
 	public boolean fullDocs() {
 		return counterDoc==documents.length;
 	}
@@ -106,11 +99,21 @@ public class DocumentCollectionClass implements DocumentCollection {
 		return iteratorDocs;
 
 	}
+	
+	/**
+	 * Resizes the documents array.
+	 */
+	private void resize() {
+		Document[] sl = new Document[GROW_FACTOR * documents.length];
+		for (int i = 0; i < counterDoc; i++)
+			sl[i] = documents[i];
+		documents = sl;
+	}
 
 	/**
-	 * Finds the position of the Document with the given name in the documents array or returns -1 if the document isnt in the array.
+	 * Finds the position of the Document with the given name in the documents array or returns -1 if the document doesnt exist.
 	 * @param docName - Name of the Document.
-	 * @return Position of the Document if it exists in the array, else returns 1.
+	 * @return Position of the Document if it exists in the array, else returns -1.
 	 */
 	private int findDoc(String docName) {
         int i = 0;
@@ -124,7 +127,7 @@ public class DocumentCollectionClass implements DocumentCollection {
     }
 	
 	/**
-	 * Organizes the docsByGrant array with the classified with grants from the documents array.
+	 * Organizes the docsByGrant array by decreasing number of grants of the classified Documents from the Documents array. 
 	 */
 	private void listOnlyDocumentsWithGrants() {
 		counterDocsByGrant = 0;

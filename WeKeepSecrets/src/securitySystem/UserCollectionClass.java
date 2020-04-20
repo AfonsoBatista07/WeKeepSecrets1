@@ -50,13 +50,6 @@ public class UserCollectionClass implements UserCollection {
 	public void upload(String id, Document doc) {
 		getUser(id).upload(doc);
 	}
-
-	private void resize() {
-		User[] sl = new User[GROW_FACTOR * users.length];
-		for (int i = 0; i < counterUsers; i++)
-			sl[i] = users[i];
-		users = sl;
-	}
 	
 	public boolean fullUsers() {
 		return counterUsers==users.length;
@@ -81,6 +74,16 @@ public class UserCollectionClass implements UserCollection {
 		IteratorUser iteratorUser = new IteratorUserClass(usersByGrants, counterUserByGrants);
 		return iteratorUser;
 
+	}
+	
+	/**
+	 * Resizes the users array.
+	 */
+	private void resize() {
+		User[] sl = new User[GROW_FACTOR * users.length];
+		for (int i = 0; i < counterUsers; i++)
+			sl[i] = users[i];
+		users = sl;
 	}
 	
 	/**
