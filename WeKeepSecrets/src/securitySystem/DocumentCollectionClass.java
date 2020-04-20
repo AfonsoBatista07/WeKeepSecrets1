@@ -18,7 +18,7 @@ public class DocumentCollectionClass implements DocumentCollection {
 	private static final int DEFAULT_SIZE=50, GROW_FACTOR=2;
 	
 	/**
-	 * Constructor of the DocumentCollectionClass, initialize variables
+	 * Constructor of the DocumentCollectionClass, initialize variables.
 	 */
 	public DocumentCollectionClass() {
 		

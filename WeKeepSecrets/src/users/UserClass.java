@@ -23,8 +23,8 @@ public class UserClass implements User {
 	/**
 	 * Constructor of the UserClass, initialize variables.
 	 * @param id - User ID.
-	 * @param level - User Level. (Official, Confidential, Secret, Topsecret)
-	 * @param kind - User kind. (Officer or Clerk)
+	 * @param level - User Level. (Official, Confidential, Secret, Topsecret).
+	 * @param kind - User kind. (Officer or Clerk).
 	 */
 	public UserClass(String id, String level, String kind) {
 		this.id = id;

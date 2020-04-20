@@ -11,7 +11,7 @@ public class OfficerClass extends UserClass implements Officer{
 	
 	/**
 	 * Constructor of the OfficerClass, initialize variables.
-	 * @param id - User ID
+	 * @param id - User ID.
 	 * @param level - User level.
 	 */
 	public OfficerClass(String id, String level) {
