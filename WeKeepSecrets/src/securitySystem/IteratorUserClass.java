@@ -2,7 +2,7 @@ package securitySystem;
 import users.User;
 
 /**
- * 
+ * Iterates Users.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

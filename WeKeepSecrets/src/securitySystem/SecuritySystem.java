@@ -1,7 +1,7 @@
 package securitySystem;
 
 /**
- * Falta fazer os pre requisitos
+ * Interface of the SecuritySystemClass processes all the information from the other classes.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

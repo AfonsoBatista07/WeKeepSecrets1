@@ -3,7 +3,7 @@ package securitySystem;
 import users.User;
 
 /**
- * 
+ * Interface of the IteratorUser that iterates Users.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

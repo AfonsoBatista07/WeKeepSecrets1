@@ -4,7 +4,7 @@ import documents.Document;
 import users.*;
 
 /**
- * 
+ * Implements a array of users.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

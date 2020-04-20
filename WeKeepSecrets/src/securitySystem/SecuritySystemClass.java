@@ -3,7 +3,7 @@ package securitySystem;
 import documents.*;
 
 /**
- * 
+ * Processes all the information from the other classes.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

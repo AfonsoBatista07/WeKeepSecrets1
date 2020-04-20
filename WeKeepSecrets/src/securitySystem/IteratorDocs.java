@@ -3,7 +3,7 @@ package securitySystem;
 import documents.Document;
 
 /**
- * 
+ * Interface of the IteratorDocs that iterates Documents.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

@@ -6,7 +6,7 @@ import users.User;
 import documents.OfficialDocument;
 
 /**
- * 
+ * Interface of the DocumentCollectionClass Implements a array of Documents.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

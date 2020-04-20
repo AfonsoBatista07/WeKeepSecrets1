@@ -1,7 +1,7 @@
 package securitySystem;
 
 /**
- * 
+ * A enumeration for the Levels of the hierarchy.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

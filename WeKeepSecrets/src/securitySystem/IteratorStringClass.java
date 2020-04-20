@@ -1,7 +1,7 @@
 package securitySystem;
 
 /**
- * 
+ * Iterates strings.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */
