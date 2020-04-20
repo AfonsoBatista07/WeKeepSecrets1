@@ -11,9 +11,10 @@ import users.User;
 public class OfficialDocumentClass extends DocumentClass implements OfficialDocument{
 	
 	private AccessesOfficial accesses;
+	private static final String OFFICIAL = "official";
 	
 	public OfficialDocumentClass(String manager, String docName, String description) {
-		super(manager, docName, description, "official", "official");
+		super(manager, docName, description, OFFICIAL, OFFICIAL);
 		accesses = new AccessesOfficialClass();
 	}
 	

@@ -18,7 +18,7 @@ public class UserClass implements User {
 	private int current;
 	
 	private static final int MAX_DOCS = 500, GROW_FACTOR = 2;
-	protected static final String OFFICER = "officer", CLERK = "clerk" ;
+	protected static final String CLERK = "clerk" ;
 	
 	public UserClass(String id, String level, String kind) {
 		this.id = id;
@@ -38,7 +38,7 @@ public class UserClass implements User {
 	}
 	
 	public boolean isClerk() {
-		return kind.equalsIgnoreCase("clerk");
+		return kind.equalsIgnoreCase(CLERK);
 	}
 	
 	public String getId() {

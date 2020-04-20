@@ -12,9 +12,10 @@ import users.User;
 public class ClassifiedDocumentClass extends DocumentClass implements ClassifiedDocument{
 	
 	private AccessesClassified accesses;
+	private static final String CLASSIFIED = "classified";
 
 	public ClassifiedDocumentClass(String manager, String name, String level, String description) {
-		super(manager, name, description, level, "classified");
+		super(manager, name, description, level, CLASSIFIED);
 		accesses = new AccessesClassifiedClass();
 	}
 	

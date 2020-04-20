@@ -136,7 +136,7 @@ public class DocumentCollectionClass implements DocumentCollection {
 	private void listOnlyDocumentsWithGrants() {
 		counterDocsByGrant = 0;
 		for(int i = 0; i < counterDoc; i++) {
-			if(documents[i].getType().equalsIgnoreCase("classified")) {
+			if(!documents[i].isOfficial()) {
 				if(((ClassifiedDocument) documents[i]).getNumGrants() > 0) {
 					documentsByGrant[counterDocsByGrant++] = documents[i];
 				}

@@ -10,6 +10,7 @@ import users.User;
 public abstract class DocumentClass implements Document{
 	
 	protected String manager, docName, level, description, type;
+	private static final String OFFICIAL = "official";
 	
 	public DocumentClass(String manager, String docName, String description, String level, String type) {
 		this.manager = manager;
@@ -24,7 +25,7 @@ public abstract class DocumentClass implements Document{
 	public abstract int getNumAccesses();
 	
 	public boolean isOfficial() {
-		return type.equalsIgnoreCase("official");
+		return type.equalsIgnoreCase(OFFICIAL);
 	}
 	
 	public String getType() {
