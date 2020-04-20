@@ -14,6 +14,9 @@ public class SecuritySystemClass implements SecuritySystem {
 	
 	private static final String OFFICIAL = "official";
 	
+	/**
+	 * Constructor of the SecuritySystemClass, initialize classes.
+	 */
 	public SecuritySystemClass() {
 		users = new UserCollectionClass();
 		docs = new DocumentCollectionClass();

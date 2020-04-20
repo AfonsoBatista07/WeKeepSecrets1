@@ -10,6 +10,11 @@ public class IteratorStringClass implements IteratorString {
 	private String[] accesses;
 	private int counterAccesses, nextAccess; 
 		
+	/**
+	 * Constructor of the IteratorStringClass, initialize variables.
+	 * @param accesses - Array of Strings.
+	 * @param counterAccesses - Array counter.
+	 */
 	public IteratorStringClass(String[] accesses, int counterAccesses) {
 		this.counterAccesses = counterAccesses; 
 		this.accesses = accesses;

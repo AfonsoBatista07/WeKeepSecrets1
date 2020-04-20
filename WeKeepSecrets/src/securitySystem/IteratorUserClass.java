@@ -11,6 +11,11 @@ public class IteratorUserClass implements IteratorUser {
 	private User[] user;
 	private int counterUsers, nextUser; 
 		
+	/**
+	 * Constructor of the IteratorUserClass, initialize variables.
+	 * @param user - Array of users.
+	 * @param counterUsers - Counter of the array.
+	 */
 	public IteratorUserClass(User[] user, int counterUsers) {
 		this.counterUsers = counterUsers; 
 		this.user = user;

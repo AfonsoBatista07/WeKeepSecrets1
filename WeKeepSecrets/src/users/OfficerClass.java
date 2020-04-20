@@ -9,6 +9,11 @@ public class OfficerClass extends UserClass implements Officer{
 	
 	int granted, revoked;
 	
+	/**
+	 * Constructor of the OfficerClass, initialize variables.
+	 * @param id - User ID
+	 * @param level - User level.
+	 */
 	public OfficerClass(String id, String level) {
 		super(id, level, OFFICER);
 		

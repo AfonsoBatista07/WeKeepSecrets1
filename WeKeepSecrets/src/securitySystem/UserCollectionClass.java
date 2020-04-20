@@ -16,6 +16,9 @@ public class UserCollectionClass implements UserCollection {
 	private static final int DEFAULT_SIZE=50, GROW_FACTOR=2;
 	private static final String CLERK = "clerk";
 	
+	/**
+	 * Constructor of the UserCollectionClass, initialize variables.
+	 */
 	public UserCollectionClass() {
 		users = new User[DEFAULT_SIZE];
 		usersByGrants = new User[DEFAULT_SIZE];

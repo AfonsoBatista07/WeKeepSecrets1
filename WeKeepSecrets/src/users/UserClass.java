@@ -20,6 +20,12 @@ public class UserClass implements User {
 	private static final int MAX_DOCS = 500, GROW_FACTOR = 2;
 	protected static final String OFFICER = "officer", CLERK = "clerk" ;
 	
+	/**
+	 * Constructor of the UserClass, initialize variables.
+	 * @param id - User ID.
+	 * @param level - User Level. (Official, Confidential, Secret, Topsecret)
+	 * @param kind - User kind. (Officer or Clerk)
+	 */
 	public UserClass(String id, String level, String kind) {
 		this.id = id;
 		this.level = level;

@@ -14,14 +14,25 @@ public enum Levels {
 	
 	private final int hierarchy;
 	
+	/**
+	 * Constructor of Levels, initialize variables.
+	 * @param hierarchy - The level in hierarchy.
+	 */
 	private Levels(int hierarchy) {
 		this.hierarchy = hierarchy;
 	}
 	
+	/**
+	 * @return The level in hierarchy.
+	 */
 	public int getIntLevel() {
 		return hierarchy;
 	}
 	
+	/**
+	 * @param other - Other level.
+	 * @return True if the level is higher in the hierarchy.
+	 */
 	public boolean isGreaterThan(Levels other) {
 		return this.hierarchy > other.hierarchy;
 	}
