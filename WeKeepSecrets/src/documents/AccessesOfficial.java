@@ -4,7 +4,7 @@ import securitySystem.IteratorUser;
 import users.User;
 
 /**
- * 
+ * Interface of the AccessesOfficialClass that manages the accesses of an Official Document.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

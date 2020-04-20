@@ -3,7 +3,7 @@ package documents;
 import users.User;
 
 /**
- * 
+ * Interface of the DOcumentClass that implements a Document.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

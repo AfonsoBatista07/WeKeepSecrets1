@@ -5,7 +5,7 @@ import securitySystem.IteratorUserClass;
 import users.User;
 
 /**
- * 
+ * Manages the accesses of the Official Document.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

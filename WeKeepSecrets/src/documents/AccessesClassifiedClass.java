@@ -7,7 +7,7 @@ import securitySystem.IteratorStringClass;
 import users.User;
 
 /**
- * 
+ * Manages the accesses of a Classified Document.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

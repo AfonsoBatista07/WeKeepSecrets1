@@ -5,7 +5,7 @@ import securitySystem.IteratorUser;
 import users.User;
 
 /**
- * 
+ * Interface of the AccessesClassifiedClass that manages the accesses of a Classified Document.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

@@ -5,7 +5,7 @@ import securitySystem.IteratorUser;
 import users.User;
 
 /**
- * 
+ * Implements a Classified Document.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

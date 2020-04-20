@@ -4,7 +4,7 @@ import users.User;
 import securitySystem.IteratorUser;
 
 /**
- * 
+ * Interface of the OfficialDocumentClass that implements an Official Document.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

@@ -1,7 +1,7 @@
 package users;
 
 /**
- * 
+ * Implements a Clerk.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

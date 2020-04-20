@@ -4,7 +4,7 @@ import documents.Document;
 import securitySystem.IteratorDocs;
 
 /**
- * 
+ * Interface of the UserClass that implements a User.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */

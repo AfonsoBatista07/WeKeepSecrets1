@@ -5,7 +5,7 @@ import securitySystem.IteratorDocs;
 import securitySystem.IteratorDocsClass;
 
 /**
- * 
+ * Implements a User.
  * @author Afonso Batista 57796
  * @author Joao Jorge 57994
  */
