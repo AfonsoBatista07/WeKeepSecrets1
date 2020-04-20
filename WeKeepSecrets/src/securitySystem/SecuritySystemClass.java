@@ -1,7 +1,6 @@
 package securitySystem;
 
 import documents.*;
-import users.ClerkClass;
 
 /**
  * 

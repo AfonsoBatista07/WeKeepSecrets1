@@ -14,6 +14,7 @@ public class UserCollectionClass implements UserCollection {
 	int counterUsers, counterUserByGrants;
 	
 	private static final int DEFAULT_SIZE=50, GROW_FACTOR=2;
+	private static final String CLERK = "clerk";
 	
 	public UserCollectionClass() {
 		users = new User[DEFAULT_SIZE];
@@ -23,12 +24,15 @@ public class UserCollectionClass implements UserCollection {
 	}
 	
 	public void addUser(String id, String level, String kind) {
-		if(kind.equals("officer"))
-			users[counterUsers++] = new OfficerClass(id, level);
-		else if(kind.equals("clerk"))
+		if(isKindClerk(kind))
 			users[counterUsers++] = new ClerkClass(id, level);
+		else users[counterUsers++] = new OfficerClass(id, level);
 		if(fullUsers())
 			resize();
+	}
+	
+	private boolean isKindClerk(String kind) {
+		return kind.equalsIgnoreCase(CLERK);
 	}
 
 	public User getUser(String id) {
