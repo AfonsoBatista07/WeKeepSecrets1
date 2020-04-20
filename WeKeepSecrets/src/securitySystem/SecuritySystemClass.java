@@ -13,6 +13,8 @@ public class SecuritySystemClass implements SecuritySystem {
 	UserCollection users;
 	DocumentCollection docs;
 	
+	private static final String OFFICIAL = "official";
+	
 	public SecuritySystemClass() {
 		users = new UserCollectionClass();
 		docs = new DocumentCollectionClass();
@@ -32,7 +34,7 @@ public class SecuritySystemClass implements SecuritySystem {
 	}
 
 	public boolean matchesType(String userId, String type) {
-		return isUserClerk(userId) && type.equalsIgnoreCase("classified");              
+		return isUserClerk(userId) && !isOfficialLevel(type);              
 	}
 	
 	public boolean canManage(String userId, String docName) {
@@ -97,7 +99,7 @@ public class SecuritySystemClass implements SecuritySystem {
 
 	public void newDocument(String docName, String userId, String level, String description) {
 		Document doc;
-		if(isOfficialDoc(docName))
+		if(isOfficialLevel(level))
 			doc = new OfficialDocumentClass(userId, docName, description); 
 		else 
 			doc = new ClassifiedDocumentClass(userId, docName, level, description);
@@ -130,6 +132,14 @@ public class SecuritySystemClass implements SecuritySystem {
 	
 	public String getDecription(String docName) {
 		return docs.getDescription(docName);
+	}
+	
+	/**
+	 * @param level - Document Level.
+	 * @return True if level equals Official.
+	 */
+	private boolean isOfficialLevel(String level) {
+		return level.equalsIgnoreCase(OFFICIAL);
 	}
 	
 	/**
