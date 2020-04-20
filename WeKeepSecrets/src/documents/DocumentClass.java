@@ -12,6 +12,14 @@ public abstract class DocumentClass implements Document{
 	protected String manager, docName, level, description, type;
 	private static final String OFFICIAL = "official";
 	
+	/**
+	 * Constructor of the DocumentClass and initialization of variables.
+	 * @param manager - Name of the User managing the Document.
+	 * @param docName - Name of the Document.
+	 * @param description - Description of the Document.
+	 * @param level - Security level of the Document.
+	 * @param type - Type of the Document (official or classified).
+	 */
 	public DocumentClass(String manager, String docName, String description, String level, String type) {
 		this.manager = manager;
 		this.docName = docName;
