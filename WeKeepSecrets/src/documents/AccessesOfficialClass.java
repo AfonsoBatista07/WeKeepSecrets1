@@ -14,6 +14,9 @@ public class AccessesOfficialClass implements AccessesOfficial{
 	private int numAccesses, counter;
 	private static final int DEFAULT_SIZE=10;
 	
+	/**
+	 * Constructor of AccessesOfficialClass and initialization of variables.
+	 */
 	public AccessesOfficialClass() {
 		accesses = new User[DEFAULT_SIZE];
 		counter = 0;

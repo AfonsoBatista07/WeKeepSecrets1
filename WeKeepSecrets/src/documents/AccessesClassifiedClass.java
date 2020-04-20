@@ -18,6 +18,9 @@ public class AccessesClassifiedClass implements AccessesClassified  {
 	private static final String READ = "read", WRITE = "write", GRANT = "grant", REVOKED = "revoked";
 	private int counterGrants, counterAccesses, numGrants, numRevoked;
 	
+	/**
+	 * Constructor of the Class AccessesClassifiedClass and initialization of variables.
+	 */
 	public AccessesClassifiedClass() {
 		accessesType = new String[DEFAULT_SIZE];
 		grantType = new String[DEFAULT_SIZE];

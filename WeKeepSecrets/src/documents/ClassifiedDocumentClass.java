@@ -14,6 +14,13 @@ public class ClassifiedDocumentClass extends DocumentClass implements Classified
 	private AccessesClassified accesses;
 	private static final String CLASSIFIED = "classified";
 
+	/**
+	 * Constructor of the ClassifiedDocumentClass and initialization of variables.
+	 * @param manager - Name of the User managing the Document.
+	 * @param name - Name of the Document.
+	 * @param level - Security level of the Document.
+	 * @param description - Description of the Document.
+	 */
 	public ClassifiedDocumentClass(String manager, String name, String level, String description) {
 		super(manager, name, description, level, CLASSIFIED);
 		accesses = new AccessesClassifiedClass();
